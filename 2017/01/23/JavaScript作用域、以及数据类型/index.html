@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript作用域、以及数据类型 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JS基本数据类型的变量存放的是基本类型数据的实际值；而引用数据类型的变量保存对它的引用，即指针。  说白了就是：**基本数据类型传的是数值，引用类型传的是变量堆内存的地址**  这句在下边最后的几个例子当中尤为重要。">
+<meta name="keywords" content="JavaScript作用域，JavaScript数据类型，引用类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript作用域、以及数据类型">
+<meta property="og:url" content="http://yoursite.com/2017/01/23/JavaScript作用域、以及数据类型/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JS基本数据类型的变量存放的是基本类型数据的实际值；而引用数据类型的变量保存对它的引用，即指针。  说白了就是：**基本数据类型传的是数值，引用类型传的是变量堆内存的地址**  这句在下边最后的几个例子当中尤为重要。">
+<meta property="og:updated_time" content="2017-06-15T02:03:55.462Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript作用域、以及数据类型">
+<meta name="twitter:description" content="JS基本数据类型的变量存放的是基本类型数据的实际值；而引用数据类型的变量保存对它的引用，即指针。  说白了就是：**基本数据类型传的是数值，引用类型传的是变量堆内存的地址**  这句在下边最后的几个例子当中尤为重要。">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript作用域、以及数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/23/JavaScript作用域、以及数据类型/" class="article-date">
+  <time datetime="2017-01-23T03:00:00.000Z" itemprop="datePublished">2017-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript作用域、以及数据类型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>javascript作用域</p>
+</blockquote>
+<p>js中的变量分为两种类型：</p>
+<ol>
+<li>基本数据类型</li>
+<li>引用数据类型</li>
+</ol>
+<p>JS基本数据类型的变量存放的是基本类型数据的实际值；而引用数据类型的变量保存对它的引用，即指针。</p>
+<p>说白了就是：<strong>基本数据类型传的是数值，引用类型传的是变量堆内存的地址</strong></p>
+<p>这句在下边最后的几个例子当中尤为重要。</p>
+<p>JS基本数据类型：null undefined number boolean</p>
+<p>string比较特殊</p>
+<p>引用数据类型：function object array</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">    * 1.全局变量与局部变量</div><div class="line">    * 外层变量可以在内层调用（全局），内层变量不能在外层调用（局部）</div><div class="line">    * */</div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 外部变量可以在内部调用</span></div><div class="line">        alert(a);</div><div class="line">    &#125;)();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 内部变量不能在外部调用</span></div><div class="line">        <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">    alert(a);   <span class="comment">// 报错</span></div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line">    * 下面举个例子：</div><div class="line">    * 函数调用只是回到函数定义的地方，调用一下函数</div><div class="line">    * 这里在bbb函数中，调用aaa函数，</div><div class="line">    * 这时的aaa函数并不是被放入bbb函数中，而是在原定义的地方</div><div class="line">    * 这是的aaa中没有变量a，所以去访问全局变量中的a</div><div class="line">    * */</div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(a);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> a = <span class="number">20</span>;</div><div class="line">        aaa();</div><div class="line">    &#125;</div><div class="line">    bbb();  <span class="comment">// 10</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line">    * 2.当var不加的时候，会自动变成全局变量</div><div class="line">    * 在全局环境中，不加var和加var效果一样，都是全局变量</div><div class="line">    * 在局域环境中，加var会被定义为局部变量，不加var会被定义为全局变量</div><div class="line">    * */</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> a = <span class="number">10</span>; <span class="comment">// 外部访问不到</span></div><div class="line">        b = <span class="number">10</span>;     <span class="comment">// 相当于全局变量</span></div><div class="line">        <span class="comment">// 上面相当于：var a = b = 10;</span></div><div class="line">    &#125;</div><div class="line">    test();</div><div class="line">    alert(b);   <span class="comment">// 10</span></div><div class="line">    alert(a);   <span class="comment">// 报错</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line">    * 3.变量查找按照就近原则去查找</div><div class="line">    * var定义的变量，当就近查找没有找到就去外层查找</div><div class="line">    * */</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> a = <span class="number">20</span>;</div><div class="line">        <span class="comment">// a在匿名函数中var定义了，所以找到为20</span></div><div class="line">        alert(a);   <span class="comment">// 20</span></div><div class="line">    &#125;)();</div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        a = <span class="number">20</span>;   <span class="comment">// 相当于全局变量，将外部的var a = 20;</span></div><div class="line">        <span class="comment">// 在匿名函数中没有找到var定义的a，然后去外层去查找</span></div><div class="line">        <span class="comment">// 外部查找到了，var a = 10 = 20;</span></div><div class="line">        alert(a);   <span class="comment">// 20</span></div><div class="line">    &#125;)();</div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 在匿名函数中没有找到var定义的a，然后去外层去查找</span></div><div class="line">        <span class="comment">// 外部查找到了，var a = 10</span></div><div class="line">        alert(a);   <span class="comment">// 10</span></div><div class="line">        a = <span class="number">20</span>;</div><div class="line">    &#125;)();</div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 在匿名函数中找到var定义的a，</span></div><div class="line">        <span class="comment">// 这里的var a = 20,存在变量提升,</span></div><div class="line">        <span class="comment">// 在执行alert(a)之前，变量提示有var a;</span></div><div class="line">        <span class="comment">// 但是a没有值，所有返回undefined</span></div><div class="line">        alert(a);   <span class="comment">// undefined</span></div><div class="line">        <span class="keyword">var</span> a = <span class="number">20</span>;</div><div class="line"></div><div class="line">        <span class="comment">// 在变量提升的情况下，相当于下面：</span></div><div class="line">        <span class="comment">// var a;</span></div><div class="line">        <span class="comment">// alert(a);</span></div><div class="line">        <span class="comment">// a = 20;</span></div><div class="line">    &#125;)();</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 执行bbb,bbb中的a=20,但是与匿名函数和全局变量a无关</span></div><div class="line">        bbb();</div><div class="line">        <span class="comment">// 在匿名函数中查找var定义的a,发现没有</span></div><div class="line">        <span class="comment">// 继续在外层中查找，发现了 var a = 10;</span></div><div class="line">        alert(a);   <span class="comment">// 10</span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> a = <span class="number">20</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;)();</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        bbb();</div><div class="line">        <span class="comment">// 在匿名函数中查找var定义的a,发现没有</span></div><div class="line">        <span class="comment">// 继续在外层中查找，发现了 var a = 10 = 20;</span></div><div class="line">        alert(a);   <span class="comment">// 20</span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">// 没有var定义，所有为全局变量，外面的全局变量 var a = 10 = 20;</span></div><div class="line">            a = <span class="number">20</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;)();</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line">    * 当参数与局部变量重名时，优先级等同</div><div class="line">    * */</div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</div><div class="line">        <span class="comment">// 这里的参数a是基本数据类型，按值传参的</span></div><div class="line">        <span class="comment">// 参数a相当于在匿名函数内部重新定义了一个a，</span></div><div class="line">        <span class="comment">// 且与外层的a不相关</span></div><div class="line">        a += <span class="number">3</span>;</div><div class="line">    &#125;)(a);</div><div class="line">    alert(a);   <span class="comment">// 10</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</div><div class="line">        <span class="comment">// 这里的参数a是引用类型，按引用传参的</span></div><div class="line">        <span class="comment">// 参数a相当于在匿名函数内部重新定义了一个a，</span></div><div class="line">        <span class="comment">// 但是这个a是外层a的一个别名，它们引用了同一个地址</span></div><div class="line">        <span class="comment">// 所以内部a添加值，外部a可以访问到</span></div><div class="line">        a.push(<span class="number">4</span>);</div><div class="line">    &#125;)(a);</div><div class="line">    alert(a);   <span class="comment">// [1,2,3,4]</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</div><div class="line">        <span class="comment">// 这里的参数a是引用类型，按引用传参的</span></div><div class="line">        <span class="comment">// 参数a相当于在匿名函数内部重新定义了一个a，</span></div><div class="line">        <span class="comment">// 但是这个a是外层a的一个别名，它们引用了同一个地址</span></div><div class="line">        <span class="comment">// 所以内部a添加值，外部a可以访问到</span></div><div class="line"></div><div class="line">        <span class="comment">// 但是，这里的a又重新赋值了新的数组，断开了与外层的关系</span></div><div class="line">        a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">    &#125;)(a);</div><div class="line">    alert(a);   <span class="comment">// [1,2,3]</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/23/JavaScript作用域、以及数据类型/" data-id="cj3xt57fw00038we99ipv5mnd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/23/JavaScript基本数据类型和引用类型/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript基本数据类型和引用类型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/23/javascript闭包，闭包的优点与弊端/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">javascript闭包，闭包的优点与弊端</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/15/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/08/js-中continue、break、return的区别/">js 中continue、break、return的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/06/js查找字符串中出现最多的以及个数/">js查找字符串中出现最多的以及个数</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/23/JavaScript基本数据类型和引用类型/">JavaScript基本数据类型和引用类型</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/23/JavaScript作用域、以及数据类型/">JavaScript作用域、以及数据类型</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
