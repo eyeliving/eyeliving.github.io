@@ -5,17 +5,17 @@
   
   <title>js 中continue、break、return的区别 | 吟求 - IT技术文章分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js 中continue、break、return的区别  continue:结束本次循环，循环变量继续递增或递减，开始下次循环  break:结束循环，执行循环后面的代码(如果有的话)  return:结束函数的执行，return后面的所有代码都不再执行   12345678910111213 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;">
+  <meta name="description" content="js 中continue、break、return的区别continue:结束本次循环，循环变量继续递增或递减，开始下次循环 break:结束循环，执行循环后面的代码(如果有的话) return:结束函数的执行，return后面的所有代码都不再执行 1234567891011 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;= 10; i++)">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js 中continue、break、return的区别">
 <meta property="og:url" content="http://dodoing.com/2017/02/08/js-中continue、break、return的区别.html">
 <meta property="og:site_name" content="吟求 - IT技术文章分享">
-<meta property="og:description" content="js 中continue、break、return的区别  continue:结束本次循环，循环变量继续递增或递减，开始下次循环  break:结束循环，执行循环后面的代码(如果有的话)  return:结束函数的执行，return后面的所有代码都不再执行   12345678910111213 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;">
-<meta property="og:updated_time" content="2017-06-15T01:52:05.169Z">
+<meta property="og:description" content="js 中continue、break、return的区别continue:结束本次循环，循环变量继续递增或递减，开始下次循环 break:结束循环，执行循环后面的代码(如果有的话) return:结束函数的执行，return后面的所有代码都不再执行 1234567891011 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;= 10; i++)">
+<meta property="og:updated_time" content="2017-07-05T03:13:25.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js 中continue、break、return的区别">
-<meta name="twitter:description" content="js 中continue、break、return的区别  continue:结束本次循环，循环变量继续递增或递减，开始下次循环  break:结束循环，执行循环后面的代码(如果有的话)  return:结束函数的执行，return后面的所有代码都不再执行   12345678910111213 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;">
+<meta name="twitter:description" content="js 中continue、break、return的区别continue:结束本次循环，循环变量继续递增或递减，开始下次循环 break:结束循环，执行循环后面的代码(如果有的话) return:结束函数的执行，return后面的所有代码都不再执行 1234567891011 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;= 10; i++)">
   
     <link rel="alternate" href="/atom.xml" title="吟求 - IT技术文章分享" type="application/atom+xml">
   
@@ -86,25 +86,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>js 中continue、break、return的区别</p>
-<ul>
-<li>continue:结束本次循环，循环变量继续递增或递减，开始下次循环</li>
-<li></li>
-<li>break:结束循环，执行循环后面的代码(如果有的话)</li>
-<li></li>
-<li>return:结束函数的执行，return后面的所有代码都不再执行</li>
-</ul>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">inqiu</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (i == <span class="number">3</span>) &#123;</div><div class="line">                    <span class="comment">//test1.continue;</span></div><div class="line">                    <span class="comment">//test2.break;</span></div><div class="line">                    <span class="comment">//test3</span></div><div class="line">					<span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="built_in">document</span>.write(i);</div><div class="line">                <span class="built_in">document</span>.write(<span class="string">'&lt;/br&gt;'</span>);</div><div class="line">      &#125;</div><div class="line">      alert(<span class="string">'inqiu() End'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>test1.以次打印出：<code>1  2  4  5  6  7  8  9  10</code> 以及执行<code>alert(&#39;inqiu() End&#39;);</code></p>
-<p>test2.以次打印出：<code>1  2</code></p>
-<p>test3.以次打印出：<code>1  2</code></p>
+        <h2 id="js-中continue、break、return的区别"><a href="#js-中continue、break、return的区别" class="headerlink" title="js 中continue、break、return的区别"></a>js 中continue、break、return的区别</h2><p>continue:结束本次循环，循环变量继续递增或递减，开始下次循环</p>
+<p>break:结束循环，执行循环后面的代码(如果有的话)</p>
+<p>return:结束函数的执行，return后面的所有代码都不再执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">inqiu</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (i == <span class="number">3</span>) &#123;</div><div class="line">                    <span class="comment">//test1 continue;</span></div><div class="line">                    <span class="comment">//test2 break;</span></div><div class="line">                    <span class="comment">//test3 return;</span></div><div class="line">                &#125;</div><div class="line">                <span class="built_in">document</span>.write(i);</div><div class="line">      &#125;</div><div class="line">      alert(<span class="string">'inqiu() End'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>test1.以次打印出：<code>0  1  2  4  5  6  7  8  9  10</code> 以及执行<code>alert(&#39;inqiu() End&#39;);</code></p>
+<p>test2.以次打印出：<code>0  1  2</code> 以及执行<code>alert(&#39;inqiu() End&#39;);</code></p>
+<p>test3.以次打印出：<code>0  1  2</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2017/02/08/js-中continue、break、return的区别.html" data-id="cj4qevu1v000f80e9svk81ltz" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2017/02/08/js-中continue、break、return的区别.html" data-id="cj4qflsrr000t9ke9lfolsm1v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
