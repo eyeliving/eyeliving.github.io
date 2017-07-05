@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>吟求 - IT技术文章分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta name="keywords" content="IT文章聚合，IT文章分享，IT阅读分享">
+<meta property="og:type" content="website">
+<meta property="og:title" content="吟求 - IT技术文章分享">
+<meta property="og:url" content="http://dodoing.com/page/6/index.html">
+<meta property="og:site_name" content="吟求 - IT技术文章分享">
+<meta property="og:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="吟求 - IT技术文章分享">
+<meta name="twitter:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+  
+    <link rel="alternate" href="/atom.xml" title="吟求 - IT技术文章分享" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">吟求 - IT技术文章分享</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://dodoing.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-javascript：迭代器循环各个版本" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/11/javascript：迭代器循环各个版本.html" class="article-date">
+  <time datetime="2016-10-11T10:00:00.000Z" itemprop="datePublished">2016-10-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/11/javascript：迭代器循环各个版本.html">javascript：迭代器循环各个版本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>js的迭代器在现今各个版本的使用</strong></p>
+</blockquote>
+<p>我们如何遍历数组中的元素？20年前JavaScript刚萌生时，你可能这样实现数组遍历：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; myArray.length; index++) &#123;</div><div class="line">	<span class="built_in">console</span>.log(myArray[index]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>自ES5正式发布后，你可以使用内建的forEach方法来遍历数组：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">myArray.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line"> 	 <span class="built_in">console</span>.log(value);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>这段代码看起来更加简洁，但这种方法也有一个小缺陷：你不能使用break语句中断循环，也不能使用return语句返回到外层函数。</p>
+<p>当然，如果只用for循环的语法来遍历数组元素也很不错。</p>
+<p>那么，你一定想尝试一下for-in循环：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index <span class="keyword">in</span> myArray) &#123;</div><div class="line">	<span class="built_in">console</span>.log(myArray[index]);<span class="comment">//error</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这绝对是一个糟糕的选择，为什么呢？</p>
+<ul>
+<li><p>在这段代码中，赋给index的值不是实际的数字，而是字符串“0”、“1”、“2”，此时很可能在无意之间进行字符串算数计算，例如：“2” + 1 == “21”，这给编码过程带来极大的不便。</p>
+</li>
+<li><p>作用于数组的for-in循环体除了遍历数组元素外，还会遍历自定义属性。</p>
+<p> 举个例子，如果你的数组中有一个可枚举属性  myArray .name，循环将额外执行一次，遍历到名为“name”的索引。就连数组原型链上的属性都能被访问到。</p>
+</li>
+<li><p>最让人震惊的是，在某些情况下，这段代码可能按照随机顺序遍历数组元素。</p>
+</li>
+<li><p>简而言之，for-in是为普通对象设计的，你可以遍历得到字符串类型的键，因此不适用于数组遍历。</p>
+</li>
+</ul>
+<blockquote>
+<p>强大的for-of循环</p>
+</blockquote>
+<p>还记得在《深入浅出ES6（一）：ES6是什么》中我向你们承诺过的话么？ES6不会破坏你已经写好的JS代码。</p>
+<p>目前看来，成千上万的Web网站依赖for-in循环，其中一些网站甚至将其用于数组遍历。</p>
+<p>如果想通过修正for-in循环增加数组遍历支持会让这一切变得更加混乱，因此，标准委员会在ES6中增加了一种新的循环语法来解决目前的问题。</p>
+<p>就像这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">of</span> myArray) &#123;</div><div class="line">	<span class="built_in">console</span>.log(value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>是的，与之前的内建方法相比，这种循环方式看起来是否有些眼熟？那好，我们将要探究一下for-of循环的外表下隐藏着哪些强大的功能。</p>
+<p>现在，只需记住：</p>
+<ul>
+<li>这是最简洁、最直接的遍历数组元素的语法</li>
+<li>这个方法避开了for-in循环的所有缺陷</li>
+<li>与forEach()不同的是，它可以正确响应break、continue和return语句</li>
+</ul>
+<p>for-in循环用来遍历对象属性。</p>
+<p>for-of循环用来遍历数据—例如数组中的值。</p>
+<p>但是，不仅如此！</p>
+<p>for-of循环也可以遍历其它的集合</p>
+<p>for-of循环不仅支持数组，还支持大多数类数组对象，例如DOM NodeList对象。</p>
+<p>for-of循环也支持字符串遍历，它将字符串视为一系列的Unicode字符来进行遍历：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> chr <span class="keyword">of</span> <span class="string">""</span>) &#123;</div><div class="line">	alert(chr);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>它同样支持Map和Set对象遍历。</p>
+<p>对不起，你一定没听说过Map和Set对象。他们是ES6中新增的类型。</p>
+<p>我们将在后续的文章讲解这两个新的类型。如果你曾在其它语言中使用过Map和Set，你会发现ES6中的并无太大出入。</p>
+<p>举个例子，Set对象可以自动排除重复项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 基于单词数组创建一个set对象</span></div><div class="line"><span class="keyword">var</span> uniqueWords = <span class="keyword">new</span> <span class="built_in">Set</span>(words);</div></pre></td></tr></table></figure>
+<p>生成Set对象后，你可以轻松遍历它所包含的内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> word <span class="keyword">of</span> uniqueWords) &#123;</div><div class="line"> 	 <span class="built_in">console</span>.log(word);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Map对象稍有不同：内含的数据由键值对组成，所以你需要使用解构（destructuring）来将键值对拆解为两个独立的变量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> [key, value] <span class="keyword">of</span> phoneBookMap) &#123;</div><div class="line">   	<span class="built_in">console</span>.log(key + <span class="string">"'s phone number is: "</span> + value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>解构也是ES6的新特性，我们将在另一篇文章中讲解。看来我应该记录这些优秀的主题，未来有太多的新内容需要一一剖析。</p>
+<p>现在，你只需记住：未来的JS可以使用一些新型的集合类，甚至会有更多的类型陆续诞生，而for-of就是为遍历所有这些集合特别设计的循环语句。</p>
+<p>for-of循环不支持普通对象，但如果你想迭代一个对象的属性，你可以用for-in循环（这也是它的本职工作）或内建的Object.keys()方法：</p>
+<p>// 向控制台输出对象的可枚举属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</div><div class="line">	<span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>深入理解</strong></p>
+<p>ES6始终坚持这样的宗旨：凡是新加入的特性，势必已在其它语言中得到强有力的实用性证明。</p>
+<p>举个例子，新加入的for-of循环像极了C++、Java、C#以及Python中的循环语句。与它们一样，这里的for-of循环支持语言和标准库中提供的几种不同的数据结构。</p>
+<p>它同样也是这门语言中的一个扩展点（译注：关于扩展点，建议参考 1. 浅析扩展点 2. What are extensions and extension points?）。</p>
+<p>正如其它语言中的for/foreach语句一样，for-of循环语句通过方法调用来遍历各种集合。</p>
+<p>数组、Maps对象、Sets对象以及其它在我们讨论的对象有一个共同点，它们都有一个迭代器方法。</p>
+<p>你可以给任意类型的对象添加迭代器方法。</p>
+<p>当你为对象添加myObject.toString()方法后，就可以将对象转化为字符串，同样地，当你向任意对象添加myObject[Symbol.iterator]()方法，就可以遍历这个对象了。</p>
+<p>举个例子，假设你正在使用jQuery，尽管你非常钟情于里面的.each()方法，但你还是想让jQuery对象也支持for-of循环，你可以这样做：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 因为jQuery对象与数组相似</span></div><div class="line"><span class="comment">// 可以为其添加与数组一致的迭代器方法</span></div><div class="line">jQuery.prototype[<span class="built_in">Symbol</span>.iterator] = <span class="built_in">Array</span>.prototype[<span class="built_in">Symbol</span>.iterator];</div></pre></td></tr></table></figure>
+<p>好的，我知道你在想什么，那个[Symbol.iterator]语法看起来很奇怪，这段代码到底做了什么呢？这里通过Symbol处理了一下方法的名称。</p>
+<p>标准委员会可以把这个方法命名为.iterator()方法，但是如果你的代码中的对象可能也有一些.iterator()方法，这一定会让你感到非常困惑。</p>
+<p>于是在ES6标准中使用symbol来作为方法名，而不是使用字符串。</p>
+<p>你大概也猜到了，Symbols是ES6中的新类型，我们会在后续的文章中讲解。</p>
+<p>现在，你需要记住，基于新标准，你可以定义一个全新的symbol，就像Symbol.iterator，如此一来可以保证不与任何已有代码产生冲突。</p>
+<p>这样做的代价是，这段代码的语法看起来会略显生硬，但是这微乎其微代价却可以为你带来如此多的新特性和新功能，并且你所做的这一切可以完美地向后兼容。</p>
+<p>所有拥有[Symbol.iterator]()的对象被称为可迭代的。</p>
+<p>在接下来的文章中你会发现，可迭代对象的概念几乎贯穿于整门语言之中，不仅是for-of循环，还有Map和Set构造函数、解构赋值，以及新的展开操作符。</p>
+<p><strong>迭代器对象</strong></p>
+<p>现在，你将无须亲自从零开始实现一个对象迭代器，我们会在下一篇文章详细讲解。</p>
+<p>为了帮助你理解本文，我们简单了解一下迭代器（如果你跳过这一章，你将错过非常精彩的技术细节）。</p>
+<p>for-of循环首先调用集合的[Symbol.iterator]()方法，紧接着返回一个新的迭代器对象。</p>
+<p>迭代器对象可以是任意具有.next()方法的对象；for-of循环将重复调用这个方法，每次循环调用一次。</p>
+<p>举个例子，这段代码是我能想出来的最简单的迭代器：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> zeroesForeverIterator = &#123;</div><div class="line">	 [<span class="built_in">Symbol</span>.iterator]: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	   		<span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">	  &#125;,</div><div class="line">	  <span class="attr">next</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	  		<span class="keyword">return</span> &#123;<span class="attr">done</span>: <span class="literal">false</span>, <span class="attr">value</span>: <span class="number">0</span>&#125;;</div><div class="line">	 &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>每一次调用.next()方法，它都返回相同的结果，返回给for-of循环的结果有两种可能：(a) 我们尚未完成迭代；(b) 下一个值为0。</p>
+<p>这意味着(value of zeroesForeverIterator) {}将会是一个无限循环。当然，一般来说迭代器不会如此简单。</p>
+<p>这个迭代器的设计，以及它的.done和.value属性，从表面上看与其它语言中的迭代器不太一样。</p>
+<p>在Java中，迭代器有分离的.hasNext()和.next()方法。</p>
+<p>在Python中，他们只有一个.next() 方法，当没有更多值时抛出StopIteration异常。</p>
+<p>但是所有这三种设计从根本上讲都返回了相同的信息。</p>
+<p>迭代器对象也可以实现可选的.return()和.throw(exc)方法。</p>
+<p>如果for-of循环过早退出会调用.return()方法，异常、break语句或return语句均可触发过早退出。</p>
+<p>如果迭代器需要执行一些清洁或释放资源的操作，可以在.return()方法中实现。</p>
+<p>大多数迭代器方法无须实现这一方法。</p>
+<p>.throw(exc)方法的使用场景就更特殊了：for-of循环永远不会调用它。</p>
+<p>但是我们还是会在下一篇文章更详细地讲解它的作用。</p>
+<p>现在我们已了解所有细节，可以写一个简单的for-of循环然后按照下面的方法调用重写被迭代的对象。</p>
+<p>首先是for-of循环：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (VAR <span class="keyword">of</span> ITERABLE) &#123;</div><div class="line">	<span class="comment">//do ing</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后是一个使用以下方法和少许临时变量实现的与之前大致相当的示例，：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $iterator = ITERABLE[<span class="built_in">Symbol</span>.iterator]();</div><div class="line"><span class="keyword">var</span> $result = $iterator.next();</div><div class="line"><span class="keyword">while</span> (!$result.done) &#123;</div><div class="line">	 VAR = $result.value;</div><div class="line">	 <span class="comment">//...</span></div><div class="line">	 $result = $iterator.next();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码没有展示.return()方法是如何处理的，我们可以添加这部分代码，但我认为这对于我们正在讲解的内容来说过于复杂了。</p>
+<p>for-of循环用起来很简单，但是其背后有着非常复杂的机制。</p>
+<hr>
+<p><strong>我何时可以开始使用这一新特性？</strong></p>
+<p>目前，对于for-of循环新特性，所有最新版本Firefox都（部分）支持（译注：从FF 13开始陆续支持相关功能，FF 36 - FF 40基本支持大部分特性），在Chrome中可以通过访问 chrome://flags 并启用“实验性JavaScript”来支持。</p>
+<p>微软的Spartan浏览器支持，但是IE不支持。</p>
+<p>如果你想在web环境中使用这种新语法，同时需要支持IE和Safari，你可以使用Babel或Google的Traceur这些编译器来将你的ES6代码翻译为Web友好的ES5代码。</p>
+<p>而在服务端，你不需要类似的编译器，io.js中默认支持ES6新语法（部分），在Node中需要添加–harmony选项来启用相关特性。</p>
+<p>本文转载于 <a href="http://www.infoq.com/" target="_blank" rel="external">infoq</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/10/11/javascript：迭代器循环各个版本.html" data-id="cj4qevu1o000a80e9sfg7z47l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS基础常规面试（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/29/CSS基础常规面试（一）.html" class="article-date">
+  <time datetime="2016-09-29T08:53:00.000Z" itemprop="datePublished">2016-09-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/29/CSS基础常规面试（一）.html">CSS基础常规面试（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>盒子模型差异 ？  </p>
+</blockquote>
+<p>IE8以下版本的浏览器的盒模型，定义的元素的宽高不包括padding和border。</p>
+<p>标准的css盒子模型：他的宽度=内容的宽度+border+padding</p>
+<p>比如：.box{width:100px;border:10px solid #ccc;padding:10px}</p>
+<p>那么标准的css盒子模型中的box这个的总的宽度就是<br>140px=100+10+10+10+10；</p>
+<p>但是低版本ie的盒子模型box的宽度还是100px。  </p>
+<hr>
+<blockquote>
+<p>div居中定位的常规考法     </p>
+</blockquote>
+<p>1.如何居中div？</p>
+<p>2.如何居中一个浮动元素？</p>
+<p>3.如何让绝对定位的div居中？</p>
+<p>4.如何让一个div水平和垂直居中？</p>
+<p>下边以此对应答案  </p>
+<p>答案1：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span> <span class="attr">style</span>=<span class="string">"background:red;"</span>&gt;</span>1.如何居中div？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line"><span class="selector-class">.div1</span>&#123;<span class="attribute">width</span>:<span class="number">200px</span>;<span class="attribute">margin</span>: <span class="number">0</span> auto;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案2：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span> <span class="attr">style</span>=<span class="string">"background:green;float:left;"</span>&gt;</span>2.如何居中一个浮动元素？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line"><span class="selector-class">.div2</span>&#123;<span class="attribute">width</span>:<span class="number">200px</span>;<span class="attribute">position</span>:relative;<span class="attribute">left</span>:<span class="number">50%</span>;<span class="attribute">margin-left</span>:-<span class="number">100px</span>;&#125;</div><div class="line"><span class="comment">/*position:relative;相对定位，根据父级定位，无父级则以BODY*/</span></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案3：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div3"</span> <span class="attr">style</span>=<span class="string">"background:blue;position:absolute;"</span>&gt;</span>3.如何让绝对定位的div居中？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line"><span class="selector-class">.div3</span>&#123;<span class="attribute">width</span>:<span class="number">200px</span>;<span class="attribute">margin</span>:<span class="number">0</span> auto;<span class="attribute">top</span>:<span class="number">0</span>;<span class="attribute">right</span>:<span class="number">0</span>;<span class="attribute">left</span>:<span class="number">0</span>;<span class="attribute">bottom</span>:<span class="number">0</span>;<span class="attribute">height</span>:<span class="number">30px</span>;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案4：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div4"</span> <span class="attr">style</span>=<span class="string">"background:black;position:absolute;"</span>&gt;</span>4.如何让一个div水平和垂直居中？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line"><span class="selector-class">.div4</span>&#123;<span class="attribute">width</span>:<span class="number">200px</span>;<span class="attribute">top</span>:<span class="number">50%</span>;<span class="attribute">left</span>:<span class="number">50%</span>;<span class="attribute">margin-left</span>:-<span class="number">100px</span>;<span class="attribute">margin-top</span>:-<span class="number">15px</span>;<span class="attribute">height</span>:<span class="number">30px</span>;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>伪类和伪元素的区别是？分别写出几个</p>
+</blockquote>
+<p>这点说出个大概就可以了，但是一定要写出来几个分别有代表性的！</p>
+<ul>
+<li><p>伪类用于向某些选择器添加特殊的效果。（如链接的各个状态，:hover，:vistited，:active等，还有一些常用:first-child，:nth-child()，:focus等等）</p>
+</li>
+<li><p>伪元素用于将特殊的效果添加到某些选择器。（如:before，:after，:first-line，:first-letter）</p>
+</li>
+</ul>
+<p>伪类一开始单单只是用来表示一些元素的动态状态，典型的就是链接的各个状态(LVHA)。</p>
+<p>随后CSS2标准扩展了其概念范围，使其成为了所有逻辑上存在但在文档树中却无须标识的“幽灵”分类。</p>
+<p>伪元素则代表了某个元素的子元素，这个子元素虽然在逻辑上存在，但却并不实际存在于文档树中。</p>
+<p>伪类前面是一个冒号，伪元素前面是两个冒号。</p>
+<p>但因为兼容性的问题，所以现在大部分还是统一的单冒号。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/29/CSS基础常规面试（一）.html" data-id="cj4qevu2p001780e97dosmfku" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-nginx设置301跳转 并检测是否设置成功" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" class="article-date">
+  <time datetime="2016-09-24T02:53:00.000Z" itemprop="datePublished">2016-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/24/nginx设置301跳转 并检测是否设置成功.html">nginx设置301跳转 并检测是否设置成功</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>如题：inqiu.com &nbsp;www.inqiu.com</strong></p><p>现在我们把inqiu.com设置301跳转到www.inqiu.com，也就是说，当用户输入inqiu.com后自动跳转到www.inqiu.com<br><br> 反之，如果想把www.inqiu.com跳转到inqiu.com下，下边的情况同样适用。</p><pre class="brush:python;toolbar:false">server&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;inqiu.com&nbsp;www.inqiu.com;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($host&nbsp;!=&nbsp;&#39;inqiu.com&#39;&nbsp;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite&nbsp;^/(.<em>)$&nbsp;<a href="http://inqiu.com/$1&nbsp;permanent" target="_blank" rel="external">http://inqiu.com/$1&nbsp;permanent</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;~&nbsp;.</em>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass&nbsp;<a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_set_header&nbsp;X-Real-IP&nbsp;$remote_addr;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}</pre><p><br></p><p>设置成功之后，重启reload nginx。</p><p>在浏览器里输入测试，结果现在已经实现了301的跳转。</p><p>如果还不放心，还可以用工具测试一下，比如用curl，或者推荐个在线工具<a href="http://tool.chinaz.com/pagestatus/" target="_blank" rel="external">http://tool.chinaz.com/pagestatus/</a></p><p>在命令行下输入：curl -I www.inqiu.com</p><pre class="brush:python;toolbar:false">$&nbsp;curl&nbsp;-i&nbsp;www.inqiu.com<br>HTTP/1.1&nbsp;301&nbsp;Moved&nbsp;Permanently<br>Server:&nbsp;nginx<br>Date:&nbsp;Sat,&nbsp;24&nbsp;Sep&nbsp;2016&nbsp;01:42:47&nbsp;GMT<br>Content-Type:&nbsp;text/html<br>Content-Length:&nbsp;178<br>Connection:&nbsp;keep-alive<br>Location:&nbsp;<a href="http://inqiu.com/" target="_blank" rel="external">http://inqiu.com/</a></pre><p><br></p><p>再试试不带3w的情况下，输入：curl -I inqiu.com</p><pre class="brush:python;toolbar:false">$&nbsp;curl&nbsp;-I&nbsp;inqiu.com<br>HTTP/1.1&nbsp;200&nbsp;OK<br>Server:&nbsp;nginx<br>Date:&nbsp;Sat,&nbsp;24&nbsp;Sep&nbsp;2016&nbsp;02:35:52&nbsp;GMT<br>Content-Type:&nbsp;text/html;&nbsp;charset=utf-8<br>Content-Length:&nbsp;2997<br>Connection:&nbsp;keep-alive<br>Vary:&nbsp;Accept-Encoding<br>ETag:&nbsp;W/&quot;QyWVldqXm6Vqkyk2lCU66w==&quot;<br>Vary:&nbsp;Accept-Encoding</pre><p><br></p><p>如上图所示，分别返回 301 Moved Permanently、200 OK，说明nginx的301跳转已经设置成功。</p><p>备注：其中的参数permanent表示返回301永久重定向, 地址栏显示重定向后的url，爬虫会更新此url。</p><p>与此对应有&nbsp;redirect返回302临时重定向，地址栏显示重定向后的url，爬虫不会更新此url。</p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" data-id="cj4qevu2d000x80e9q10aqfo4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/15/hello-world.html">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/08/js-中continue、break、return的区别.html">js 中continue、break、return的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html">js查找字符串中出现最多的以及个数</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/23/JavaScript基本数据类型和引用类型.html">JavaScript基本数据类型和引用类型</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 eoeos<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

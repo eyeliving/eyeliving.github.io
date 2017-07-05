@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js查找字符串中出现最多的以及个数 | 吟求 - IT技术文章分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一个非常常见的前端面试题，后端也应该会经常遇到吧。 在这里，总结下，希望正在找工作的朋友们会用到。 如果有更好的方法，也请下边留言。 如：找出下面字符串中出现最多的是哪一个，以及出现了几次。 1234567891011121314151617181920212223242526var str = &apos;fdgdfgsdfdgtertreuujjktyitidssadrt&apos;;/* * 解法一：字符串方式">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js查找字符串中出现最多的以及个数">
+<meta property="og:url" content="http://dodoing.com/2017/02/06/js查找字符串中出现最多的以及个数.html">
+<meta property="og:site_name" content="吟求 - IT技术文章分享">
+<meta property="og:description" content="一个非常常见的前端面试题，后端也应该会经常遇到吧。 在这里，总结下，希望正在找工作的朋友们会用到。 如果有更好的方法，也请下边留言。 如：找出下面字符串中出现最多的是哪一个，以及出现了几次。 1234567891011121314151617181920212223242526var str = &apos;fdgdfgsdfdgtertreuujjktyitidssadrt&apos;;/* * 解法一：字符串方式">
+<meta property="og:updated_time" content="2017-06-15T01:55:36.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js查找字符串中出现最多的以及个数">
+<meta name="twitter:description" content="一个非常常见的前端面试题，后端也应该会经常遇到吧。 在这里，总结下，希望正在找工作的朋友们会用到。 如果有更好的方法，也请下边留言。 如：找出下面字符串中出现最多的是哪一个，以及出现了几次。 1234567891011121314151617181920212223242526var str = &apos;fdgdfgsdfdgtertreuujjktyitidssadrt&apos;;/* * 解法一：字符串方式">
+  
+    <link rel="alternate" href="/atom.xml" title="吟求 - IT技术文章分享" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">吟求 - IT技术文章分享</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://dodoing.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js查找字符串中出现最多的以及个数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html" class="article-date">
+  <time datetime="2017-02-06T04:00:00.000Z" itemprop="datePublished">2017-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js查找字符串中出现最多的以及个数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个非常常见的前端面试题，后端也应该会经常遇到吧。</p>
+<p>在这里，总结下，希望正在找工作的朋友们会用到。</p>
+<p>如果有更好的方法，也请下边留言。</p>
+<p>如：找出下面字符串中出现最多的是哪一个，以及出现了几次。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'fdgdfgsdfdgtertreuujjktyitidssadrt'</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"> * 解法一：字符串方式</div><div class="line"> * */</div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> obj = &#123;&#125;;</div><div class="line">      <span class="keyword">var</span> num = <span class="number">0</span>;</div><div class="line">      <span class="keyword">var</span> value = <span class="string">''</span>;</div><div class="line">      <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++ ) &#123;</div><div class="line">          <span class="comment">// 如果obj中不存在某个字符属性，就把它添加进去</span></div><div class="line">          <span class="keyword">if</span> (!obj[str[i]]) &#123;</div><div class="line">              obj[str[i]] = [];</div><div class="line">          &#125;</div><div class="line">          <span class="comment">// 把值一一填入到obj[a[i]]中</span></div><div class="line">          obj[str[i]].push(str[i]);</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 找出最多项的那个</span></div><div class="line">      <span class="keyword">for</span> ( <span class="keyword">var</span> i <span class="keyword">in</span> obj ) &#123;</div><div class="line">           <span class="keyword">if</span> (num &lt; obj[i].length) &#123;</div><div class="line">                num = obj[i].length;</div><div class="line">                value = i;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">        <span class="keyword">var</span> tips = <span class="string">'字符最多的是：'</span> + value + <span class="string">'，出现了：'</span> + num + <span class="string">'次'</span>;</div><div class="line">        alert(tips);</div><div class="line">&#125;)(str);</div></pre></td></tr></table></figure>
+<p>2016-02-06日 inqiu.com更新<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * 解法二：正则方式</div><div class="line"> * */</div><div class="line"><span class="keyword">var</span> str=<span class="string">"vbbbbhybbfhbbgbbb"</span>;</div><div class="line"><span class="keyword">var</span> arr=str.split(<span class="string">""</span>);</div><div class="line">str=arr.sort().join(<span class="string">""</span>);</div><div class="line"><span class="keyword">var</span> value=<span class="string">""</span>; <span class="comment">//存放出现最多的字符</span></div><div class="line"><span class="keyword">var</span> index=<span class="number">0</span>; <span class="comment">//存放次数</span></div><div class="line"><span class="keyword">var</span> re=<span class="regexp">/(\w)\1+/g</span>;</div><div class="line">str.replace(re,<span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span>,$<span class="number">1</span></span>)</span>&#123; <span class="comment">//$0代表整体，$1代表第一个子项</span></div><div class="line"> <span class="keyword">if</span>(index&lt;$<span class="number">0.</span>length)&#123; <span class="comment">//$0:每一组重复的元素</span></div><div class="line">  index=$<span class="number">0.</span>length;</div><div class="line">  value=$<span class="number">1</span>;</div><div class="line"> &#125;</div><div class="line">&#125;)</div><div class="line">alert(<span class="string">'出现最多的字符是：'</span>+value+<span class="string">',出现次数是'</span>+index);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2017/02/06/js查找字符串中出现最多的以及个数.html" data-id="cj4qevu1y000j80e9txn538dd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/08/js-中continue、break、return的区别.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          js 中continue、break、return的区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/23/JavaScript基本数据类型和引用类型.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript基本数据类型和引用类型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/15/hello-world.html">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/08/js-中continue、break、return的区别.html">js 中continue、break、return的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html">js查找字符串中出现最多的以及个数</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/23/JavaScript基本数据类型和引用类型.html">JavaScript基本数据类型和引用类型</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 eoeos<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

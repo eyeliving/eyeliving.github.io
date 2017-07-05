@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js 中continue、break、return的区别 | 吟求 - IT技术文章分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="js 中continue、break、return的区别  continue:结束本次循环，循环变量继续递增或递减，开始下次循环  break:结束循环，执行循环后面的代码(如果有的话)  return:结束函数的执行，return后面的所有代码都不再执行   12345678910111213 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js 中continue、break、return的区别">
+<meta property="og:url" content="http://dodoing.com/2017/02/08/js-中continue、break、return的区别.html">
+<meta property="og:site_name" content="吟求 - IT技术文章分享">
+<meta property="og:description" content="js 中continue、break、return的区别  continue:结束本次循环，循环变量继续递增或递减，开始下次循环  break:结束循环，执行循环后面的代码(如果有的话)  return:结束函数的执行，return后面的所有代码都不再执行   12345678910111213 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;">
+<meta property="og:updated_time" content="2017-06-15T01:52:05.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js 中continue、break、return的区别">
+<meta name="twitter:description" content="js 中continue、break、return的区别  continue:结束本次循环，循环变量继续递增或递减，开始下次循环  break:结束循环，执行循环后面的代码(如果有的话)  return:结束函数的执行，return后面的所有代码都不再执行   12345678910111213 function inqiu() &amp;#123;     for (var i = 0; i &amp;lt;">
+  
+    <link rel="alternate" href="/atom.xml" title="吟求 - IT技术文章分享" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">吟求 - IT技术文章分享</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://dodoing.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js-中continue、break、return的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/08/js-中continue、break、return的区别.html" class="article-date">
+  <time datetime="2017-02-08T10:27:00.000Z" itemprop="datePublished">2017-02-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js 中continue、break、return的区别
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>js 中continue、break、return的区别</p>
+<ul>
+<li>continue:结束本次循环，循环变量继续递增或递减，开始下次循环</li>
+<li></li>
+<li>break:结束循环，执行循环后面的代码(如果有的话)</li>
+<li></li>
+<li>return:结束函数的执行，return后面的所有代码都不再执行</li>
+</ul>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">inqiu</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (i == <span class="number">3</span>) &#123;</div><div class="line">                    <span class="comment">//test1.continue;</span></div><div class="line">                    <span class="comment">//test2.break;</span></div><div class="line">                    <span class="comment">//test3</span></div><div class="line">					<span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="built_in">document</span>.write(i);</div><div class="line">                <span class="built_in">document</span>.write(<span class="string">'&lt;/br&gt;'</span>);</div><div class="line">      &#125;</div><div class="line">      alert(<span class="string">'inqiu() End'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>test1.以次打印出：<code>1  2  4  5  6  7  8  9  10</code> 以及执行<code>alert(&#39;inqiu() End&#39;);</code></p>
+<p>test2.以次打印出：<code>1  2</code></p>
+<p>test3.以次打印出：<code>1  2</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2017/02/08/js-中continue、break、return的区别.html" data-id="cj4qevu1v000f80e9svk81ltz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/15/hello-world.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js查找字符串中出现最多的以及个数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/15/hello-world.html">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/08/js-中continue、break、return的区别.html">js 中continue、break、return的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html">js查找字符串中出现最多的以及个数</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/23/JavaScript基本数据类型和引用类型.html">JavaScript基本数据类型和引用类型</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 eoeos<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
