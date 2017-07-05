@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>吟求 - IT技术文章分享</title>
+  <title>JS构造函数内的方法与构造函数prototype属性上方法的对比 | 吟求 - IT技术文章分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
-<meta name="keywords" content="IT文章聚合，IT文章分享，IT阅读分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="吟求 - IT技术文章分享">
-<meta property="og:url" content="http://dodoing.com/index.html">
+  <meta name="description" content="JS构造函数内的方法与构造函数prototype属性上方法的对比">
+<meta name="keywords" content="JS构造函数内的方法与构造函数prototype属性上方法的区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS构造函数内的方法与构造函数prototype属性上方法的对比">
+<meta property="og:url" content="http://dodoing.com/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">
 <meta property="og:site_name" content="吟求 - IT技术文章分享">
-<meta property="og:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta property="og:description" content="JS构造函数内的方法与构造函数prototype属性上方法的对比">
+<meta property="og:updated_time" content="2017-07-05T03:39:07.193Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吟求 - IT技术文章分享">
-<meta name="twitter:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta name="twitter:title" content="JS构造函数内的方法与构造函数prototype属性上方法的对比">
+<meta name="twitter:description" content="JS构造函数内的方法与构造函数prototype属性上方法的对比">
   
     <link rel="alternate" href="/atom.xml" title="吟求 - IT技术文章分享" type="application/atom+xml">
   
@@ -63,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-JS构造函数内的方法与构造函数prototype属性上方法的对比" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-JS构造函数内的方法与构造函数prototype属性上方法的对比" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html" class="article-date">
   <time datetime="2017-07-05T10:53:00.000Z" itemprop="datePublished">2017-07-05</time>
@@ -78,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">JS构造函数内的方法与构造函数prototype属性上方法的对比</a>
+    <h1 class="article-title" itemprop="name">
+      JS构造函数内的方法与构造函数prototype属性上方法的对比
     </h1>
   
 
@@ -120,111 +119,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-彻底理解透彻js的原型与原型链" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html" class="article-date">
-  <time datetime="2017-06-15T10:53:00.000Z" itemprop="datePublished">2017-06-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
-    </h1>
+    <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">彻底理解透彻js的原型与原型链</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言也即是初衷"><a href="#前言也即是初衷" class="headerlink" title="前言也即是初衷"></a>前言也即是初衷</h2><p>对于js的原型、原型链一直是迷迷糊糊的，大概似乎可能是这样的。。。好吧，是有点不清楚，去了解了之后，，<br>过个三月、半年的，对于她的概念又模糊了。<br>这次决定彻底搞懂她！</p>
-<h3 id="一、原型是什么？原型链又是什么？"><a href="#一、原型是什么？原型链又是什么？" class="headerlink" title="一、原型是什么？原型链又是什么？"></a>一、原型是什么？原型链又是什么？</h3><p>因为每个对象和原型都有原型，对象的原型指向原型对象，<br>而父的原型又指向父的父，这种原型层层连接起来的就构成了原型链。</p>
-<p>1.JavaScript中，万物皆对象！但对象也是有区别的。分为普通对象和函数对象<br>每个对象都有 <strong>proto</strong> 属性，但只有函数对象才有 prototype 属性。</p>
-<p><strong>proto</strong>与prototype的区别？<br>prototype是function对象中专有的属性。<br><strong>proto</strong>是普通对象的隐式属性，在new的时候，会指向prototype所指的对象；<br><strong>ptoto</strong>实际上是某个实体对象的属性<br>而prototype则是属于构造函数的属性。<br><strong>ptoto</strong>只能在学习或调试的环境下使用。</p>
-<p>a.JS 在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做<strong>proto</strong> 的内置属性，用于指向‘创建它’的构造函数的【原型对象】。<br>对象 person1 有一个 <strong>proto</strong>属性，创建它的构造函数是 Person，构造函数的原型对象是 Person.prototype ，所以如下代码：</p>
-<p>函数对象的prototype 属性，这个属性指向函数的【原型对象】</p>
-<p>在默认情况下，所有的【原型对象】都会自动获得一个 constructor（构造函数）属性，<br>这个属性（是一个指针）指向 prototype 属性所在的函数（Person）。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">Person.prototype.constructor == Person;</div><div class="line">person1.__proto__ == Person.prototype;</div><div class="line">person1.constructor == Person;</div><div class="line"></div><div class="line">obj.constructor === <span class="built_in">Object</span></div><div class="line">obj.__proto__ === <span class="built_in">Object</span>.prototype</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">b.constructor === <span class="built_in">Array</span>;</div><div class="line">b.__proto__ === <span class="built_in">Array</span>.prototype;</div><div class="line"></div><div class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> <span class="built_in">Date</span>(); </div><div class="line">c.constructor === <span class="built_in">Date</span>;</div><div class="line">c.__proto__ === <span class="built_in">Date</span>.prototype;</div><div class="line"></div><div class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Function</span>();</div><div class="line">d.constructor === <span class="built_in">Function</span>;</div><div class="line">d.__proto__ === <span class="built_in">Function</span>.prototype;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> num = [<span class="number">1</span>];</div><div class="line"><span class="built_in">console</span>.log(num.hasOwnPrototype()) <span class="comment">// false (输出布尔值而不是报错)</span></div><div class="line"><span class="comment">//当你用num.hasOwnPrototype()时，JS 会先查一下它的构造函数 （Array） 的原型对象 Array.prototype 有没有有hasOwnPrototype()方法，没查到的话继续查一下 Array.prototype 的原型对象 Array.prototype.__proto__有没有这个方法。</span></div></pre></td></tr></table></figure>
-<p>普通对象的<strong>proto</strong>指向这个对象（this）的构造函数的prototype；<br>函数对象的<strong>proto</strong>全部都是指向Function的prototype。<br>然后无论是Function的prototype还是构造函数的prototype都指向object.prototype，然后最终object.prototype指向null</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">Person.prototype.name = <span class="string">'Zaxlct'</span>;</div><div class="line">Person.prototype.age  = <span class="number">28</span>;</div><div class="line">Person.protetype.job  = <span class="string">'Software Engineer'</span>;</div><div class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.name);</div><div class="line">&#125;</div><div class="line"><span class="comment">//原型对象</span></div><div class="line">Person.prototype = &#123;</div><div class="line">   <span class="attr">name</span>:  <span class="string">'Zaxlct'</span>,</div><div class="line">   <span class="attr">age</span>: <span class="number">28</span>,</div><div class="line">   <span class="attr">job</span>: <span class="string">'Software Engineer'</span>,</div><div class="line">   <span class="attr">sayName</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     alert(<span class="keyword">this</span>.name);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.mark = <span class="string">"A"</span>;</div><div class="line">    <span class="keyword">this</span>.changeMark = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.mark += <span class="string">"_changed"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">A.prototype.mark2 = <span class="string">"A2"</span>;</div><div class="line">A.prototype.changeMark2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.mark2 += <span class="string">"_changed"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> A();</div><div class="line"><span class="built_in">console</span>.log(a.mark2);  <span class="comment">//"A2"</span></div></pre></td></tr></table></figure></p>
-<p>当使用对象(a)的属性或调用对象的方法时，如果对象(a)的属性或方法不存在时，对象会在一步一步通过<strong>proto</strong>向上寻找，找到最近的则是最终的获取到的方法或属性。<br>这就是js中的原型链。</p>
-<p>所有的<strong>proto</strong>的终点站最终都是指向Object对象，而Object的原型对象（Object.prototype）是不继承自任何属性的对象，即Object.prototype没有<strong>proto</strong>，是原型链的顶层。</p>
-<h2 id="二、她的作用什么？经常用来解决哪一方面的问题？"><a href="#二、她的作用什么？经常用来解决哪一方面的问题？" class="headerlink" title="二、她的作用什么？经常用来解决哪一方面的问题？"></a>二、她的作用什么？经常用来解决哪一方面的问题？</h2><h2 id="三、怎样用她？"><a href="#三、怎样用她？" class="headerlink" title="三、怎样用她？"></a>三、怎样用她？</h2><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person()</div><div class="line">p.__proto__ --&gt; Person.protetype</div><div class="line">Person.protetype.__proto__ --&gt; <span class="built_in">Function</span>.protetype</div><div class="line"><span class="built_in">Function</span>.protetype.__proto__ --&gt; <span class="built_in">Object</span>.protetype</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">很简单的一段代码，我们来看看这个new究竟做了什么？我们可以把new的过程拆分成以下三步：</div><div class="line">var p=&#123;&#125;; 也就是说，初始化一个对象p。</div><div class="line">p.__proto__=Person.prototype;</div><div class="line">Person.call(p);也就是说构造p，也可以称之为初始化p。</div><div class="line"></div><div class="line"></div><div class="line">那么__proto__是什么？我们在这里简单地说下。</div><div class="line">每个对象都会在其内部初始化一个属性，就是__proto__，当我们访问一个对象的属性 时，如果这个对象内部不存在这个属性，那么他就会去__proto__里找这个属性，这个__proto__又会有自己的__proto__，于是就这样 一直找下去，也就是我们平时所说的原型链的概念。</div><div class="line"></div><div class="line">*/</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2017/06/15/彻底理解透彻js的原型与原型链.html" data-id="cj4qgf95600193se9guqcu34h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/15/hello-world.html" class="article-date">
-  <time datetime="2017-06-15T01:25:50.389Z" itemprop="datePublished">2017-06-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/15/hello-world.html">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2017/06/15/hello-world.html" data-id="cj4qgf94b000c3se9qtuat9zm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">

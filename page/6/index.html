@@ -65,6 +65,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-各大网站CSS代码初始化整理版" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/04/各大网站CSS代码初始化整理版.html" class="article-date">
+  <time datetime="2016-11-04T10:43:00.000Z" itemprop="datePublished">2016-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/04/各大网站CSS代码初始化整理版.html">各大网站CSS代码初始化整理版</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>css初始化重新整理版</strong></p>
+<p><strong>众所周知，浏览器种类的繁多，带来各种各样的独自的“特色”问题，一直是前端界开发者非常头痛的问题。</strong></p>
+<p><strong>所以我们要把浏览器默认的特色样式初始化。</strong></p>
+<p>以下是几个著名网站的初始化样式</p>
+<blockquote>
+<p>腾讯QQ官网 样式初始化<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>,<span class="selector-tag">ol</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">p</span>,<span class="selector-tag">th</span>,<span class="selector-tag">td</span>,<span class="selector-tag">dl</span>,<span class="selector-tag">dd</span>,<span class="selector-tag">form</span>,<span class="selector-tag">fieldset</span>,<span class="selector-tag">legend</span>,<span class="selector-tag">input</span>,<span class="selector-tag">textarea</span>,<span class="selector-tag">select</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>;<span class="attribute">padding</span>:<span class="number">0</span>&#125; </div><div class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">font</span>:<span class="number">12px</span><span class="string">"宋体"</span>,<span class="string">"Arial Narrow"</span>,HELVETICA;<span class="attribute">background</span>:<span class="number">#fff</span>;<span class="attribute">-webkit-text-size-adjust</span>:<span class="number">100%</span>;&#125; </div><div class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">color</span>:<span class="number">#2d374b</span>;<span class="attribute">text-decoration</span>:none&#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;<span class="attribute">color</span>:<span class="number">#cd0200</span>;<span class="attribute">text-decoration</span>:underline&#125; </div><div class="line"><span class="selector-tag">em</span>&#123;<span class="attribute">font-style</span>:normal&#125; </div><div class="line"><span class="selector-tag">li</span>&#123;<span class="attribute">list-style</span>:none&#125; </div><div class="line"><span class="selector-tag">img</span>&#123;<span class="attribute">border</span>:<span class="number">0</span>;<span class="attribute">vertical-align</span>:middle&#125; </div><div class="line"><span class="selector-tag">table</span>&#123;<span class="attribute">border-collapse</span>:collapse;<span class="attribute">border-spacing</span>:<span class="number">0</span>&#125; </div><div class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">word-wrap</span>:break-word&#125;</div></pre></td></tr></table></figure></p>
+<p>新浪官网 样式初始化<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">ol</span>,<span class="selector-tag">li</span>,<span class="selector-tag">p</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">form</span>,<span class="selector-tag">fieldset</span>,<span class="selector-tag">table</span>,<span class="selector-tag">td</span>,<span class="selector-tag">img</span>,<span class="selector-tag">div</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>;<span class="attribute">padding</span>:<span class="number">0</span>;<span class="attribute">border</span>:<span class="number">0</span>;&#125; </div><div class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">background</span>:<span class="number">#fff</span>;<span class="attribute">color</span>:<span class="number">#333</span>;<span class="attribute">font-size</span>:<span class="number">12px</span>; <span class="attribute">margin-top</span>:<span class="number">5px</span>;<span class="attribute">font-family</span>:<span class="string">"SimSun"</span>,<span class="string">"宋体"</span>,<span class="string">"Arial Narrow"</span>;&#125; </div><div class="line"> </div><div class="line"><span class="selector-tag">ul</span>,<span class="selector-tag">ol</span>&#123;<span class="attribute">list-style-type</span>:none;&#125; </div><div class="line"><span class="selector-tag">select</span>,<span class="selector-tag">input</span>,<span class="selector-tag">img</span>,<span class="selector-tag">select</span>&#123;<span class="attribute">vertical-align</span>:middle;&#125; </div><div class="line"> </div><div class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">text-decoration</span>:none;&#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>&#123;<span class="attribute">color</span>:<span class="number">#009</span>;&#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span>&#123;<span class="attribute">color</span>:<span class="number">#800080</span>;&#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>,<span class="selector-tag">a</span><span class="selector-pseudo">:active</span>,<span class="selector-tag">a</span><span class="selector-pseudo">:focus</span>&#123;<span class="attribute">color</span>:<span class="number">#c00</span>;<span class="attribute">text-decoration</span>:underline;&#125;</div></pre></td></tr></table></figure></p>
+<p>淘宝官网 样式初始化<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>, <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">hr</span>, <span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">li</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">form</span>, <span class="selector-tag">fieldset</span>, <span class="selector-tag">legend</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">textarea</span>, <span class="selector-tag">th</span>, <span class="selector-tag">td</span> &#123; <span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>; &#125; </div><div class="line"><span class="selector-tag">body</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font</span>:<span class="number">12px</span>/<span class="number">1.5</span>tahoma, arial, \<span class="number">5</span>b8b\<span class="number">4</span>f53; &#125; </div><div class="line"><span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>&#123; <span class="attribute">font-size</span>:<span class="number">100%</span>; &#125; </div><div class="line"><span class="selector-tag">address</span>, <span class="selector-tag">cite</span>, <span class="selector-tag">dfn</span>, <span class="selector-tag">em</span>, <span class="selector-tag">var</span> &#123; <span class="attribute">font-style</span>:normal; &#125; </div><div class="line"><span class="selector-tag">code</span>, <span class="selector-tag">kbd</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">samp</span> &#123; <span class="attribute">font-family</span>:couriernew, courier, monospace; &#125; </div><div class="line"><span class="selector-tag">small</span>&#123; <span class="attribute">font-size</span>:<span class="number">12px</span>; &#125; </div><div class="line"><span class="selector-tag">ul</span>, <span class="selector-tag">ol</span> &#123; <span class="attribute">list-style</span>:none; &#125; </div><div class="line"><span class="selector-tag">a</span> &#123; <span class="attribute">text-decoration</span>:none; &#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">text-decoration</span>:underline; &#125; </div><div class="line"><span class="selector-tag">sup</span> &#123; <span class="attribute">vertical-align</span>:text-top; &#125; </div><div class="line"><span class="selector-tag">sub</span>&#123; <span class="attribute">vertical-align</span>:text-bottom; &#125; </div><div class="line"><span class="selector-tag">legend</span> &#123; <span class="attribute">color</span>:<span class="number">#000</span>; &#125; </div><div class="line"><span class="selector-tag">fieldset</span>, <span class="selector-tag">img</span> &#123; <span class="attribute">border</span>:<span class="number">0</span>; &#125; </div><div class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font-size</span>:<span class="number">100%</span>; &#125; </div><div class="line"><span class="selector-tag">table</span> &#123; <span class="attribute">border-collapse</span>:collapse; <span class="attribute">border-spacing</span>:<span class="number">0</span>; &#125;</div></pre></td></tr></table></figure></p>
+<p>网易官网 样式初始化<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span> &#123;<span class="attribute">overflow-y</span>:scroll;&#125; </div><div class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">29px</span>00; <span class="attribute">font</span>:<span class="number">12px</span><span class="string">"\5B8B\4F53"</span>,sans-serif;<span class="attribute">background</span>:<span class="number">#ffffff</span>;&#125; </div><div class="line"><span class="selector-tag">div</span>,<span class="selector-tag">dl</span>,<span class="selector-tag">dt</span>,<span class="selector-tag">dd</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">ol</span>,<span class="selector-tag">li</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">pre</span>,<span class="selector-tag">form</span>,<span class="selector-tag">fieldset</span>,<span class="selector-tag">input</span>,<span class="selector-tag">textarea</span>,<span class="selector-tag">blockquote</span>,<span class="selector-tag">p</span>&#123;<span class="attribute">padding</span>:<span class="number">0</span>; <span class="attribute">margin</span>:<span class="number">0</span>;&#125; </div><div class="line"><span class="selector-tag">table</span>,<span class="selector-tag">td</span>,<span class="selector-tag">tr</span>,<span class="selector-tag">th</span>&#123;<span class="attribute">font-size</span>:<span class="number">12px</span>;&#125; </div><div class="line"><span class="selector-tag">li</span>&#123;<span class="attribute">list-style-type</span>:none;&#125; </div><div class="line"><span class="selector-tag">img</span>&#123;<span class="attribute">vertical-align</span>:top;<span class="attribute">border</span>:<span class="number">0</span>;&#125; </div><div class="line"><span class="selector-tag">ol</span>,<span class="selector-tag">ul</span> &#123;<span class="attribute">list-style</span>:none;&#125; </div><div class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>&#123;<span class="attribute">font-size</span>:<span class="number">12px</span>; <span class="attribute">font-weight</span>:normal;&#125; </div><div class="line"><span class="selector-tag">address</span>,<span class="selector-tag">cite</span>,<span class="selector-tag">code</span>,<span class="selector-tag">em</span>,<span class="selector-tag">th</span> &#123;<span class="attribute">font-weight</span>:normal; <span class="attribute">font-style</span>:normal;&#125;</div></pre></td></tr></table></figure></p>
+<p>雅虎大师 样式初始化<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td &#123; margin:0; padding:0; &#125;</div><div class="line">body &#123; background:#fff; color:#555; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; &#125;</div><div class="line">td,th,caption &#123; font-size:14px; &#125;</div><div class="line">h1, h2, h3, h4, h5, h6 &#123; font-weight:normal; font-size:100%; &#125;</div><div class="line">address, caption, cite, code, dfn, em, strong, th, var &#123; font-style:normal; font-weight:normal;&#125;</div><div class="line">a &#123; color:#555; text-decoration:none; &#125;</div><div class="line">a:hover &#123; text-decoration:underline; &#125;</div><div class="line">img &#123; border:none; &#125;</div><div class="line">ol,ul,li &#123; list-style:none; &#125;</div><div class="line">input, textarea, select, button &#123; font:14px Verdana,Helvetica,Arial,sans-serif; &#125;</div><div class="line">table &#123; border-collapse:collapse; &#125;</div><div class="line">html &#123;overflow-y: scroll;&#125; </div><div class="line"></div><div class="line">.clearfix:after &#123;content: "."; display: block; height:0; clear:both; visibility: hidden;&#125;</div><div class="line">.clearfix &#123; *zoom:1; &#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/11/04/各大网站CSS代码初始化整理版.html" data-id="cj4qgf94z00123se9tf1hh249" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-javascript：迭代器循环各个版本" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/10/11/javascript：迭代器循环各个版本.html" class="article-date">
@@ -199,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/10/11/javascript：迭代器循环各个版本.html" data-id="cj4qflsrb000e9ke9agrt6nn8" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/10/11/javascript：迭代器循环各个版本.html" data-id="cj4qgf94f000h3se9axp7meet" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -273,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/29/CSS基础常规面试（一）.html" data-id="cj4qflsqg00009ke9tggxo82q" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/09/29/CSS基础常规面试（一）.html" data-id="cj4qgf93k00003se9sfbat9tc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -285,48 +334,10 @@
 
 
   
-    <article id="post-nginx设置301跳转 并检测是否设置成功" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" class="article-date">
-  <time datetime="2016-09-24T02:53:00.000Z" itemprop="datePublished">2016-09-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/24/nginx设置301跳转 并检测是否设置成功.html">nginx设置301跳转 并检测是否设置成功</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>如题：inqiu.com &nbsp;www.inqiu.com</strong></p><p>现在我们把inqiu.com设置301跳转到www.inqiu.com，也就是说，当用户输入inqiu.com后自动跳转到www.inqiu.com<br><br> 反之，如果想把www.inqiu.com跳转到inqiu.com下，下边的情况同样适用。</p><pre class="brush:python;toolbar:false">server&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;inqiu.com&nbsp;www.inqiu.com;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($host&nbsp;!=&nbsp;&#39;inqiu.com&#39;&nbsp;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite&nbsp;^/(.<em>)$&nbsp;<a href="http://inqiu.com/$1&nbsp;permanent" target="_blank" rel="external">http://inqiu.com/$1&nbsp;permanent</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;~&nbsp;.</em>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass&nbsp;<a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_set_header&nbsp;X-Real-IP&nbsp;$remote_addr;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}</pre><p><br></p><p>设置成功之后，重启reload nginx。</p><p>在浏览器里输入测试，结果现在已经实现了301的跳转。</p><p>如果还不放心，还可以用工具测试一下，比如用curl，或者推荐个在线工具<a href="http://tool.chinaz.com/pagestatus/" target="_blank" rel="external">http://tool.chinaz.com/pagestatus/</a></p><p>在命令行下输入：curl -I www.inqiu.com</p><pre class="brush:python;toolbar:false">$&nbsp;curl&nbsp;-i&nbsp;www.inqiu.com<br>HTTP/1.1&nbsp;301&nbsp;Moved&nbsp;Permanently<br>Server:&nbsp;nginx<br>Date:&nbsp;Sat,&nbsp;24&nbsp;Sep&nbsp;2016&nbsp;01:42:47&nbsp;GMT<br>Content-Type:&nbsp;text/html<br>Content-Length:&nbsp;178<br>Connection:&nbsp;keep-alive<br>Location:&nbsp;<a href="http://inqiu.com/" target="_blank" rel="external">http://inqiu.com/</a></pre><p><br></p><p>再试试不带3w的情况下，输入：curl -I inqiu.com</p><pre class="brush:python;toolbar:false">$&nbsp;curl&nbsp;-I&nbsp;inqiu.com<br>HTTP/1.1&nbsp;200&nbsp;OK<br>Server:&nbsp;nginx<br>Date:&nbsp;Sat,&nbsp;24&nbsp;Sep&nbsp;2016&nbsp;02:35:52&nbsp;GMT<br>Content-Type:&nbsp;text/html;&nbsp;charset=utf-8<br>Content-Length:&nbsp;2997<br>Connection:&nbsp;keep-alive<br>Vary:&nbsp;Accept-Encoding<br>ETag:&nbsp;W/&quot;QyWVldqXm6Vqkyk2lCU66w==&quot;<br>Vary:&nbsp;Accept-Encoding</pre><p><br></p><p>如上图所示，分别返回 301 Moved Permanently、200 OK，说明nginx的301跳转已经设置成功。</p><p>备注：其中的参数permanent表示返回301永久重定向, 地址栏显示重定向后的url，爬虫会更新此url。</p><p>与此对应有&nbsp;redirect返回302临时重定向，地址栏显示重定向后的url，爬虫不会更新此url。</p>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" data-id="cj4qflsri000m9ke95r0w8bzr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">__('next') &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -349,7 +360,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
     </div>
   </div>
 
@@ -358,7 +369,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
     </div>
   </div>
 
@@ -369,6 +380,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">JS构造函数内的方法与构造函数prototype属性上方法的对比</a>
+          </li>
         
           <li>
             <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
@@ -384,10 +399,6 @@
         
           <li>
             <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html">js查找字符串中出现最多的以及个数</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/23/JavaScript基本数据类型和引用类型.html">JavaScript基本数据类型和引用类型</a>
           </li>
         
       </ul>

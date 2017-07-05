@@ -65,6 +65,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-angular父controller、子controller、同级controller之间的通讯" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/02/angular父controller、子controller、同级controller之间的通讯.html" class="article-date">
+  <time datetime="2016-12-02T07:19:00.000Z" itemprop="datePublished">2016-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/02/angular父controller、子controller、同级controller之间的通讯.html">angular父controller、子controller、同级controller之间的通讯</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在同个  angular.js 应用的控制器之间进行通信可以有很多种不同的方式，本文主要讲两种：</p>
+<ul>
+<li>基于scope继承的方式</li>
+<li>基于event传播的方式</li>
+</ul>
+<blockquote>
+<p>基于scope继承的方式</p>
+</blockquote>
+<p>最简单的让控制器之间进行通信的方法是通过scope的继承。</p>
+<p>假设有两个控制器Parent、Child，Child 在 Parent 内，那Child 可以称为子控制器，它将继承父控制器Parent的scope。</p>
+<p>这样，Child就可以访问到Parent的scope中的所有函数和变量了。<br>需要注意的是，由于scope的继承也是基于Js的原型继承，如果变量是基本类型的，那在Child中的修改（写），有可能会导致Parent中的数据变脏</p>
+<p>基本类型变量的继承</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function Sandcrawler($scope) &#123;</div><div class="line">    $scope.location = 'Mos Eisley North';</div><div class="line">    $scope.move = function(newLocation) &#123;</div><div class="line">        $scope.location = newLocation;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function Droid($scope) &#123;</div><div class="line">    $scope.sell = function(newLocation) &#123;</div><div class="line">        $scope.location = newLocation;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// html</div><div class="line">&lt;div ng-controller="Sandcrawler"&gt;</div><div class="line">    &lt;p&gt;Location: &lt;/p&gt;</div><div class="line">    &lt;button ng-click="move('Mos Eisley South')"&gt;Move&lt;/button&gt;</div><div class="line">    &lt;div ng-controller="Droid"&gt;</div><div class="line">        &lt;p&gt;Location: &lt;/p&gt;</div><div class="line">        &lt;button ng-click="sell('Owen Farm')"&gt;Sell&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>看完上面的代码我们知道，location 属性是直接被注册到 $scope 中的，Droid控制器所拥有的scope从Sandcrawler控制器的scope中继承了这个属性并且可以读取它。</p>
+<p>看以下两个假设场景：</p>
+<p>如果 Sandcrawler 中改变了 location 属性，在 Droid 中也会读取到这个改变；</p>
+<p>在 view 中的表现则是：点击了 Move 按钮的话，两个 p 标签都会显示 Mos Eisley South</p>
+<p>反过来，如果 Droid 中对 $scope.location 进行改写，它只改写自己scope中 location 属性的值，它不会影响 Sandcrawler 中的这个属性的值；</p>
+<p>在 view 中的表现则是：当点击了 Sell 按钮之后，两个控制器scope之间的数据共享就不复存在了，之后无论点多少次 Move 按钮，都影响不了 Droid 中的 p 标签的显示了</p>
+<p>经过上面的教训，有时候我们想要达到的效果可能达不到（如点了 Sell 按钮之后再点 Move 还想让它起作用），这样在ng的开发者中逐渐达成了一个一致的约定，千万不要把那些可以被子级scope改写的属性用基础类型直接添加在 $scope 对象上，而是应该尽可能地用对象类型去添加</p>
+<p><em>对象类型变量的继承</em></p>
+<p>通过上面的结论我们知道，可以用对象类型的变量来作为属性添加到 $scope 中去，这样，只要是引用了这个对象的，无论是谁，在哪个控制器里面，对这个对象变量的改写都会影响都所有引用了这个对象的实例。</p>
+<p>看下面的代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function Sandcrawler($scope) &#123;</div><div class="line">    $scope.sandcrawler.location = 'Mos Eisley North';</div><div class="line">&#125;</div><div class="line"></div><div class="line">function Droid($scope) &#123;</div><div class="line">    $scope.summon = function(newLocation) &#123;</div><div class="line">        $scope.sandcrawler.location = newLocation;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// html</div><div class="line">&lt;div ng-controller="Sandcrawler"&gt;</div><div class="line">    &lt;p&gt;Sandcrawler Location: &lt;/p&gt;</div><div class="line">    &lt;div ng-controller="Droid"&gt;</div><div class="line">        &lt;button ng-click="summon('Owen Farm')"&gt;</div><div class="line">            Summon Sandcrawler</div><div class="line">        &lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>跑一下上面的代码就知道，当我们使用“召唤术”的时候，可以改写 Sandcrawler 控制下的 p 标签的显示了</p>
+<blockquote>
+<p>基于event传播的方式</p>
+</blockquote>
+<p>基于scope继承的方式只能处理父子级控制器之间的通信问题，不能处理兄弟/相邻控制器之间的通信问题。</p>
+<p>这时候，我们需要使用基于event传播的方式来进行通信，这里，ng为我们提供了三个方法：$on , $emit , $broadcast ，需要明确的是：这种方法不仅可以处理兄弟scope间的通信问题，对于解决父子scope间的通信也是毫无压力</p>
+<p><strong>子–&gt;父：$emit</strong></p>
+<p>整个过程是这样的：</p>
+<p>子scope中的控制器通过 $scope.$emit 触发一个事件向上传播</p>
+<p>这个事件会经过每一层的父scope，至于处不处理是父scope自己的事情了</p>
+<p>如果处理，就在想要处理的那个祖先scope中放一个 $scope.$on 监听着就行了</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 父scope上的控制器</div><div class="line">function Sandcrawler($scope) &#123;</div><div class="line">    $scope.location = 'Mos Eisley North';</div><div class="line">    $scope.$on('summon', function(e, newLocation) &#123;</div><div class="line">        $scope.location = newLocation;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">// 子scope上的控制器</div><div class="line">function Droid($scope) &#123;</div><div class="line">    $scope.location = 'Owen Farm';</div><div class="line">    $scope.summon = function() &#123;</div><div class="line">        $scope.$emit('summon', $scope.location);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// html</div><div class="line">&lt;div ng-controller="Sandcrawler"&gt;</div><div class="line">    &lt;p&gt;Sandcrawler Location: &lt;/p&gt;</div><div class="line">    &lt;div ng-controller="Droid"&gt;</div><div class="line">        &lt;p&gt;Droid Location: &lt;/p&gt;</div><div class="line">        &lt;button ng-click="summon()"&gt;Summon Sandcrawler&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>跟我之前写的一篇DOM事件一样，如果你不想让你的事件再往更上层传播，在 $on 中的处理函数调用 e.stopPropagation() 即可</p>
+<p><strong>父–&gt;子：$broadcast</strong></p>
+<p>接下来的东西就简单了，从父到子，用另外一个方法就是了，同样用 $on 监听着，all done，看下面代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 父scope上的控制器</div><div class="line">function Sandcrawler($scope) &#123;</div><div class="line">    $scope.location = 'Mos Eisley North';</div><div class="line">    $scope.recall = function() &#123;</div><div class="line">        $scope.$broadcast('recall', $scope.location);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// 子scope上的控制器</div><div class="line">function Droid($scope) &#123;</div><div class="line">    $scope.location = 'Owen Farm';</div><div class="line">    $scope.$on('recall', function(e, newLocation) &#123;</div><div class="line">        $scope.location = newLocation;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">// html</div><div class="line">&lt;div ng-controller="Sandcrawler"&gt;</div><div class="line">    &lt;p&gt;Sandcrawler Location: &lt;/p&gt;</div><div class="line">    &lt;button ng-click="recall()"&gt;Recall Droids&lt;/button&gt;</div><div class="line">    &lt;div ng-controller="Droid"&gt;</div><div class="line">        &lt;p&gt;Droid Location: &lt;/p&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>同级之间</p>
+<p>拥有同个父scope的子级scope之间，也就是兄弟/相邻scope之间的通信，其实是借助“奶爸”传递消息的：</p>
+<p>子级scope中有谁想传消息了，$emit 一个给“奶爸”</p>
+<p>然后通过“奶爸” $broadcast 给所有孩子这个相同的信息，当然发出信息的那个可以选择是否要忽略掉自己发出的信息</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">// 父scope上的控制器</div><div class="line">function Sandcrawler($scope) &#123;</div><div class="line">    $scope.$on('requestDroidRecall', function(e) &#123;</div><div class="line">        $scope.$broadcast('executeDroidRecall');</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">// 子scope上的控制器</div><div class="line">function Droid($scope) &#123;</div><div class="line">    $scope.location = 'Owen Farm';</div><div class="line">    $scope.recallAllDroids = function() &#123;</div><div class="line">        $scope.$emit('requestDroidRecall');</div><div class="line">    &#125;</div><div class="line">    $scope.$on('executeDroidRecall', function() &#123; </div><div class="line">        $scope.location = 'Sandcrawler';</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">// html</div><div class="line">&lt;div ng-controller="Sandcrawler"&gt;</div><div class="line">    &lt;div ng-controller="Droid"&gt;</div><div class="line">        &lt;h2&gt;R2-D2&lt;/h2&gt;</div><div class="line">        &lt;p&gt;Droid Location: &lt;/p&gt;</div><div class="line">        &lt;button ng-click="recallAddDroids()"&gt;Recall All Droids&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div ng-controller="Droid"&gt;</div><div class="line">        &lt;h2&gt;C-3PO&lt;/h2&gt;</div><div class="line">        &lt;p&gt;Droid Location: &lt;/p&gt;</div><div class="line">        &lt;button ng-click="recallAddDroids()"&gt;Recall All Droids&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>上面代码中要注意的是：子scope通过 $emit 发出的事件名不能与父scope用 $broadcast 的事件名一样，如果有传参数，那当然参数可以一样，因为参数就是我们要传的数据。</p>
+<p>事件名不能一样是为了防止进入死循环。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/12/02/angular父controller、子controller、同级controller之间的通讯.html" data-id="cj4qgf94700093se9i2ml2raw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/11/30/JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例.html" class="article-date">
@@ -177,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/30/JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例.html" data-id="cj4qflsqm00019ke969hzlg1c" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/11/30/JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例.html" data-id="cj4qgf93q00013se9t6paimol" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -413,74 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/25/前端开发的历史和趋势.html" data-id="cj4qflsrv000y9ke94j1ix27w" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-js的执行过程，预解析与执行" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/11/22/js的执行过程，预解析与执行.html" class="article-date">
-  <time datetime="2016-11-22T10:51:00.000Z" itemprop="datePublished">2016-11-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/22/js的执行过程，预解析与执行.html">js的执行过程，预解析与执行</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>先来个定义吧</p>
-<p>JavaScript是一种描述型脚本语言。</p>
-<p>它不同于java或C#等编译性语言,它不需要进行编译成中间语言,而是由浏览器进行动态地解析与执行。</p>
-<p>好了，下面说说 JavaScript 的执行顺序</p>
-<blockquote>
-<p>预解析与执行期</p>
-</blockquote>
-<p>先举个例子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alert(inqiu);<span class="comment">//Uncaught ReferenceError: inqiu is not defined</span></div><div class="line"></div><div class="line">alert(a); <span class="comment">//undefined</span></div><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div></pre></td></tr></table></figure>
-<p>再举个例子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arg = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">    alert(arg);</div><div class="line">    <span class="keyword">var</span> arg = <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line">foo(<span class="number">3</span>);<span class="comment">//undefined</span></div></pre></td></tr></table></figure>
-<p>Why? 解释几句吧</p>
-<p>首先，JavaScript引擎会优先解析var变量和function定义。</p>
-<p>在代码预解析完成后，才会执行代码。</p>
-<p>如果一个文档流中包含多个script代码段（用script标签分隔的js代码或引入的js文件）</p>
-<p>大概的运行顺序是：</p>
-<ul>
-<li>step1. 读入第一个代码段</li>
-<li>step2. 做语法分析，有错则报语法错误（比如括号不匹配等），并跳转到step5</li>
-<li>step3. 对var变量和function定义做“预解析”（永远不会报错的，因为只解析正确的声明）</li>
-<li>step4. 执行代码段，有错则报错（比如变量未定义）</li>
-<li>step5. 如果还有下一个代码段，则读入下一个代码段，重复step2</li>
-<li>step6. 结束</li>
-</ul>
-<hr>
-<blockquote>
-<p>最后再来个测试吧，您能解释下原因吗？</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//test 1</span></div><div class="line"><span class="keyword">var</span> tmp = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(tmp);</div><div class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</div><div class="line">    <span class="keyword">var</span> tmp = <span class="string">"hello world"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f(); <span class="comment">// undefined</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//test 2  ES5的浏览器环境</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">me</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am outside!'</span>); &#125;</div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</div><div class="line">    <span class="comment">// 重复声明一次函数f</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">me</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am inside!'</span>); &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  f();<span class="comment">//“I am inside!”</span></div><div class="line">&#125;());</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/22/js的执行过程，预解析与执行.html" data-id="cj4qflsrf000j9ke9jbtw2frt" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/11/25/前端开发的历史和趋势.html" data-id="cj4qgf94y000z3se9x1k9naox" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -495,7 +513,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">__('next') &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -518,7 +536,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
     </div>
   </div>
 
@@ -527,7 +545,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
     </div>
   </div>
 
@@ -538,6 +556,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">JS构造函数内的方法与构造函数prototype属性上方法的对比</a>
+          </li>
         
           <li>
             <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
@@ -553,10 +575,6 @@
         
           <li>
             <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html">js查找字符串中出现最多的以及个数</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/23/JavaScript基本数据类型和引用类型.html">JavaScript基本数据类型和引用类型</a>
           </li>
         
       </ul>
