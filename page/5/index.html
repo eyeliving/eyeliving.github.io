@@ -52,9 +52,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://dodoing.com"></form>
@@ -64,6 +64,242 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-前端开发的历史和趋势" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/25/前端开发的历史和趋势.html" class="article-date">
+  <time datetime="2016-11-25T02:28:00.000Z" itemprop="datePublished">2016-11-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/25/前端开发的历史和趋势.html">前端开发的历史和趋势</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前端开发的历史和趋势"><a href="#前端开发的历史和趋势" class="headerlink" title="前端开发的历史和趋势"></a>前端开发的历史和趋势</h1><hr>
+<h2 id="什么是前端"><a href="#什么是前端" class="headerlink" title="什么是前端"></a>什么是前端</h2><ul>
+<li>前端：针对浏览器的开发，代码在浏览器运行</li>
+<li>后端：针对服务器的开发，代码在服务器运行</li>
+</ul>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/frontend.png" alt="前后端"></p>
+<hr>
+<h2 id="前后端不分的时代"><a href="#前后端不分的时代" class="headerlink" title="前后端不分的时代"></a>前后端不分的时代</h2><p>互联网发展的早期，前后端开发是一体的，前端代码是后端代码的一部分。</p>
+<ol>
+<li>后端收到浏览器的请求</li>
+<li>生成静态页面</li>
+<li>发送到浏览器</li>
+</ol>
+<hr>
+<h2 id="后端-MVC-的开发模式"><a href="#后端-MVC-的开发模式" class="headerlink" title="后端 MVC 的开发模式"></a>后端 MVC 的开发模式</h2><p>那时的网站开发，采用的是后端 MVC 模式。</p>
+<ul>
+<li>Model（模型层）：提供/保存数据</li>
+<li>Controller（控制层）：数据处理，实现业务逻辑</li>
+<li>View（视图层）：展示数据，提供用户界面</li>
+</ul>
+<p>前端只是后端 MVC 的 V。</p>
+<hr>
+<p>以 PHP 框架 Laravel 为例。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/laravel-mvc.png" alt="后端 MVC 的开发模式"></p>
+<hr>
+<h2 id="前端工程师的角色"><a href="#前端工程师的角色" class="headerlink" title="前端工程师的角色"></a>前端工程师的角色</h2><p>那时的前端工程师，实际上是模板工程师，负责编写页面模板。</p>
+<p>后端代码读取模板，替换变量，渲染出页面。</p>
+<hr>
+<h2 id="典型的-PHP-模板"><a href="#典型的-PHP-模板" class="headerlink" title="典型的 PHP 模板"></a>典型的 PHP 模板</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;&lt;title&gt;Car &#123;&#123; $car-&gt;id &#125;&#125;&lt;/title&gt;&lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h1&gt;Car &#123;&#123; $car-&gt;id &#125;&#125;&lt;/h1&gt;</div><div class="line">    &lt;ul&gt;</div><div class="line">      &lt;li&gt;Make: &#123;&#123; $car-&gt;make &#125;&#125;&lt;/li&gt;</div><div class="line">      &lt;li&gt;Model: &#123;&#123; $car-&gt;model &#125;&#125;&lt;/li&gt;</div><div class="line">      &lt;li&gt;Produced on: &#123;&#123; $car-&gt;produced_on &#125;&#125;&lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>Ajax 技术诞生，改变了一切。</p>
+<ul>
+<li>2004年：Gmail</li>
+<li>2005年：Google 地图</li>
+</ul>
+<p>前端不再是后端的模板，可以独立得到各种数据。</p>
+<hr>
+<h2 id="Web-2-0"><a href="#Web-2-0" class="headerlink" title="Web 2.0"></a>Web 2.0</h2><p>Ajax 技术促成了 Web 2.0 的诞生。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/web20.gif" alt=""></p>
+<ul>
+<li>Web 1.0：静态网页，纯内容展示</li>
+<li>Web 2.0：动态网页，富交互，前端数据处理</li>
+</ul>
+<p>从那时起，前端变得复杂了，对前端工程师的要求越来越高。</p>
+<hr>
+<h2 id="前端-MVC-框架"><a href="#前端-MVC-框架" class="headerlink" title="前端 MVC 框架"></a>前端 MVC 框架</h2><p>前端通过 Ajax 得到数据，因此也有了处理数据的需求。</p>
+<p>前端代码变得也需要保存数据、处理数据、生成视图，这导致了前端 MVC 框架的诞生。</p>
+<ul>
+<li>2010年，Backbone.js</li>
+</ul>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/backbone.png" alt=""></p>
+<hr>
+<h2 id="Backbone-js"><a href="#Backbone-js" class="headerlink" title="Backbone.js"></a>Backbone.js</h2><p>Backbone 将前端代码分成两个基本部分。</p>
+<ul>
+<li>Model：管理数据</li>
+<li>View：数据的展现</li>
+</ul>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/backbone-model-view.png" alt="Backbone 将前端代码分成两个基本部分"></p>
+<hr>
+<h2 id="前端-Controller"><a href="#前端-Controller" class="headerlink" title="前端 Controller"></a>前端 Controller</h2><p>Backbone 只有 M 和 V，没有 C。因为，前端 Controller 与后端不同。</p>
+<ul>
+<li>不需要，也不应该处理业务逻辑</li>
+<li>只需要处理 UI 逻辑，响应用户的一举一动</li>
+</ul>
+<p>所以，前端 Controller 相对比较简单。Backbone 没有 C，只用事件来处理 UI 逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AppView = Backbone.View.extend(&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  events: &#123;</div><div class="line">    <span class="string">"keypress #new-todo"</span>:  <span class="string">"createOnEnter"</span>,</div><div class="line">    <span class="string">"click #clear-completed"</span>: <span class="string">"clearCompleted"</span>,</div><div class="line">    <span class="string">"click #toggle-all"</span>: <span class="string">"toggleAllComplete"</span></div><div class="line">  &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><p>前端还有一种天然的方法，可以切换视图，那就是 URL。</p>
+<p>通过 URL 切换视图，这就是 Router（路由）的作用。以 Backbone 为例。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/backbone-routing.png" alt="Router"></p>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">App.Router = Backbone.Router.extend(&#123;</div><div class="line">  <span class="attr">routes</span>: &#123;</div><div class="line">    <span class="string">''</span>: <span class="string">'index'</span>,</div><div class="line">    <span class="string">'show'</span>: <span class="string">'show'</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">index</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="built_in">document</span>.body).append(<span class="string">"调用了 Index 路由"</span>);</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">show</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="built_in">document</span>.body).append(<span class="string">"调用了 Show 路由"</span>);</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="示例：Backbone-Router"><a href="#示例：Backbone-Router" class="headerlink" title="示例：Backbone Router"></a>示例：Backbone Router</h2><p>打开<code>demos/backbone-demo/index.html</code>，按照<a href="https://github.com/ruanyf/jstraining/blob/master/demos/README.md#backbone" target="_blank" rel="external">《操作说明》</a>，查看示例。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/backbone-demo.png" alt="Backbone Router"></p>
+<hr>
+<h2 id="MVVM-模式"><a href="#MVVM-模式" class="headerlink" title="MVVM 模式"></a>MVVM 模式</h2><p>另一些框架提出 MVVM 模式，用 View Model 代替 Controller。</p>
+<ul>
+<li>Model</li>
+<li>View</li>
+<li>View-Model：简化的 Controller，唯一作用就是为 View 提供处理好的数据，不含其他逻辑。</li>
+</ul>
+<p>本质：view 绑定 view-model，视图与数据模型强耦合。数据的变化实时反映在 view 上，不需要手动处理。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/mvvm.png" alt="MVVM 模式"></p>
+<hr>
+<h2 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h2><p>前端可以做到：</p>
+<blockquote>
+<ul>
+<li>读写数据</li>
+<li>切换视图</li>
+<li>用户交互</li>
+</ul>
+</blockquote>
+<p>这意味着，网页其实是一个应用程序。</p>
+<blockquote>
+<p>SPA = Single-page application</p>
+</blockquote>
+<p>2010年后，前端工程师从开发页面，变成了开发”前端应用“（跑在浏览器里面的应用程序）。</p>
+<hr>
+<h2 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h2><p>Google 公司推出的 Angular 是最流行的 MVVM 前端框架。</p>
+<p>它的风格属于 HTML 语言的增强，核心概念是双向绑定。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/angular.png" alt="Google 公司推出的 Angular 是最流行的 MVVM 前端框架"></p>
+<hr>
+<h2 id="示例：Angular-的双向绑定"><a href="#示例：Angular-的双向绑定" class="headerlink" title="示例：Angular 的双向绑定"></a>示例：Angular 的双向绑定</h2><p>浏览器打开<code>demos/angular-demo/index.html</code>，可以看到一个输入框。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/angular-demo.png" alt="示例：Angular 的双向绑定"></p>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div ng-app=<span class="string">""</span>&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span></div><div class="line">    姓名 :</div><div class="line">    <span class="tag">&lt;<span class="name">input</span></span></div><div class="line">      <span class="attr">type</span>=<span class="string">"text"</span></div><div class="line">      <span class="attr">ng-model</span>=<span class="string">"name"</span></div><div class="line">      <span class="attr">placeholder</span>=<span class="string">"在这里输入您的大名"</span></div><div class="line">    &gt;</div><div class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>你好，&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><p>Vue.js 是现在很热门的一种前端 MVVM 框架。</p>
+<p>它的基本思想与 Angular 类似，但是用法更简单，而且引入了响应式编程的概念。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/vue-logo.png" alt="Vue.js 是现在很热门的一种前端 MVVM 框架"></p>
+<hr>
+<h2 id="示例：Vue-的双向绑定"><a href="#示例：Vue-的双向绑定" class="headerlink" title="示例：Vue 的双向绑定"></a>示例：Vue 的双向绑定</h2><p>Vue 的模板与数据，是双向绑定的。</p>
+<p>打开<code>demos/vue-demo/index1.html</code>，按照<a href="https://github.com/ruanyf/jstraining/blob/master/demos/README.md#vue" target="_blank" rel="external">《操作说明》</a>，查看示例。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/vue-demo.png" alt="Vue 的模板与数据，是双向绑定的"></p>
+<hr>
+<p>HTML 代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"journal"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"message"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>JS 代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> journal = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#journal'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">message</span>: <span class="string">'Your first entry'</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h2><ul>
+<li>Ajax -&gt; 前端应用兴起</li>
+<li>智能手机 -&gt; 多终端支持</li>
+</ul>
+<p>这两个原因，导致前端开发方式发生根本的变化。</p>
+<p>前端不再是后端 MVC 中的 V，而是单独的一层。</p>
+<hr>
+<h2 id="REST-接口"><a href="#REST-接口" class="headerlink" title="REST 接口"></a>REST 接口</h2><p>前后端分离以后，它们之间通过接口通信。</p>
+<p>后端暴露出接口，前端消费后端提供的数据。</p>
+<p>后端接口一般是 REST 形式，前后端的通信协议一般是 HTTP。</p>
+<hr>
+<h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><p>2009年，Node 项目诞生，它是服务器上的 JavaScript 运行环境。</p>
+<p>Node = JavaScript + 操作系统 API</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/node-logo.png" alt="服务器上的 JavaScript 运行环境"></p>
+<hr>
+<h2 id="Node-的意义"><a href="#Node-的意义" class="headerlink" title="Node 的意义"></a>Node 的意义</h2><ul>
+<li>JavaScript 成为服务器脚本语言，与 Python 和 Ruby 一样</li>
+<li>JavaScript 成为唯一的浏览器和服务器都支持的语言</li>
+<li>前端工程师可以编写后端程序了</li>
+</ul>
+<hr>
+<h2 id="前端开发模式的根本改变"><a href="#前端开发模式的根本改变" class="headerlink" title="前端开发模式的根本改变"></a>前端开发模式的根本改变</h2><ul>
+<li>Node 环境下开发</li>
+<li>大量使用服务器端工具</li>
+<li>引入持续集成等软件工程的标准流程</li>
+<li>开发完成后，编译成浏览器可以运行的脚本，放上 CDN</li>
+</ul>
+<hr>
+<h2 id="全栈工程师"><a href="#全栈工程师" class="headerlink" title="全栈工程师"></a>全栈工程师</h2><p>前端工程师正在转变为全栈工程师</p>
+<ul>
+<li>一个人负责开发前端和后端</li>
+<li>从数据库到 UI 的所有开发</li>
+</ul>
+<hr>
+<h2 id="全栈技能"><a href="#全栈技能" class="headerlink" title="全栈技能"></a>全栈技能</h2><p>怎样才能称为全栈工程师？</p>
+<ul>
+<li>传统前端技能：HTML、JavaScript、CSS</li>
+<li>一门后端语言</li>
+<li>移动端开发：iOS / Android / HTML5</li>
+<li>其他技能：数据库、HTTP 等等</li>
+</ul>
+<hr>
+<h2 id="软件行业的发展动力"><a href="#软件行业的发展动力" class="headerlink" title="软件行业的发展动力"></a>软件行业的发展动力</h2><p>历史演变：前后端不分 -&gt; 前后端分离 -&gt; 全栈工程师</p>
+<p>动力：更加产业化、大规模地生产软件</p>
+<ul>
+<li>效率更高</li>
+<li>成本更低</li>
+</ul>
+<p>通用性好、能够快速产出的技术最终会赢，单个程序员的生产力要求越来越高。</p>
+<hr>
+<h2 id="H5-就是一个最好的例子"><a href="#H5-就是一个最好的例子" class="headerlink" title="H5 就是一个最好的例子"></a>H5 就是一个最好的例子</h2><p>为什么 H5 技术会赢得移动端？</p>
+<ul>
+<li>开发速度快：Native 需要重新编译才能看到结果，H5 是即时输出</li>
+<li>开发成本低：Native 需要两个开发团队，H5 只要一个</li>
+<li>快速发布：安卓 Native 新版本需要24小时，iOS 需要 3 ～ 4 天，H5 可以随时更新</li>
+</ul>
+<hr>
+<h2 id="未来软件的特点"><a href="#未来软件的特点" class="headerlink" title="未来软件的特点"></a>未来软件的特点</h2><ul>
+<li>联网</li>
+<li>高并发</li>
+<li>分布式</li>
+<li>跨终端</li>
+</ul>
+<p>现在基于 Web 的前端技术，将演变为未来所有软件的通用的 GUI 解决方案。</p>
+<hr>
+<h2 id="未来只有两种软件工程师"><a href="#未来只有两种软件工程师" class="headerlink" title="未来只有两种软件工程师"></a>未来只有两种软件工程师</h2><ul>
+<li>端工程师<ul>
+<li>手机端</li>
+<li>PC 端</li>
+<li>TV 端</li>
+<li>VR 端</li>
+<li>……</li>
+</ul>
+</li>
+<li>云工程师</li>
+</ul>
+<p>-摘自于  <a href="https://github.com/ruanyf/jstraining/blob/master/docs/history.md" title="阮一峰 博客" target="_blank" rel="external">阮一峰 博客</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/11/25/前端开发的历史和趋势.html" data-id="cj4qlfs7v0011moe93gjfj8lw" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-js的执行过程，预解析与执行" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -120,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/22/js的执行过程，预解析与执行.html" data-id="cj4qgf94k000m3se9dol4erw4" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/11/22/js的执行过程，预解析与执行.html" data-id="cj4qlfs7i000mmoe97ul92bqy" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -259,61 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/18/带你玩转跨站脚本攻击cross site script.html" data-id="cj4qgf95100143se98lgzlzxp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-学习ES6时for遇到循环的困惑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/11/16/学习ES6时for遇到循环的困惑.html" class="article-date">
-  <time datetime="2016-11-16T04:56:00.000Z" itemprop="datePublished">2016-11-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/16/学习ES6时for遇到循环的困惑.html">学习ES6时for遇到循环的困惑</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在读 《ECMAScript 6 入门》篇头就遇到了一个比较基础的问题，尴尬。。。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">  a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[<span class="number">6</span>](); <span class="comment">//out： 10</span></div></pre></td></tr></table></figure>
-<p>为什么是10呢？不应该是9吗？这点困惑不解。</p>
-<p>为此多做了几次测试<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">   a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(i); </div><div class="line">   &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a)<span class="comment">//our function...</span></div><div class="line"></div><div class="line">a[<span class="number">1</span>]();<span class="comment">//out： 10</span></div><div class="line">a[<span class="number">9</span>]();<span class="comment">//out： 10</span></div><div class="line">a[<span class="number">10</span>]();<span class="comment">//out：err a[10] is not a function</span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>结论</p>
-</blockquote>
-<p>后面的 a[1]、a[9] 会再一次循环，而 i 变量此时已经是9，for 循环执行完毕了。</p>
-<p>因为 在这里 var  i 声明的变量为全局变量，for循环之外还能调用。</p>
-<p>在执行 a<a href="">1</a> 时，for 中的 i 已经是 9，结果输出的就为10了。</p>
-<p>这是个很基础的问题，记录下。</p>
-<p>如果作者的结论是错的，请下方留言指正。</p>
-<hr>
-<p>再看看let的情况如何</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">  a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[<span class="number">6</span>](); <span class="comment">//out： 6</span></div></pre></td></tr></table></figure>
-<p>上面代码中，变量 i 是let声明的，当前的i只在本轮循环有效，所以每一次循环的 i 其实都是一个新的变量，所以最后输出的是6。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/16/学习ES6时for遇到循环的困惑.html" data-id="cj4qgf95400173se9wr35t0ow" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/11/18/带你玩转跨站脚本攻击cross site script.html" data-id="cj4qlfs810019moe9tc194vf7" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -339,7 +521,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
     </div>
@@ -349,9 +531,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
     </div>
   </div>
 
@@ -368,9 +550,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/05/js面向对象小结js面向对象小结.html">js面向对象小结js面向对象小结（工厂模式，构造函数，原型方法，继承）</a>
+          </li>
         
           <li>
             <a href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">JS构造函数内的方法与构造函数prototype属性上方法的对比</a>
@@ -388,10 +574,6 @@
             <a href="/2017/02/08/js-中continue、break、return的区别.html">js 中continue、break、return的区别</a>
           </li>
         
-          <li>
-            <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html">js查找字符串中出现最多的以及个数</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -405,7 +587,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 eoeos<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

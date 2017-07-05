@@ -52,9 +52,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://dodoing.com"></form>
@@ -64,6 +64,80 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-CSS基础常规面试（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/29/CSS基础常规面试（一）.html" class="article-date">
+  <time datetime="2016-09-29T08:53:00.000Z" itemprop="datePublished">2016-09-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/29/CSS基础常规面试（一）.html">CSS基础常规面试（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>盒子模型差异 ？  </p>
+</blockquote>
+<p>IE8以下版本的浏览器的盒模型，定义的元素的宽高不包括padding和border。</p>
+<p>标准的css盒子模型：他的宽度=内容的宽度+border+padding</p>
+<p>比如：.box{width:100px;border:10px solid #ccc;padding:10px}</p>
+<p>那么标准的css盒子模型中的box这个的总的宽度就是<br>140px=100+10+10+10+10；</p>
+<p>但是低版本ie的盒子模型box的宽度还是100px。  </p>
+<hr>
+<blockquote>
+<p>div居中定位的常规考法     </p>
+</blockquote>
+<p>1.如何居中div？</p>
+<p>2.如何居中一个浮动元素？</p>
+<p>3.如何让绝对定位的div居中？</p>
+<p>4.如何让一个div水平和垂直居中？</p>
+<p>下边以此对应答案  </p>
+<p>答案1：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span> <span class="attr">style</span>=<span class="string">"background:red;"</span>&gt;</span>1.如何居中div？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.div1&#123;width:200px;margin: 0 auto;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案2：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span> <span class="attr">style</span>=<span class="string">"background:green;float:left;"</span>&gt;</span>2.如何居中一个浮动元素？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.div2&#123;width:200px;position:relative;left:50%;margin-left:-100px;&#125;</div><div class="line">/*position:relative;相对定位，根据父级定位，无父级则以BODY*/</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案3：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div3"</span> <span class="attr">style</span>=<span class="string">"background:blue;position:absolute;"</span>&gt;</span>3.如何让绝对定位的div居中？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.div3&#123;width:200px;margin:0 auto;top:0;right:0;left:0;bottom:0;height:30px;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案4：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div4"</span> <span class="attr">style</span>=<span class="string">"background:black;position:absolute;"</span>&gt;</span>4.如何让一个div水平和垂直居中？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.div4&#123;width:200px;top:50%;left:50%;margin-left:-100px;margin-top:-15px;height:30px;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>伪类和伪元素的区别是？分别写出几个</p>
+</blockquote>
+<p>这点说出个大概就可以了，但是一定要写出来几个分别有代表性的！</p>
+<ul>
+<li><p>伪类用于向某些选择器添加特殊的效果。（如链接的各个状态，:hover，:vistited，:active等，还有一些常用:first-child，:nth-child()，:focus等等）</p>
+</li>
+<li><p>伪元素用于将特殊的效果添加到某些选择器。（如:before，:after，:first-line，:first-letter）</p>
+</li>
+</ul>
+<p>伪类一开始单单只是用来表示一些元素的动态状态，典型的就是链接的各个状态(LVHA)。</p>
+<p>随后CSS2标准扩展了其概念范围，使其成为了所有逻辑上存在但在文档树中却无须标识的“幽灵”分类。</p>
+<p>伪元素则代表了某个元素的子元素，这个子元素虽然在逻辑上存在，但却并不实际存在于文档树中。</p>
+<p>伪类前面是一个冒号，伪元素前面是两个冒号。</p>
+<p>但因为兼容性的问题，所以现在大部分还是统一的单冒号。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/29/CSS基础常规面试（一）.html" data-id="cj4qlfs6j0000moe9f1ssvbmz" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-nginx设置301跳转 并检测是否设置成功" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -91,7 +165,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" data-id="cj4qgf94s000s3se9tgc52gan" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" data-id="cj4qlfs7r000umoe9qxvn3jzk" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
@@ -129,48 +203,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/24/redis在node.js的使用以及session.html" data-id="cj4qgf94w000x3se937idtj99" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/09/24/redis在node.js的使用以及session.html" data-id="cj4qlfs7t000zmoe9jgr5h334" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-redis windows的安装与使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/23/redis windows的安装与使用.html" class="article-date">
-  <time datetime="2016-09-23T13:19:00.000Z" itemprop="datePublished">2016-09-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/23/redis windows的安装与使用.html">redis windows的安装与使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p style="white-space: normal;">redis是基于内存亦可持久化的日志型、Key-Value数据库。</p><p style="white-space: normal;">操作简单，而且服务器宕机、重启等数据不会丢失。还可以跨应用，现在很多大公司已经在使用了。</p><p style="white-space: normal;">下面说说，如何在window下配置以及使用。</p><p style="white-space: normal;">redis windows下载链接：<a target="_blank" href="https://github.com/MSOpenTech/redis/releases">https://github.com/MSOpenTech/redis</a></p><p style="white-space: normal;">进入该页面，有很多人找不到下载链接，注意点击releases链接，如图所示：</p><p style="white-space: normal;"><br></p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FtQdJsUzpfAvItFLwOmnnjouKZRo" title="blob.png" alt="http://inqiu.qiniudn.com/FtQdJsUzpfAvItFLwOmnnjouKZRo"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">然后选择自己需要的版本，如图：</p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FhQiGISZaOkeSXQaFtb55nYt4HNx" title="blob.png" alt="http://inqiu.qiniudn.com/FhQiGISZaOkeSXQaFtb55nYt4HNx"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">下载解压后，在windows cmd命令下进入该文件目录，执行<br></p><pre class="brush:bash;toolbar:false">redis-server.exe&nbsp;&nbsp;redis.windows.conf</pre><p style="white-space: normal;">如图所示，表示已经windows下的redis环境已经配置完毕。<br></p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FjtJHNAvGNE49OTPu2HoDXu8Tufk" title="blob.png" alt="http://inqiu.qiniudn.com/FjtJHNAvGNE49OTPu2HoDXu8Tufk"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">使用就很简单了，在打开上图的窗口后，说明redis服务已经在运行，那鼠标点击目录下的redis-cli.exe</p><p style="white-space: normal;">在弹出的窗口上输入命令测试，如清空本地redis库</p><pre class="brush:bash;toolbar:false">flushdb</pre><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FtLz0Y-TPEcUR6vVbGkjPCM_8H6t" title="blob.png" alt="http://inqiu.qiniudn.com/FtLz0Y-TPEcUR6vVbGkjPCM_8H6t"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">如上，redis在windows下环境已经正常使用了。</p><p><br></p>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/23/redis windows的安装与使用.html" data-id="cj4qgf94u000v3se97w2mc1mb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -193,7 +229,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
     </div>
@@ -203,9 +239,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
     </div>
   </div>
 
@@ -222,9 +258,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/05/js面向对象小结js面向对象小结.html">js面向对象小结js面向对象小结（工厂模式，构造函数，原型方法，继承）</a>
+          </li>
         
           <li>
             <a href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">JS构造函数内的方法与构造函数prototype属性上方法的对比</a>
@@ -242,10 +282,6 @@
             <a href="/2017/02/08/js-中continue、break、return的区别.html">js 中continue、break、return的区别</a>
           </li>
         
-          <li>
-            <a href="/2017/02/06/js查找字符串中出现最多的以及个数.html">js查找字符串中出现最多的以及个数</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -259,7 +295,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 eoeos<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
