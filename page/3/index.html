@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: javascript node.js mongo | 吟求 - IT技术文章分享</title>
+  <title>吟求 - IT技术文章分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
 <meta name="keywords" content="IT文章聚合，IT文章分享，IT阅读分享">
 <meta property="og:type" content="website">
 <meta property="og:title" content="吟求 - IT技术文章分享">
-<meta property="og:url" content="http://dodoing.com/tags/javascript-node-js-mongo/index.html">
+<meta property="og:url" content="http://dodoing.com/page/3/index.html">
 <meta property="og:site_name" content="吟求 - IT技术文章分享">
 <meta property="og:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
 <meta name="twitter:card" content="summary">
@@ -65,38 +65,49 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore/" class="archive-article-date">
-  <time datetime="2016-09-23T13:18:00.000Z" itemprop="datePublished">Sep 23</time>
+    <article id="post-mongo3.2.7版本备份还原mongodump、mongorestore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore/" class="article-date">
+  <time datetime="2016-09-23T13:18:00.000Z" itemprop="datePublished">2016-09-23</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore/">mongo3.2.7版本备份还原mongodump、mongorestore</a>
+      <a class="article-title" href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore/">mongo3.2.7版本备份还原mongodump、mongorestore</a>
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="white-space: normal;">数据的重要性，不必多说。<br></p><p style="white-space: normal;">mongo的mongodump、mongorestore可以用于数据备份与恢复</p><p style="white-space: normal;">本人的数据库版本从2.4升级到3.2，无意中发现旧版本的这两个命令，官方已经做了修订</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">如mongo2.4版本下载操作(dataPath为文件输出的目录)<br></p><pre class="brush:bash;toolbar:false">mongoBinPath&nbsp;+&nbsp;&#39;mongodump&nbsp;-u&nbsp;&#39;+db_username+&#39;&nbsp;-p&nbsp;&#39;+db_password+&#39;&nbsp;-d&nbsp;&#39;+db_name+&#39;&nbsp;-o&nbsp;&quot;&#39;+dataPath+&#39;&quot;&#39;;</pre><p style="white-space: normal;">mongo3.2版本</p><pre class="brush:bash;toolbar:false">mongoBinPath&nbsp;+&#39;mongodump&nbsp;&nbsp;-d&nbsp;&#39;+db_name+&#39;&nbsp;-u&nbsp;&#39;+db_username+&#39;&nbsp;-p&nbsp;&#39;+db_password+&#39;&nbsp;-o&nbsp;&#39;+dataPath+&#39;&nbsp;–authenticationDatabase&nbsp;admin&#39;;</pre><p style="white-space: normal;">需要注意的是3.2版本中的-u、-p为admin库下的角色,并且有userAdminAnyDatabase或者root等权限</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">那么数据恢复mongorestore怎么使用,首先进入mongo/bin目录下，执行命令</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">mongo2.4版本</p><pre class="brush:bash;toolbar:false">mongorestore&nbsp;-u&nbsp;admin&nbsp;-p&nbsp;123456&nbsp;-drop&nbsp;/data/itemp</pre><p style="white-space: normal;">mongo3.2版本</p><pre class="brush:bash;toolbar:false">mongorestore&nbsp;-d&nbsp;db_name&nbsp;-u&nbsp;username&nbsp;-p&nbsp;123456&nbsp;/data/itemp&nbsp;–authenticationDatabase&nbsp;admin&nbsp;–drop</pre><p style="white-space: normal;">注意-u、-p为admin库下的角色,并且有userAdminAnyDatabase或者root等权限</p><p style="white-space: normal;">-drop 可选，表示清空当前的数据，只使用备份的数据</p><p><br></p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore/" data-id="cj4qemtmk000vz8e9fl21gddw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li></ul>
+
+    </footer>
   </div>
+  
 </article>
-  
-  
-    </div></section>
+
+
   
 
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 </section>
         
           <aside id="sidebar">
