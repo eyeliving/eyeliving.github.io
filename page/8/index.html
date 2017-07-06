@@ -65,10 +65,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-redis windows的安装与使用" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CSS基础常规面试（一）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/23/redis windows的安装与使用.html" class="article-date">
-  <time datetime="2016-09-23T13:19:00.000Z" itemprop="datePublished">2016-09-23</time>
+    <a href="/2016/09/29/CSS基础常规面试（一）.html" class="article-date">
+  <time datetime="2016-09-29T08:53:00.000Z" itemprop="datePublished">2016-09-29</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/23/redis windows的安装与使用.html">redis windows的安装与使用</a>
+      <a class="article-title" href="/2016/09/29/CSS基础常规面试（一）.html">CSS基础常规面试（一）</a>
     </h1>
   
 
@@ -87,14 +87,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p style="white-space: normal;">redis是基于内存亦可持久化的日志型、Key-Value数据库。</p><p style="white-space: normal;">操作简单，而且服务器宕机、重启等数据不会丢失。还可以跨应用，现在很多大公司已经在使用了。</p><p style="white-space: normal;">下面说说，如何在window下配置以及使用。</p><p style="white-space: normal;">redis windows下载链接：<a target="_blank" href="https://github.com/MSOpenTech/redis/releases">https://github.com/MSOpenTech/redis</a></p><p style="white-space: normal;">进入该页面，有很多人找不到下载链接，注意点击releases链接，如图所示：</p><p style="white-space: normal;"><br></p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FtQdJsUzpfAvItFLwOmnnjouKZRo" title="blob.png" alt="http://inqiu.qiniudn.com/FtQdJsUzpfAvItFLwOmnnjouKZRo"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">然后选择自己需要的版本，如图：</p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FhQiGISZaOkeSXQaFtb55nYt4HNx" title="blob.png" alt="http://inqiu.qiniudn.com/FhQiGISZaOkeSXQaFtb55nYt4HNx"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">下载解压后，在windows cmd命令下进入该文件目录，执行<br></p><pre class="brush:bash;toolbar:false">redis-server.exe&nbsp;&nbsp;redis.windows.conf</pre><p style="white-space: normal;">如图所示，表示已经windows下的redis环境已经配置完毕。<br></p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FjtJHNAvGNE49OTPu2HoDXu8Tufk" title="blob.png" alt="http://inqiu.qiniudn.com/FjtJHNAvGNE49OTPu2HoDXu8Tufk"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">使用就很简单了，在打开上图的窗口后，说明redis服务已经在运行，那鼠标点击目录下的redis-cli.exe</p><p style="white-space: normal;">在弹出的窗口上输入命令测试，如清空本地redis库</p><pre class="brush:bash;toolbar:false">flushdb</pre><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FtLz0Y-TPEcUR6vVbGkjPCM_8H6t" title="blob.png" alt="http://inqiu.qiniudn.com/FtLz0Y-TPEcUR6vVbGkjPCM_8H6t"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">如上，redis在windows下环境已经正常使用了。</p><p><br></p>
+        <blockquote>
+<p>盒子模型差异 ？  </p>
+</blockquote>
+<p>IE8以下版本的浏览器的盒模型，定义的元素的宽高不包括padding和border。</p>
+<p>标准的css盒子模型：他的宽度=内容的宽度+border+padding</p>
+<p>比如：.box{width:100px;border:10px solid #ccc;padding:10px}</p>
+<p>那么标准的css盒子模型中的box这个的总的宽度就是<br>140px=100+10+10+10+10；</p>
+<p>但是低版本ie的盒子模型box的宽度还是100px。  </p>
+<hr>
+<blockquote>
+<p>div居中定位的常规考法     </p>
+</blockquote>
+<p>1.如何居中div？</p>
+<p>2.如何居中一个浮动元素？</p>
+<p>3.如何让绝对定位的div居中？</p>
+<p>4.如何让一个div水平和垂直居中？</p>
+<p>下边以此对应答案  </p>
+<p>答案1：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span> <span class="attr">style</span>=<span class="string">"background:red;"</span>&gt;</span>1.如何居中div？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.div1&#123;width:200px;margin: 0 auto;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案2：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span> <span class="attr">style</span>=<span class="string">"background:green;float:left;"</span>&gt;</span>2.如何居中一个浮动元素？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.div2&#123;width:200px;position:relative;left:50%;margin-left:-100px;&#125;</div><div class="line">/*position:relative;相对定位，根据父级定位，无父级则以BODY*/</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案3：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div3"</span> <span class="attr">style</span>=<span class="string">"background:blue;position:absolute;"</span>&gt;</span>3.如何让绝对定位的div居中？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.div3&#123;width:200px;margin:0 auto;top:0;right:0;left:0;bottom:0;height:30px;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>答案4：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div4"</span> <span class="attr">style</span>=<span class="string">"background:black;position:absolute;"</span>&gt;</span>4.如何让一个div水平和垂直居中？（inqiu.com）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.div4&#123;width:200px;top:50%;left:50%;margin-left:-100px;margin-top:-15px;height:30px;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>伪类和伪元素的区别是？分别写出几个</p>
+</blockquote>
+<p>这点说出个大概就可以了，但是一定要写出来几个分别有代表性的！</p>
+<ul>
+<li><p>伪类用于向某些选择器添加特殊的效果。（如链接的各个状态，:hover，:vistited，:active等，还有一些常用:first-child，:nth-child()，:focus等等）</p>
+</li>
+<li><p>伪元素用于将特殊的效果添加到某些选择器。（如:before，:after，:first-line，:first-letter）</p>
+</li>
+</ul>
+<p>伪类一开始单单只是用来表示一些元素的动态状态，典型的就是链接的各个状态(LVHA)。</p>
+<p>随后CSS2标准扩展了其概念范围，使其成为了所有逻辑上存在但在文档树中却无须标识的“幽灵”分类。</p>
+<p>伪元素则代表了某个元素的子元素，这个子元素虽然在逻辑上存在，但却并不实际存在于文档树中。</p>
+<p>伪类前面是一个冒号，伪元素前面是两个冒号。</p>
+<p>但因为兼容性的问题，所以现在大部分还是统一的单冒号。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/23/redis windows的安装与使用.html" data-id="cj4qlfs7s000xmoe97e4y3r7m" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/09/29/CSS基础常规面试（一）.html" data-id="cj4ruszsz0000v0e9s7aoqlp8" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
 
     </footer>
   </div>
@@ -103,10 +139,10 @@
 
 
   
-    <article id="post-mongo3.2.7版本备份还原mongodump、mongorestore" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-nginx设置301跳转 并检测是否设置成功" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html" class="article-date">
-  <time datetime="2016-09-23T13:18:00.000Z" itemprop="datePublished">2016-09-23</time>
+    <a href="/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" class="article-date">
+  <time datetime="2016-09-24T02:53:00.000Z" itemprop="datePublished">2016-09-24</time>
 </a>
     
   </div>
@@ -117,7 +153,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html">mongo3.2.7版本备份还原mongodump、mongorestore</a>
+      <a class="article-title" href="/2016/09/24/nginx设置301跳转 并检测是否设置成功.html">nginx设置301跳转 并检测是否设置成功</a>
     </h1>
   
 
@@ -125,14 +161,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p style="white-space: normal;">数据的重要性，不必多说。<br></p><p style="white-space: normal;">mongo的mongodump、mongorestore可以用于数据备份与恢复</p><p style="white-space: normal;">本人的数据库版本从2.4升级到3.2，无意中发现旧版本的这两个命令，官方已经做了修订</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">如mongo2.4版本下载操作(dataPath为文件输出的目录)<br></p><pre class="brush:bash;toolbar:false">mongoBinPath&nbsp;+&nbsp;&#39;mongodump&nbsp;-u&nbsp;&#39;+db_username+&#39;&nbsp;-p&nbsp;&#39;+db_password+&#39;&nbsp;-d&nbsp;&#39;+db_name+&#39;&nbsp;-o&nbsp;&quot;&#39;+dataPath+&#39;&quot;&#39;;</pre><p style="white-space: normal;">mongo3.2版本</p><pre class="brush:bash;toolbar:false">mongoBinPath&nbsp;+&#39;mongodump&nbsp;&nbsp;-d&nbsp;&#39;+db_name+&#39;&nbsp;-u&nbsp;&#39;+db_username+&#39;&nbsp;-p&nbsp;&#39;+db_password+&#39;&nbsp;-o&nbsp;&#39;+dataPath+&#39;&nbsp;–authenticationDatabase&nbsp;admin&#39;;</pre><p style="white-space: normal;">需要注意的是3.2版本中的-u、-p为admin库下的角色,并且有userAdminAnyDatabase或者root等权限</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">那么数据恢复mongorestore怎么使用,首先进入mongo/bin目录下，执行命令</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">mongo2.4版本</p><pre class="brush:bash;toolbar:false">mongorestore&nbsp;-u&nbsp;admin&nbsp;-p&nbsp;123456&nbsp;-drop&nbsp;/data/itemp</pre><p style="white-space: normal;">mongo3.2版本</p><pre class="brush:bash;toolbar:false">mongorestore&nbsp;-d&nbsp;db_name&nbsp;-u&nbsp;username&nbsp;-p&nbsp;123456&nbsp;/data/itemp&nbsp;–authenticationDatabase&nbsp;admin&nbsp;–drop</pre><p style="white-space: normal;">注意-u、-p为admin库下的角色,并且有userAdminAnyDatabase或者root等权限</p><p style="white-space: normal;">-drop 可选，表示清空当前的数据，只使用备份的数据</p><p><br></p>
+        <p><strong>如题：inqiu.com &nbsp;www.inqiu.com</strong></p><p>现在我们把inqiu.com设置301跳转到www.inqiu.com，也就是说，当用户输入inqiu.com后自动跳转到www.inqiu.com<br><br> 反之，如果想把www.inqiu.com跳转到inqiu.com下，下边的情况同样适用。</p><pre class="brush:python;toolbar:false">server&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;inqiu.com&nbsp;www.inqiu.com;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($host&nbsp;!=&nbsp;&#39;inqiu.com&#39;&nbsp;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite&nbsp;^/(.<em>)$&nbsp;<a href="http://inqiu.com/$1&nbsp;permanent" target="_blank" rel="external">http://inqiu.com/$1&nbsp;permanent</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;~&nbsp;.</em>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass&nbsp;<a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_set_header&nbsp;X-Real-IP&nbsp;$remote_addr;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}</pre><p><br></p><p>设置成功之后，重启reload nginx。</p><p>在浏览器里输入测试，结果现在已经实现了301的跳转。</p><p>如果还不放心，还可以用工具测试一下，比如用curl，或者推荐个在线工具<a href="http://tool.chinaz.com/pagestatus/" target="_blank" rel="external">http://tool.chinaz.com/pagestatus/</a></p><p>在命令行下输入：curl -I www.inqiu.com</p><pre class="brush:python;toolbar:false">$&nbsp;curl&nbsp;-i&nbsp;www.inqiu.com<br>HTTP/1.1&nbsp;301&nbsp;Moved&nbsp;Permanently<br>Server:&nbsp;nginx<br>Date:&nbsp;Sat,&nbsp;24&nbsp;Sep&nbsp;2016&nbsp;01:42:47&nbsp;GMT<br>Content-Type:&nbsp;text/html<br>Content-Length:&nbsp;178<br>Connection:&nbsp;keep-alive<br>Location:&nbsp;<a href="http://inqiu.com/" target="_blank" rel="external">http://inqiu.com/</a></pre><p><br></p><p>再试试不带3w的情况下，输入：curl -I inqiu.com</p><pre class="brush:python;toolbar:false">$&nbsp;curl&nbsp;-I&nbsp;inqiu.com<br>HTTP/1.1&nbsp;200&nbsp;OK<br>Server:&nbsp;nginx<br>Date:&nbsp;Sat,&nbsp;24&nbsp;Sep&nbsp;2016&nbsp;02:35:52&nbsp;GMT<br>Content-Type:&nbsp;text/html;&nbsp;charset=utf-8<br>Content-Length:&nbsp;2997<br>Connection:&nbsp;keep-alive<br>Vary:&nbsp;Accept-Encoding<br>ETag:&nbsp;W/&quot;QyWVldqXm6Vqkyk2lCU66w==&quot;<br>Vary:&nbsp;Accept-Encoding</pre><p><br></p><p>如上图所示，分别返回 301 Moved Permanently、200 OK，说明nginx的301跳转已经设置成功。</p><p>备注：其中的参数permanent表示返回301永久重定向, 地址栏显示重定向后的url，爬虫会更新此url。</p><p>与此对应有&nbsp;redirect返回302临时重定向，地址栏显示重定向后的url，爬虫不会更新此url。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html" data-id="cj4qlfs7p000smoe98tqzorrs" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" data-id="cj4ruszuj000uv0e9vtqazq8d" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-redis在node.js的使用以及session" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/24/redis在node.js的使用以及session.html" class="article-date">
+  <time datetime="2016-09-23T17:56:00.000Z" itemprop="datePublished">2016-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/24/redis在node.js的使用以及session.html">redis在node.js的使用以及session</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>生产环境下，服务器宕机、故障、重启等等难免避免不了的。</p><p>而在这些未知的情况下，一些临时重要的数据很可能会丢失。</p><p>比如，这个情况，当某人，在客户端执行其认为很重要的操作时，突然出现bug，让其重新登陆</p><p>某人泪奔：尼玛！裤子都脱了，你让我去登录。。。</p><p>当然，这只是一个小小的特例。</p><p><br></p><blockquote><p><span style="font-size: 16px; font-style: italic; font-weight: bold; line-height: 18px;"><span style="font-size: 16px; font-style: italic; font-weight: bold; color: rgb(51, 153, 204); line-height: 18px;">session</span></span></p></blockquote><p>现在我们利用redis的特性，持久化存储，在服务器端做session处理，</p><p>本人现用的是node.js V6，express4</p><pre class="brush:js;toolbar:false">var&nbsp;session&nbsp;=&nbsp;require(&#39;express-session&#39;);<br>var&nbsp;RedisStore&nbsp;=&nbsp;require(&#39;connect-redis&#39;)(session);<br>app.use(session({<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;secret:&nbsp;&quot;session_secret&quot;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;store:&nbsp;new&nbsp;RedisStore({<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;port:&nbsp;6379,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;host:&nbsp;&quot;127.0.0.1&quot;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db:&nbsp;0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pass:&nbsp;&quot;&quot;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resave:&nbsp;false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saveUninitialized:&nbsp;false,<br>}));<br>//赋值，如果上述未成功，req.session是不存在的<br>req.session.user=&nbsp;{};<br>//使用<br>var&nbsp;user&nbsp;=&nbsp;req.session.user;<br>//…</pre><blockquote><p><span style="font-size: 16px; font-style: italic; font-weight: bold; line-height: 18px;"><span style="font-size: 16px; font-style: italic; font-weight: bold; color: rgb(51, 153, 204); line-height: 18px;"><br></span></span></p><p><span style="font-size: 16px; font-style: italic; font-weight: bold; line-height: 18px;"><span style="font-size: 16px; font-style: italic; font-weight: bold; color: rgb(51, 153, 204); line-height: 18px;">利用redis在服务器端做缓存处理</span></span></p></blockquote><p>其中使用了ioredis，类似一个mongoose与mongo的存在<br></p><p>连接redis：</p><pre class="brush:js;toolbar:false">var&nbsp;Redis&nbsp;=&nbsp;require(&#39;ioredis&#39;);<br><br>var&nbsp;client&nbsp;=&nbsp;new&nbsp;Redis({<br>&nbsp;&nbsp;port:&nbsp;&#39;6379&#39;,<br>&nbsp;&nbsp;host:&nbsp;&#39;127.0.0.1&#39;,<br>&nbsp;&nbsp;db:&nbsp;0,<br>&nbsp;&nbsp;password:&nbsp;&#39;&#39;,<br>});<br><br>client.on(&#39;error&#39;,&nbsp;function&nbsp;(err)&nbsp;{<br>&nbsp;&nbsp;if(err){<br>&nbsp;&nbsp;&nbsp;&nbsp;console.error(&#39;connect&nbsp;to&nbsp;redis&nbsp;error,&nbsp;check&nbsp;your&nbsp;redis&nbsp;config&#39;,&nbsp;err);<br>&nbsp;&nbsp;&nbsp;&nbsp;process.exit(1);<br>&nbsp;&nbsp;}<br>});</pre><p><br></p><p>设置数据与获取数据</p><pre class="brush:js;toolbar:false">var&nbsp;get&nbsp;=&nbsp;function&nbsp;(key,&nbsp;callback)&nbsp;{<br>&nbsp;&nbsp;client.get(key,&nbsp;function&nbsp;(err,&nbsp;data)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(err)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;callback(err);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!data)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;callback();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;=&nbsp;JSON.parse(data);<br>&nbsp;&nbsp;&nbsp;&nbsp;callback(null,&nbsp;data);<br>&nbsp;&nbsp;});<br>};<br><br>//time&nbsp;参数可选，秒为单位<br>var&nbsp;set&nbsp;=&nbsp;function&nbsp;(key,&nbsp;value,&nbsp;time,&nbsp;callback)&nbsp;{<br>&nbsp;&nbsp;if&nbsp;(typeof&nbsp;time&nbsp;===&nbsp;&#39;function&#39;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;callback&nbsp;=&nbsp;time;<br>&nbsp;&nbsp;&nbsp;&nbsp;time&nbsp;=&nbsp;null;<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;value&nbsp;=&nbsp;JSON.stringify(value);<br>&nbsp;&nbsp;if&nbsp;(!time)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;client.set(key,&nbsp;value,&nbsp;callback);<br>&nbsp;&nbsp;}&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;client.set(key,value,&#39;EX&#39;,time);<br>&nbsp;&nbsp;}<br>};<br>//现在我们把这些方法，放到一个文件(如redis_cache.js)，方便我们调用<br>exports.get&nbsp;=&nbsp;get;<br>exports.set&nbsp;=&nbsp;set;</pre><p><br></p><p>在我们需要的地方使用，比如在缓存数据时</p><pre class="brush:js;toolbar:false">cache.get(&#39;my_data&#39;,function(err,data){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(data){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//数据已经被缓存<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;data;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//从数据库中取，略。。。并设置缓存一天<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cache.set(&#39;my_data&#39;,iodata,60<em>60</em>24*1);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;iodata;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>});</pre><p><br></p><p>上述就是一些redis在node.js下的缓存处理</p><p>略些浅见，有失误之处，请诸位扶正</p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/24/redis在node.js的使用以及session.html" data-id="cj4ruszun000zv0e9m91ou5l2" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li></ul>
 
     </footer>
   </div>
@@ -144,7 +218,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/7/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -157,7 +231,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻击与防御/">攻击与防御</a></li></ul>
     </div>
   </div>
 
@@ -167,7 +241,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/攻击与防御/" style="font-size: 10px;">攻击与防御</a>
     </div>
   </div>
 
@@ -189,6 +263,10 @@
       <ul>
         
           <li>
+            <a href="/2017/07/06/了解http.html">了解http</a>
+          </li>
+        
+          <li>
             <a href="/2017/07/05/js面向对象小结js面向对象小结.html">js面向对象小结js面向对象小结（工厂模式，构造函数，原型方法，继承）</a>
           </li>
         
@@ -202,10 +280,6 @@
         
           <li>
             <a href="/2017/06/15/hello-world.html">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/08/js-中continue、break、return的区别.html">js 中continue、break、return的区别</a>
           </li>
         
       </ul>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>吟求 - IT技术文章分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta name="keywords" content="IT文章聚合，IT文章分享，IT阅读分享">
+<meta property="og:type" content="website">
+<meta property="og:title" content="吟求 - IT技术文章分享">
+<meta property="og:url" content="http://dodoing.com/page/9/index.html">
+<meta property="og:site_name" content="吟求 - IT技术文章分享">
+<meta property="og:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="吟求 - IT技术文章分享">
+<meta name="twitter:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+  
+    <link rel="alternate" href="/atom.xml" title="吟求 - IT技术文章分享" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">吟求 - IT技术文章分享</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://dodoing.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-redis windows的安装与使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/23/redis windows的安装与使用.html" class="article-date">
+  <time datetime="2016-09-23T13:19:00.000Z" itemprop="datePublished">2016-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/23/redis windows的安装与使用.html">redis windows的安装与使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="white-space: normal;">redis是基于内存亦可持久化的日志型、Key-Value数据库。</p><p style="white-space: normal;">操作简单，而且服务器宕机、重启等数据不会丢失。还可以跨应用，现在很多大公司已经在使用了。</p><p style="white-space: normal;">下面说说，如何在window下配置以及使用。</p><p style="white-space: normal;">redis windows下载链接：<a target="_blank" href="https://github.com/MSOpenTech/redis/releases">https://github.com/MSOpenTech/redis</a></p><p style="white-space: normal;">进入该页面，有很多人找不到下载链接，注意点击releases链接，如图所示：</p><p style="white-space: normal;"><br></p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FtQdJsUzpfAvItFLwOmnnjouKZRo" title="blob.png" alt="http://inqiu.qiniudn.com/FtQdJsUzpfAvItFLwOmnnjouKZRo"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">然后选择自己需要的版本，如图：</p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FhQiGISZaOkeSXQaFtb55nYt4HNx" title="blob.png" alt="http://inqiu.qiniudn.com/FhQiGISZaOkeSXQaFtb55nYt4HNx"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">下载解压后，在windows cmd命令下进入该文件目录，执行<br></p><pre class="brush:bash;toolbar:false">redis-server.exe&nbsp;&nbsp;redis.windows.conf</pre><p style="white-space: normal;">如图所示，表示已经windows下的redis环境已经配置完毕。<br></p><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FjtJHNAvGNE49OTPu2HoDXu8Tufk" title="blob.png" alt="http://inqiu.qiniudn.com/FjtJHNAvGNE49OTPu2HoDXu8Tufk"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">使用就很简单了，在打开上图的窗口后，说明redis服务已经在运行，那鼠标点击目录下的redis-cli.exe</p><p style="white-space: normal;">在弹出的窗口上输入命令测试，如清空本地redis库</p><pre class="brush:bash;toolbar:false">flushdb</pre><p style="white-space: normal;"><img src="http://inqiu.qiniudn.com/FtLz0Y-TPEcUR6vVbGkjPCM_8H6t" title="blob.png" alt="http://inqiu.qiniudn.com/FtLz0Y-TPEcUR6vVbGkjPCM_8H6t"></p><p style="white-space: normal;"><br></p><p style="white-space: normal;">如上，redis在windows下环境已经正常使用了。</p><p><br></p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/23/redis windows的安装与使用.html" data-id="cj4ruszul000xv0e9ceu6bvxw" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mongo3.2.7版本备份还原mongodump、mongorestore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html" class="article-date">
+  <time datetime="2016-09-23T13:18:00.000Z" itemprop="datePublished">2016-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html">mongo3.2.7版本备份还原mongodump、mongorestore</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p style="white-space: normal;">数据的重要性，不必多说。<br></p><p style="white-space: normal;">mongo的mongodump、mongorestore可以用于数据备份与恢复</p><p style="white-space: normal;">本人的数据库版本从2.4升级到3.2，无意中发现旧版本的这两个命令，官方已经做了修订</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">如mongo2.4版本下载操作(dataPath为文件输出的目录)<br></p><pre class="brush:bash;toolbar:false">mongoBinPath&nbsp;+&nbsp;&#39;mongodump&nbsp;-u&nbsp;&#39;+db_username+&#39;&nbsp;-p&nbsp;&#39;+db_password+&#39;&nbsp;-d&nbsp;&#39;+db_name+&#39;&nbsp;-o&nbsp;&quot;&#39;+dataPath+&#39;&quot;&#39;;</pre><p style="white-space: normal;">mongo3.2版本</p><pre class="brush:bash;toolbar:false">mongoBinPath&nbsp;+&#39;mongodump&nbsp;&nbsp;-d&nbsp;&#39;+db_name+&#39;&nbsp;-u&nbsp;&#39;+db_username+&#39;&nbsp;-p&nbsp;&#39;+db_password+&#39;&nbsp;-o&nbsp;&#39;+dataPath+&#39;&nbsp;–authenticationDatabase&nbsp;admin&#39;;</pre><p style="white-space: normal;">需要注意的是3.2版本中的-u、-p为admin库下的角色,并且有userAdminAnyDatabase或者root等权限</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">那么数据恢复mongorestore怎么使用,首先进入mongo/bin目录下，执行命令</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">mongo2.4版本</p><pre class="brush:bash;toolbar:false">mongorestore&nbsp;-u&nbsp;admin&nbsp;-p&nbsp;123456&nbsp;-drop&nbsp;/data/itemp</pre><p style="white-space: normal;">mongo3.2版本</p><pre class="brush:bash;toolbar:false">mongorestore&nbsp;-d&nbsp;db_name&nbsp;-u&nbsp;username&nbsp;-p&nbsp;123456&nbsp;/data/itemp&nbsp;–authenticationDatabase&nbsp;admin&nbsp;–drop</pre><p style="white-space: normal;">注意-u、-p为admin库下的角色,并且有userAdminAnyDatabase或者root等权限</p><p style="white-space: normal;">-drop 可选，表示清空当前的数据，只使用备份的数据</p><p><br></p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html" data-id="cj4ruszuh000sv0e94fpd32jv" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻击与防御/">攻击与防御</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/攻击与防御/" style="font-size: 10px;">攻击与防御</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/06/了解http.html">了解http</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/05/js面向对象小结js面向对象小结.html">js面向对象小结js面向对象小结（工厂模式，构造函数，原型方法，继承）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">JS构造函数内的方法与构造函数prototype属性上方法的对比</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/15/hello-world.html">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 eoeos<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

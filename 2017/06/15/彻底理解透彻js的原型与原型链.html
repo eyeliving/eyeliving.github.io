@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://dodoing.com/2017/06/15/彻底理解透彻js的原型与原型链.html">
 <meta property="og:site_name" content="吟求 - IT技术文章分享">
 <meta property="og:description" content="彻底理解透彻js的原型与原型链">
-<meta property="og:updated_time" content="2017-07-05T02:52:01.363Z">
+<meta property="og:updated_time" content="2017-07-06T02:59:19.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底理解透彻js的原型与原型链">
 <meta name="twitter:description" content="彻底理解透彻js的原型与原型链">
@@ -100,10 +100,14 @@
 <p>当使用对象(a)的属性或调用对象的方法时，如果对象(a)的属性或方法不存在时，对象会在一步一步通过<strong>proto</strong>向上寻找，找到最近的则是最终的获取到的方法或属性。<br>这就是js中的原型链。</p>
 <p>所有的<strong>proto</strong>的终点站最终都是指向Object对象，而Object的原型对象（Object.prototype）是不继承自任何属性的对象，即Object.prototype没有<strong>proto</strong>，是原型链的顶层。</p>
 <h2 id="二、她的作用什么？经常用来解决哪一方面的问题？"><a href="#二、她的作用什么？经常用来解决哪一方面的问题？" class="headerlink" title="二、她的作用什么？经常用来解决哪一方面的问题？"></a>二、她的作用什么？经常用来解决哪一方面的问题？</h2><h2 id="三、怎样用她？"><a href="#三、怎样用她？" class="headerlink" title="三、怎样用她？"></a>三、怎样用她？</h2><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person()</div><div class="line">p.__proto__ --&gt; Person.protetype</div><div class="line">Person.protetype.__proto__ --&gt; <span class="built_in">Function</span>.protetype</div><div class="line"><span class="built_in">Function</span>.protetype.__proto__ --&gt; <span class="built_in">Object</span>.protetype</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">很简单的一段代码，我们来看看这个new究竟做了什么？我们可以把new的过程拆分成以下三步：</div><div class="line">var p=&#123;&#125;; 也就是说，初始化一个对象p。</div><div class="line">p.__proto__=Person.prototype;</div><div class="line">Person.call(p);也就是说构造p，也可以称之为初始化p。</div><div class="line"></div><div class="line"></div><div class="line">那么__proto__是什么？我们在这里简单地说下。</div><div class="line">每个对象都会在其内部初始化一个属性，就是__proto__，当我们访问一个对象的属性 时，如果这个对象内部不存在这个属性，那么他就会去__proto__里找这个属性，这个__proto__又会有自己的__proto__，于是就这样 一直找下去，也就是我们平时所说的原型链的概念。</div><div class="line"></div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>做个测试<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fun = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;  </div><div class="line">  </div><div class="line">fun.prototype = &#123;      </div><div class="line">    <span class="attr">name</span> : <span class="string">'peter'</span>,      </div><div class="line">    <span class="attr">age</span> : <span class="number">25</span>      </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fun();  </div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> fun();  </div><div class="line"><span class="built_in">console</span>.log(a.name, b.name);<span class="comment">//peter peter  </span></div><div class="line">fun.prototype.name = <span class="string">'jack'</span>;  </div><div class="line"><span class="built_in">console</span>.log(a.name, b.name);<span class="comment">//jack jack  </span></div><div class="line">fun.prototype = &#123;&#125;;  </div><div class="line">fun.prototype.name = <span class="string">'tom'</span>;  </div><div class="line"><span class="built_in">console</span>.log(a.name, b.name);<span class="comment">//jack jack  </span></div><div class="line">b.constructor.prototype.name = <span class="string">'kitty'</span>;  </div><div class="line"><span class="built_in">console</span>.log(a.name, b.name);<span class="comment">//jack jack</span></div></pre></td></tr></table></figure></p>
+<p>问：若想要输出tom该怎么改，为什么不能输出kitty?<br>答案：<br>(1)、<code>fun.prototype ={}</code>是重写原型，重写后跟重写前就已经实例化的对象没有关系的，所以Tom自然不生效。<br>若要输出tom,添加以下代码<code>a.__proto__.name=tom</code>，无法通过fun来实现，因为原型链已断。</p>
+<p>(2)、 不能输出kitty是因为<code>b.contructor!=fun</code>，在刚开始的时候fun的原型就被重写了。<br>可以改为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">fun.prototype=&#123;</div><div class="line">	<span class="attr">name</span>:<span class="string">''</span>peter<span class="string">''</span>,</div><div class="line">	<span class="attr">constructor</span>:fun,</div><div class="line">	<span class="attr">age</span>:<span class="number">25</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2017/06/15/彻底理解透彻js的原型与原型链.html" data-id="cj4qlfs8o001gmoe94231nbaz" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2017/06/15/彻底理解透彻js的原型与原型链.html" data-id="cj4ruszv2001dv0e9rgp5pv43" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -145,7 +149,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻击与防御/">攻击与防御</a></li></ul>
     </div>
   </div>
 
@@ -155,7 +159,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/攻击与防御/" style="font-size: 10px;">攻击与防御</a>
     </div>
   </div>
 
@@ -177,6 +181,10 @@
       <ul>
         
           <li>
+            <a href="/2017/07/06/了解http.html">了解http</a>
+          </li>
+        
+          <li>
             <a href="/2017/07/05/js面向对象小结js面向对象小结.html">js面向对象小结js面向对象小结（工厂模式，构造函数，原型方法，继承）</a>
           </li>
         
@@ -190,10 +198,6 @@
         
           <li>
             <a href="/2017/06/15/hello-world.html">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/08/js-中continue、break、return的区别.html">js 中continue、break、return的区别</a>
           </li>
         
       </ul>
