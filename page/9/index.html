@@ -52,9 +52,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://dodoing.com"></form>
@@ -64,6 +64,44 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-redis在node.js的使用以及session" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/24/redis在node.js的使用以及session.html" class="article-date">
+  <time datetime="2016-09-23T17:56:00.000Z" itemprop="datePublished">2016-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/24/redis在node.js的使用以及session.html">redis在node.js的使用以及session</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>生产环境下，服务器宕机、故障、重启等等难免避免不了的。</p><p>而在这些未知的情况下，一些临时重要的数据很可能会丢失。</p><p>比如，这个情况，当某人，在客户端执行其认为很重要的操作时，突然出现bug，让其重新登陆</p><p>某人泪奔：尼玛！裤子都脱了，你让我去登录。。。</p><p>当然，这只是一个小小的特例。</p><p><br></p><blockquote><p><span style="font-size: 16px; font-style: italic; font-weight: bold; line-height: 18px;"><span style="font-size: 16px; font-style: italic; font-weight: bold; color: rgb(51, 153, 204); line-height: 18px;">session</span></span></p></blockquote><p>现在我们利用redis的特性，持久化存储，在服务器端做session处理，</p><p>本人现用的是node.js V6，express4</p><pre class="brush:js;toolbar:false">var&nbsp;session&nbsp;=&nbsp;require(&#39;express-session&#39;);<br>var&nbsp;RedisStore&nbsp;=&nbsp;require(&#39;connect-redis&#39;)(session);<br>app.use(session({<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;secret:&nbsp;&quot;session_secret&quot;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;store:&nbsp;new&nbsp;RedisStore({<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;port:&nbsp;6379,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;host:&nbsp;&quot;127.0.0.1&quot;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db:&nbsp;0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pass:&nbsp;&quot;&quot;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resave:&nbsp;false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saveUninitialized:&nbsp;false,<br>}));<br>//赋值，如果上述未成功，req.session是不存在的<br>req.session.user=&nbsp;{};<br>//使用<br>var&nbsp;user&nbsp;=&nbsp;req.session.user;<br>//…</pre><blockquote><p><span style="font-size: 16px; font-style: italic; font-weight: bold; line-height: 18px;"><span style="font-size: 16px; font-style: italic; font-weight: bold; color: rgb(51, 153, 204); line-height: 18px;"><br></span></span></p><p><span style="font-size: 16px; font-style: italic; font-weight: bold; line-height: 18px;"><span style="font-size: 16px; font-style: italic; font-weight: bold; color: rgb(51, 153, 204); line-height: 18px;">利用redis在服务器端做缓存处理</span></span></p></blockquote><p>其中使用了ioredis，类似一个mongoose与mongo的存在<br></p><p>连接redis：</p><pre class="brush:js;toolbar:false">var&nbsp;Redis&nbsp;=&nbsp;require(&#39;ioredis&#39;);<br><br>var&nbsp;client&nbsp;=&nbsp;new&nbsp;Redis({<br>&nbsp;&nbsp;port:&nbsp;&#39;6379&#39;,<br>&nbsp;&nbsp;host:&nbsp;&#39;127.0.0.1&#39;,<br>&nbsp;&nbsp;db:&nbsp;0,<br>&nbsp;&nbsp;password:&nbsp;&#39;&#39;,<br>});<br><br>client.on(&#39;error&#39;,&nbsp;function&nbsp;(err)&nbsp;{<br>&nbsp;&nbsp;if(err){<br>&nbsp;&nbsp;&nbsp;&nbsp;console.error(&#39;connect&nbsp;to&nbsp;redis&nbsp;error,&nbsp;check&nbsp;your&nbsp;redis&nbsp;config&#39;,&nbsp;err);<br>&nbsp;&nbsp;&nbsp;&nbsp;process.exit(1);<br>&nbsp;&nbsp;}<br>});</pre><p><br></p><p>设置数据与获取数据</p><pre class="brush:js;toolbar:false">var&nbsp;get&nbsp;=&nbsp;function&nbsp;(key,&nbsp;callback)&nbsp;{<br>&nbsp;&nbsp;client.get(key,&nbsp;function&nbsp;(err,&nbsp;data)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(err)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;callback(err);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!data)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;callback();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;=&nbsp;JSON.parse(data);<br>&nbsp;&nbsp;&nbsp;&nbsp;callback(null,&nbsp;data);<br>&nbsp;&nbsp;});<br>};<br><br>//time&nbsp;参数可选，秒为单位<br>var&nbsp;set&nbsp;=&nbsp;function&nbsp;(key,&nbsp;value,&nbsp;time,&nbsp;callback)&nbsp;{<br>&nbsp;&nbsp;if&nbsp;(typeof&nbsp;time&nbsp;===&nbsp;&#39;function&#39;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;callback&nbsp;=&nbsp;time;<br>&nbsp;&nbsp;&nbsp;&nbsp;time&nbsp;=&nbsp;null;<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;value&nbsp;=&nbsp;JSON.stringify(value);<br>&nbsp;&nbsp;if&nbsp;(!time)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;client.set(key,&nbsp;value,&nbsp;callback);<br>&nbsp;&nbsp;}&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;client.set(key,value,&#39;EX&#39;,time);<br>&nbsp;&nbsp;}<br>};<br>//现在我们把这些方法，放到一个文件(如redis_cache.js)，方便我们调用<br>exports.get&nbsp;=&nbsp;get;<br>exports.set&nbsp;=&nbsp;set;</pre><p><br></p><p>在我们需要的地方使用，比如在缓存数据时</p><pre class="brush:js;toolbar:false">cache.get(&#39;my_data&#39;,function(err,data){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(data){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//数据已经被缓存<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;data;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//从数据库中取，略。。。并设置缓存一天<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cache.set(&#39;my_data&#39;,iodata,60<em>60</em>24*1);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;iodata;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>});</pre><p><br></p><p>上述就是一些redis在node.js下的缓存处理</p><p>略些浅见，有失误之处，请诸位扶正</p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/24/redis在node.js的使用以及session.html" data-id="cj4t5x1en000xyke95l1l4ozk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-node-js-redis/">js node.js redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-redis windows的安装与使用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -91,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/23/redis windows的安装与使用.html" data-id="cj4ruszul000xv0e9ceu6bvxw" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/09/23/redis windows的安装与使用.html" data-id="cj4t5x1em000vyke9g66wnbr9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
@@ -129,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html" data-id="cj4ruszuh000sv0e94fpd32jv" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html" data-id="cj4t5x1ed000oyke964f4blpa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li></ul>
@@ -155,9 +193,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻击与防御/">攻击与防御</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-angular-react-vue/">js angular react vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-node-js-redis/">js node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻击与防御/">攻击与防御</a></li></ul>
     </div>
   </div>
 
@@ -165,9 +203,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/攻击与防御/" style="font-size: 10px;">攻击与防御</a>
+      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/js-angular-react-vue/" style="font-size: 10px;">js angular react vue</a> <a href="/tags/js-node-js-redis/" style="font-size: 10px;">js node.js redis</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/攻击与防御/" style="font-size: 10px;">攻击与防御</a>
     </div>
   </div>
 
@@ -184,12 +222,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/07/06/了解http.html">了解http</a>
+            <a href="/2017/07/10/了解angular1、angular2+，vue，react.html">了解angular1、angular2+，vue，react</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/06/了解http.html">了解http、https、http1、http2</a>
           </li>
         
           <li>
@@ -202,10 +244,6 @@
         
           <li>
             <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/15/hello-world.html">Hello World</a>
           </li>
         
       </ul>
@@ -221,7 +259,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 eoeos<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

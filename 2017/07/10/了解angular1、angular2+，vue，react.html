@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017 | 吟求 - IT技术文章分享</title>
+  <title>了解angular1、angular2+，vue，react | 吟求 - IT技术文章分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
-<meta name="keywords" content="IT文章聚合，IT文章分享，IT阅读分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="吟求 - IT技术文章分享">
-<meta property="og:url" content="http://dodoing.com/archives/2017/page/2/index.html">
+  <meta name="description" content="了解angular1、angular2+，vue，react">
+<meta name="keywords" content="了解angular1、angular2+，vue，react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解angular1、angular2+，vue，react">
+<meta property="og:url" content="http://dodoing.com/2017/07/10/了解angular1、angular2+，vue，react.html">
 <meta property="og:site_name" content="吟求 - IT技术文章分享">
-<meta property="og:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta property="og:description" content="了解angular1、angular2+，vue，react">
+<meta property="og:updated_time" content="2017-07-06T09:51:35.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吟求 - IT技术文章分享">
-<meta name="twitter:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta name="twitter:title" content="了解angular1、angular2+，vue，react">
+<meta name="twitter:description" content="了解angular1、angular2+，vue，react">
   
     <link rel="alternate" href="/atom.xml" title="吟求 - IT技术文章分享" type="application/atom+xml">
   
@@ -63,82 +64,71 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html" class="archive-article-date">
-  <time datetime="2017-07-05T10:53:00.000Z" itemprop="datePublished">Jul 5</time>
+        <section id="main"><article id="post-了解angular1、angular2+，vue，react" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/10/了解angular1、angular2+，vue，react.html" class="article-date">
+  <time datetime="2017-07-10T13:17:00.000Z" itemprop="datePublished">2017-07-10</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">JS构造函数内的方法与构造函数prototype属性上方法的对比</a>
+    <h1 class="article-title" itemprop="name">
+      了解angular1、angular2+，vue，react
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html" class="archive-article-date">
-  <time datetime="2017-06-15T10:53:00.000Z" itemprop="datePublished">Jun 15</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
-    </h1>
-  
+        <h2 id="知其然知其所以然"><a href="#知其然知其所以然" class="headerlink" title="知其然知其所以然"></a>知其然知其所以然</h2><p>任何一门语言的学习都需要了解它的核心概念，处理流程和实现原理，这样才能在编译出现问题或者没有达到我们想要的结果时，及时准确的发现问题所在。</p>
+<h3 id="angular1"><a href="#angular1" class="headerlink" title="angular1.*"></a>angular1.*</h3><p>区分：angular1.* 全称是angular.js，而之后的版本（采用语义化）angular2，angular3，angular4统称为angular<br>数据绑定采用什么机制？</p>
+<p>脏检查机制。</p>
+<p>Angular 在 scope 模型上设置了一个监听队列，用来监听数据变化并更新 view 。每次绑定一个东西到 view 上时 AngularJS 就会往 $watch 队列里插入一条 $watch，用来检测它监视的 model 里是否有变化的东西。当浏览器接收到可以被 angular context 处理的事件时，$digest 循环就会触发，遍历所有的 $watch，最后更新 dom。</p>
+<p>举个栗子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button ng-click=<span class="string">"val=val+1"</span>&gt;increase <span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></div></pre></td></tr></table></figure></p>
+<p>ng-click 时会产生一次更新的操作（至少触发两次 $digest 循环）</p>
+<pre><code>1. 按下按钮
+2. 浏览器接收到一个事件，进入到 angular context
+3. $digest 循环开始执行，查询每个 $watch 是否变化
+4. 由于监视 $scope.val 的 $watch 报告了变化，因此强制再执行一次 $digest 循环
+5. 新的 $digest 循环未检测到变化
+6. 浏览器拿回控制器，更新 $scope.val 新值对应的 dom
+</code></pre><p>$digest 循环的上限是 10 次（超过 10次后抛出一个异常，防止无限循环）。</p>
+<p>如果在controller当中，使用原生的方法（比如原生的onchange事件），是不会进行脏检查的。<br>需要执行<code>$scope.$apply()</code> 另使用<code>$timeout</code> 也可。<br>Angular 的 digest 的触发不是定时的，只有在指定的事件触发之后才会进入 $digest（ng-click、$timeout等）。</p>
+<p>依赖注入原理：<em>*</em></p>
+<hr>
+<h3 id="angular2"><a href="#angular2" class="headerlink" title="angular2+"></a>angular2+</h3><p>数据绑定采用什么机制？</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/15/hello-world.html" class="archive-article-date">
-  <time datetime="2017-06-15T01:25:50.389Z" itemprop="datePublished">Jun 15</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/15/hello-world.html">Hello World</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2017/07/10/了解angular1、angular2+，vue，react.html" data-id="cj4t5x1eq0010yke907udty0g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-angular-react-vue/">js angular react vue</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/06/了解http.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">了解http、https、http1、http2</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; __('prev')</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="page-number" href="/archives/2017/page/4/">4</a><a class="page-number" href="/archives/2017/page/5/">5</a><a class="extend next" rel="next" href="/archives/2017/page/3/">__('next') &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">
