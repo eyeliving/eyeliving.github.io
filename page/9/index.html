@@ -65,6 +65,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-nginx设置301跳转 并检测是否设置成功" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" class="article-date">
+  <time datetime="2016-09-24T02:53:00.000Z" itemprop="datePublished">2016-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/24/nginx设置301跳转 并检测是否设置成功.html">nginx设置301跳转 并检测是否设置成功</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>如题：inqiu.com &nbsp;www.inqiu.com</strong></p><p>现在我们把inqiu.com设置301跳转到www.inqiu.com，也就是说，当用户输入inqiu.com后自动跳转到www.inqiu.com<br><br> 反之，如果想把www.inqiu.com跳转到inqiu.com下，下边的情况同样适用。</p><pre class="brush:python;toolbar:false">server&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;inqiu.com&nbsp;www.inqiu.com;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($host&nbsp;!=&nbsp;&#39;inqiu.com&#39;&nbsp;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite&nbsp;^/(.<em>)$&nbsp;<a href="http://inqiu.com/$1&nbsp;permanent" target="_blank" rel="external">http://inqiu.com/$1&nbsp;permanent</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;~&nbsp;.</em>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass&nbsp;<a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_set_header&nbsp;X-Real-IP&nbsp;$remote_addr;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}</pre><p><br></p><p>设置成功之后，重启reload nginx。</p><p>在浏览器里输入测试，结果现在已经实现了301的跳转。</p><p>如果还不放心，还可以用工具测试一下，比如用curl，或者推荐个在线工具<a href="http://tool.chinaz.com/pagestatus/" target="_blank" rel="external">http://tool.chinaz.com/pagestatus/</a></p><p>在命令行下输入：curl -I www.inqiu.com</p><pre class="brush:python;toolbar:false">$&nbsp;curl&nbsp;-i&nbsp;www.inqiu.com<br>HTTP/1.1&nbsp;301&nbsp;Moved&nbsp;Permanently<br>Server:&nbsp;nginx<br>Date:&nbsp;Sat,&nbsp;24&nbsp;Sep&nbsp;2016&nbsp;01:42:47&nbsp;GMT<br>Content-Type:&nbsp;text/html<br>Content-Length:&nbsp;178<br>Connection:&nbsp;keep-alive<br>Location:&nbsp;<a href="http://inqiu.com/" target="_blank" rel="external">http://inqiu.com/</a></pre><p><br></p><p>再试试不带3w的情况下，输入：curl -I inqiu.com</p><pre class="brush:python;toolbar:false">$&nbsp;curl&nbsp;-I&nbsp;inqiu.com<br>HTTP/1.1&nbsp;200&nbsp;OK<br>Server:&nbsp;nginx<br>Date:&nbsp;Sat,&nbsp;24&nbsp;Sep&nbsp;2016&nbsp;02:35:52&nbsp;GMT<br>Content-Type:&nbsp;text/html;&nbsp;charset=utf-8<br>Content-Length:&nbsp;2997<br>Connection:&nbsp;keep-alive<br>Vary:&nbsp;Accept-Encoding<br>ETag:&nbsp;W/&quot;QyWVldqXm6Vqkyk2lCU66w==&quot;<br>Vary:&nbsp;Accept-Encoding</pre><p><br></p><p>如上图所示，分别返回 301 Moved Permanently、200 OK，说明nginx的301跳转已经设置成功。</p><p>备注：其中的参数permanent表示返回301永久重定向, 地址栏显示重定向后的url，爬虫会更新此url。</p><p>与此对应有&nbsp;redirect返回302临时重定向，地址栏显示重定向后的url，爬虫不会更新此url。</p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dodoing.com/2016/09/24/nginx设置301跳转 并检测是否设置成功.html" data-id="cj7gyf8qu000qtke98asjlu8n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-redis在node.js的使用以及session" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/09/24/redis在node.js的使用以及session.html" class="article-date">
@@ -91,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/24/redis在node.js的使用以及session.html" data-id="cj4t5x1en000xyke95l1l4ozk" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/09/24/redis在node.js的使用以及session.html" data-id="cj7gyf8rx0016tke9e3c85uvd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-node-js-redis/">js node.js redis</a></li></ul>
@@ -129,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/23/redis windows的安装与使用.html" data-id="cj4t5x1em000vyke9g66wnbr9" class="article-share-link">Share</a>
+      <a data-url="http://dodoing.com/2016/09/23/redis windows的安装与使用.html" data-id="cj7gyf8rl0012tke9vfrdek65" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
@@ -141,48 +179,10 @@
 
 
   
-    <article id="post-mongo3.2.7版本备份还原mongodump、mongorestore" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html" class="article-date">
-  <time datetime="2016-09-23T13:18:00.000Z" itemprop="datePublished">2016-09-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html">mongo3.2.7版本备份还原mongodump、mongorestore</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p style="white-space: normal;">数据的重要性，不必多说。<br></p><p style="white-space: normal;">mongo的mongodump、mongorestore可以用于数据备份与恢复</p><p style="white-space: normal;">本人的数据库版本从2.4升级到3.2，无意中发现旧版本的这两个命令，官方已经做了修订</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">如mongo2.4版本下载操作(dataPath为文件输出的目录)<br></p><pre class="brush:bash;toolbar:false">mongoBinPath&nbsp;+&nbsp;&#39;mongodump&nbsp;-u&nbsp;&#39;+db_username+&#39;&nbsp;-p&nbsp;&#39;+db_password+&#39;&nbsp;-d&nbsp;&#39;+db_name+&#39;&nbsp;-o&nbsp;&quot;&#39;+dataPath+&#39;&quot;&#39;;</pre><p style="white-space: normal;">mongo3.2版本</p><pre class="brush:bash;toolbar:false">mongoBinPath&nbsp;+&#39;mongodump&nbsp;&nbsp;-d&nbsp;&#39;+db_name+&#39;&nbsp;-u&nbsp;&#39;+db_username+&#39;&nbsp;-p&nbsp;&#39;+db_password+&#39;&nbsp;-o&nbsp;&#39;+dataPath+&#39;&nbsp;–authenticationDatabase&nbsp;admin&#39;;</pre><p style="white-space: normal;">需要注意的是3.2版本中的-u、-p为admin库下的角色,并且有userAdminAnyDatabase或者root等权限</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">那么数据恢复mongorestore怎么使用,首先进入mongo/bin目录下，执行命令</p><p style="white-space: normal;"><br></p><p style="white-space: normal;">mongo2.4版本</p><pre class="brush:bash;toolbar:false">mongorestore&nbsp;-u&nbsp;admin&nbsp;-p&nbsp;123456&nbsp;-drop&nbsp;/data/itemp</pre><p style="white-space: normal;">mongo3.2版本</p><pre class="brush:bash;toolbar:false">mongorestore&nbsp;-d&nbsp;db_name&nbsp;-u&nbsp;username&nbsp;-p&nbsp;123456&nbsp;/data/itemp&nbsp;–authenticationDatabase&nbsp;admin&nbsp;–drop</pre><p style="white-space: normal;">注意-u、-p为admin库下的角色,并且有userAdminAnyDatabase或者root等权限</p><p style="white-space: normal;">-drop 可选，表示清空当前的数据，只使用备份的数据</p><p><br></p>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2016/09/23/mongo3.2.7版本备份还原mongodump、mongorestore.html" data-id="cj4t5x1ed000oyke964f4blpa" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-node-js-mongo/">javascript node.js mongo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/8/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -214,7 +214,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
     </div>
   </div>
 
@@ -225,6 +225,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/11/javascript exports、export、module.exports的关系.html">javascript exports、export、module.exports的关系</a>
+          </li>
         
           <li>
             <a href="/2017/07/10/了解angular1、angular2+，vue，react.html">了解angular1、angular2+，vue，react</a>
@@ -240,10 +244,6 @@
         
           <li>
             <a href="/2017/07/05/JS构造函数内的方法与构造函数prototype属性上方法的对比.html">JS构造函数内的方法与构造函数prototype属性上方法的对比</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/15/彻底理解透彻js的原型与原型链.html">彻底理解透彻js的原型与原型链</a>
           </li>
         
       </ul>

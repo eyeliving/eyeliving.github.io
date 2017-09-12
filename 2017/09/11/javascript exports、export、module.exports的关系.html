@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>吟求 - IT技术文章分享</title>
+  <title>javascript exports、export、module.exports的关系 | 吟求 - IT技术文章分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
-<meta name="keywords" content="IT文章聚合，IT文章分享，IT阅读分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="吟求 - IT技术文章分享">
-<meta property="og:url" content="http://dodoing.com/index.html">
+  <meta name="description" content="javascript exports、export、module.exports的关系总结">
+<meta name="keywords" content="javascrip、exports、export、module.exports">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript exports、export、module.exports的关系">
+<meta property="og:url" content="http://dodoing.com/2017/09/11/javascript exports、export、module.exports的关系.html">
 <meta property="og:site_name" content="吟求 - IT技术文章分享">
-<meta property="og:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta property="og:description" content="javascript exports、export、module.exports的关系总结">
+<meta property="og:updated_time" content="2017-09-12T01:58:33.855Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吟求 - IT技术文章分享">
-<meta name="twitter:description" content="吟求是一个互联网技术分享的站点，汇聚了java、php、node.js、html5等最新技术实时文章">
+<meta name="twitter:title" content="javascript exports、export、module.exports的关系">
+<meta name="twitter:description" content="javascript exports、export、module.exports的关系总结">
   
     <link rel="alternate" href="/atom.xml" title="吟求 - IT技术文章分享" type="application/atom+xml">
   
@@ -63,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-javascript exports、export、module.exports的关系" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-javascript exports、export、module.exports的关系" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/11/javascript exports、export、module.exports的关系.html" class="article-date">
   <time datetime="2017-09-11T10:00:00.000Z" itemprop="datePublished">2017-09-11</time>
@@ -78,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/11/javascript exports、export、module.exports的关系.html">javascript exports、export、module.exports的关系</a>
+    <h1 class="article-title" itemprop="name">
+      javascript exports、export、module.exports的关系
     </h1>
   
 
@@ -122,115 +121,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-了解angular1、angular2+，vue，react" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/10/了解angular1、angular2+，vue，react.html" class="article-date">
-  <time datetime="2017-07-10T13:17:00.000Z" itemprop="datePublished">2017-07-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/10/了解angular1、angular2+，vue，react.html">了解angular1、angular2+，vue，react</a>
-    </h1>
+    <a href="/2017/07/10/了解angular1、angular2+，vue，react.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">了解angular1、angular2+，vue，react</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="知其然知其所以然"><a href="#知其然知其所以然" class="headerlink" title="知其然知其所以然"></a>知其然知其所以然</h2><p>任何一门语言的学习都需要了解它的核心概念，处理流程和实现原理，这样才能在编译出现问题或者没有达到我们想要的结果时，及时准确的发现问题所在。</p>
-<h3 id="angular1"><a href="#angular1" class="headerlink" title="angular1.*"></a>angular1.*</h3><p>区分：angular1.* 全称是angular.js，而之后的版本（采用语义化）angular2，angular3，angular4统称为angular<br>数据绑定采用什么机制？</p>
-<p>脏检查机制。</p>
-<p>Angular 在 scope 模型上设置了一个监听队列，用来监听数据变化并更新 view 。每次绑定一个东西到 view 上时 AngularJS 就会往 $watch 队列里插入一条 $watch，用来检测它监视的 model 里是否有变化的东西。当浏览器接收到可以被 angular context 处理的事件时，$digest 循环就会触发，遍历所有的 $watch，最后更新 dom。</p>
-<p>举个栗子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button ng-click=<span class="string">"val=val+1"</span>&gt;increase <span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></div></pre></td></tr></table></figure></p>
-<p>ng-click 时会产生一次更新的操作（至少触发两次 $digest 循环）</p>
-<pre><code>1. 按下按钮
-2. 浏览器接收到一个事件，进入到 angular context
-3. $digest 循环开始执行，查询每个 $watch 是否变化
-4. 由于监视 $scope.val 的 $watch 报告了变化，因此强制再执行一次 $digest 循环
-5. 新的 $digest 循环未检测到变化
-6. 浏览器拿回控制器，更新 $scope.val 新值对应的 dom
-</code></pre><p>$digest 循环的上限是 10 次（超过 10次后抛出一个异常，防止无限循环）。</p>
-<p>如果在controller当中，使用原生的方法（比如原生的onchange事件），是不会进行脏检查的。<br>需要执行<code>$scope.$apply()</code> 另使用<code>$timeout</code> 也可。<br>Angular 的 digest 的触发不是定时的，只有在指定的事件触发之后才会进入 $digest（ng-click、$timeout等）。</p>
-<p>依赖注入原理：<em>*</em></p>
-<hr>
-<h3 id="angular2"><a href="#angular2" class="headerlink" title="angular2+"></a>angular2+</h3><p>数据绑定采用什么机制？</p>
-<p>###vue2.*<br>数据绑定的原理<br>vue的数据双向绑定是通过数据劫持和发布者、订阅者结合实现的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2017/07/10/了解angular1、angular2+，vue，react.html" data-id="cj7gyf8rd000xtke9eqlaxwet" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-angular-react-vue/">js angular react vue</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-了解http" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/06/了解http.html" class="article-date">
-  <time datetime="2017-07-06T14:17:00.000Z" itemprop="datePublished">2017-07-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/06/了解http.html">了解http、https、http1、http2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="知其然知其所以然"><a href="#知其然知其所以然" class="headerlink" title="知其然知其所以然"></a>知其然知其所以然</h2><h3 id="URL-Uniform-Resource-Locator-地址用于描述一个网络上的资源，基本格式如下"><a href="#URL-Uniform-Resource-Locator-地址用于描述一个网络上的资源，基本格式如下" class="headerlink" title="URL(Uniform Resource Locator) 地址用于描述一个网络上的资源，基本格式如下"></a>URL(Uniform Resource Locator) 地址用于描述一个网络上的资源，基本格式如下</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">	schema:<span class="comment">//host[:port#]/path/.../[;url-params][?query-string][#anchor]</span></div><div class="line">	</div><div class="line">　　scheme               指定低层使用的协议(例如：http, https, ftp)</div><div class="line">　　host                 HTTP服务器的IP地址或者域名</div><div class="line">　　port                 HTTP服务器的默认端口是<span class="number">80</span>，这种情况下端口号可以省略。如果使用了别的端口，必须指明，例如 http:<span class="comment">//www.inqiu.com:8080/</span></div><div class="line">　　path                 访问资源的路径</div><div class="line">　　url-params			 请求参数</div><div class="line">　　query-string         发送给http服务器的数据</div><div class="line">　　anchor               锚点</div><div class="line"></div><div class="line"><span class="comment">//URL 的一个例子</span></div><div class="line">http:<span class="comment">//www.inqiu.com/blog/test?id=8079&amp;name=sviergn&amp;x=true#stuff</span></div><div class="line">Schema: http</div><div class="line">host: www.inqiu.com</div><div class="line">path: <span class="regexp">/blog/</span>test</div><div class="line">URL params: id=<span class="number">8079</span></div><div class="line">Query <span class="built_in">String</span>: name=sviergn&amp;x=<span class="literal">true</span></div><div class="line">Anchor: stuff</div></pre></td></tr></table></figure>
-<h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p>1.http协议<br>协议是指计算机通信网络中两台计算机之间进行通信所必须共同遵守的规定或规则，超文本传输协议(HTTP)是一种通信协议，它允许将超文本标记语言(HTML)文档从Web服务器传送到客户端的浏览器<br>目前我们使用的是HTTP/1.1 版本</p>
-<p>http协议是无状态的，同一个客户端的这次请求和上次请求是没有对应关系，对http服务器来说，它并不知道这两个请求来自同一个客户端。 为了解决这个问题， Web程序引入了Cookie机制来维护状态.</p>
-<p>Http协议定义了很多与服务器交互的方法，最基本的有4种，分别是GET,POST,PUT,DELETE. 一个URL地址用于描述一个网络上的资源，而HTTP中的GET, POST, PUT, DELETE就对应着对这个资源的查，改，增，删4个操作。 我们最常见的就是GET和POST了。GET一般用于获取/查询资源信息，而POST一般用于更新资源信息.</p>
-<h3 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h3><h3 id="http1-http2"><a href="#http1-http2" class="headerlink" title="http1 http2"></a>http1 http2</h3><h3 id="https"><a href="#https" class="headerlink" title="https"></a>https</h3><p>HTTP访问，用户只需要完成TCP三次握手，建立TCP连接就能够直接发送HTTP请求，获取应用层数据。<br>而HTTPS=HTTP+SSL，也就是说HTTPS比HTTP多消耗的服务器资源主要就是看SSL/TLS消耗了多少服务器资源。</p>
-<p>http请求的生命周期</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dodoing.com/2017/07/06/了解http.html" data-id="cj7gyf8rm0014tke9tb6179jc" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">
